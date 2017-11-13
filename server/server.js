@@ -57,7 +57,7 @@ app.use((req, res) =>
     res.sendFile(path.resolve(__dirname, '../client/index.html')));
 
 /* Serve */
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3020
 app.listen(port, function () {
     console.log(`Running on port ${port}!`)
 })
