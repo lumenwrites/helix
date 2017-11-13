@@ -414,7 +414,7 @@ header {
   background: #282C37;
   display: none;
 }
-@media (max-width: 640px) {
+@media (max-width: 740px) {
   /* line 14, ../sass/style.scss */
   header {
     width: 100%;
@@ -450,7 +450,7 @@ header .main-menu i {
   padding-top: 10px;
   background: #282C37;
 }
-@media (max-width: 640px) {
+@media (max-width: 740px) {
   /* line 45, ../sass/style.scss */
   .habits {
     width: 100%;

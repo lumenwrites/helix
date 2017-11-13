@@ -13,7 +13,7 @@ $heading:  #3d454b;
 /* Header */
 header {
     max-width: 640px;
-    @media  (max-width: 640px) {
+    @media  (max-width: 740px) {
 	width: 100%;
     }    
     margin: auto;
@@ -44,7 +44,7 @@ header {
 
 .habits {
     width: 640px;
-    @media  (max-width: 640px) {
+    @media  (max-width: 740px) {
 	width: 100%;
     }
 
