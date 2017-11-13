@@ -13,6 +13,9 @@ $heading:  #3d454b;
 /* Header */
 header {
     max-width: 640px;
+    @media  (max-width: 640px) {
+	width: 100%;
+    }    
     margin: auto;
     background: #282C37;
     display:none;
@@ -41,6 +44,10 @@ header {
 
 .habits {
     width: 640px;
+    @media  (max-width: 640px) {
+	width: 100%;
+    }
+
     margin: auto;
     padding-top: 10px;
     background: #282C37;
