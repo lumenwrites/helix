@@ -601,56 +601,50 @@ header .main-menu i {
 /* line 180, ../sass/style.scss */
 .habits .habit .title {
   float: left;
-  width: calc(100% - 350px);
+  width: 140px;
 }
-@media (max-width: 740px) {
-  /* line 180, ../sass/style.scss */
-  .habits .habit .title {
-    width: calc(100% - 60px);
-  }
-}
-/* line 187, ../sass/style.scss */
+/* line 184, ../sass/style.scss */
 .habits .habit .orange {
   color: #d77c40;
 }
-/* line 188, ../sass/style.scss */
+/* line 185, ../sass/style.scss */
 .habits .habit .blue {
   color: #7890cb;
 }
-/* line 189, ../sass/style.scss */
+/* line 186, ../sass/style.scss */
 .habits .habit .gray {
   color: #67778e;
 }
-/* line 191, ../sass/style.scss */
+/* line 188, ../sass/style.scss */
 .habits .habit .description {
   color: #9BAEC8;
   font-size: 10px;
   margin-bottom: -50px;
 }
-/* line 197, ../sass/style.scss */
+/* line 194, ../sass/style.scss */
 .habits .habit .timeline {
   float: right;
-  width: calc(100% - 200px);
+  width: calc(100% - 190px);
   overflow-y: hidden;
   overflow-x: scroll;
   overflow-x: hidden;
   direction: rtl;
 }
 @media (max-width: 740px) {
-  /* line 197, ../sass/style.scss */
+  /* line 194, ../sass/style.scss */
   .habits .habit .timeline {
     /* float:left; */
   }
 }
-/* line 208, ../sass/style.scss */
+/* line 205, ../sass/style.scss */
 .habits .habit .timeline::-webkit-scrollbar {
   height: 0px;
 }
-/* line 209, ../sass/style.scss */
+/* line 206, ../sass/style.scss */
 .habits .habit .timeline .checkmarks {
   width: calc(50px * 7);
 }
-/* line 213, ../sass/style.scss */
+/* line 210, ../sass/style.scss */
 .habits .habit .timeline .checkmark {
   float: left;
   height: 40px;
@@ -661,25 +655,25 @@ header .main-menu i {
   margin-right: 10px;
   cursor: pointer;
 }
-/* line 222, ../sass/style.scss */
+/* line 219, ../sass/style.scss */
 .habits .habit .timeline .checkmark i {
   line-height: 40px;
   font-size: 20px;
   color: #9BAEC8;
 }
-/* line 227, ../sass/style.scss */
+/* line 224, ../sass/style.scss */
 .habits .habit .timeline .checkmark .empty-day {
   color: #9BAEC8;
 }
-/* line 230, ../sass/style.scss */
+/* line 227, ../sass/style.scss */
 .habits .habit .timeline .checkmark .fa-times {
   color: #af6e6e;
 }
-/* line 233, ../sass/style.scss */
+/* line 230, ../sass/style.scss */
 .habits .habit .timeline .checkmark .fa-check {
   color: #9dc89b;
 }
-/* line 236, ../sass/style.scss */
+/* line 233, ../sass/style.scss */
 .habits .habit .timeline .checkmark .fa-thumbs-up {
   color: #cb9c6f;
 }

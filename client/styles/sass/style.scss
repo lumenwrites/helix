@@ -179,10 +179,7 @@ header {
 	}
 	.title {
 	    float: left;
-	    width: calc(100% - 350px);
-	    @media  (max-width: 740px) {
-		width: calc(100% - 60px);
-	    }	
+	    width: 140px;
 	}
 	.orange { color:#d77c40; }
 	.blue { color:#7890cb; }	    
@@ -200,7 +197,7 @@ header {
 		/* float:left; */
 	    }
 
-	    width: calc(100% - 200px);
+	    width: calc(100% - 190px);
 	    overflow-y: hidden;
 	    overflow-x: scroll;
 	    overflow-x: hidden;
