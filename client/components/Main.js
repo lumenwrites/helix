@@ -24,7 +24,6 @@ class Main extends Component {
 	    <div>
 		<BrowserRouter>
 		    <div className="mainWrapper">
-			<Header />
 			<Route exact path="/" component={Habits} />		    
 		    </div>
 		</BrowserRouter>

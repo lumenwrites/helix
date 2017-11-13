@@ -34533,7 +34533,6 @@ var Main = function (_Component) {
 					_react2.default.createElement(
 						'div',
 						{ className: 'mainWrapper' },
-						_react2.default.createElement(_Header2.default, null),
 						_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Habits2.default })
 					)
 				)
@@ -38402,7 +38401,7 @@ module.exports = function spread(callback) {
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+				value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -38419,6 +38418,14 @@ var _profiles = __webpack_require__(117);
 
 var profilesActions = _interopRequireWildcard(_profiles);
 
+var _Menu = __webpack_require__(613);
+
+var _Menu2 = _interopRequireDefault(_Menu);
+
+var _Calendar = __webpack_require__(612);
+
+var _Calendar2 = _interopRequireDefault(_Calendar);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -38432,51 +38439,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /* Actions */
 
 
+/* Components */
+
+
 var Header = function (_Component) {
-	_inherits(Header, _Component);
+				_inherits(Header, _Component);
 
-	function Header() {
-		_classCallCheck(this, Header);
+				function Header() {
+								_classCallCheck(this, Header);
 
-		return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
-	}
+								return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+				}
 
-	_createClass(Header, [{
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
-				'header',
-				null,
-				_react2.default.createElement(
-					'div',
-					{ className: 'logo' },
-					_react2.default.createElement('img', { src: '/img/logo_256x256.png' }),
-					'helix'
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'main-menu' },
-					_react2.default.createElement(
-						'a',
-						null,
-						_react2.default.createElement('i', { className: 'fa fa-gear' })
-					)
-				),
-				_react2.default.createElement('div', { className: 'clearfix' })
-			);
-		}
-	}]);
+				_createClass(Header, [{
+								key: 'render',
+								value: function render() {
+												return _react2.default.createElement(
+																'header',
+																{ className: 'header' },
+																_react2.default.createElement(_Menu2.default, null),
+																_react2.default.createElement(_Calendar2.default, null),
+																_react2.default.createElement('div', { className: 'clearfix' })
+												);
+								}
+				}]);
 
-	return Header;
+				return Header;
 }(_react.Component);
 
 /* Magic connecting component to redux */
 
 
 function mapStateToProps(state) {
-	return {
-		user: state.profiles.user
-	};
+				return {
+								user: state.profiles.user
+				};
 }
 /* First argument allows to access state */
 /* Second allows to fire actions */
@@ -38505,17 +38502,13 @@ var _habits = __webpack_require__(610);
 
 var habitsActions = _interopRequireWildcard(_habits);
 
-var _Menu = __webpack_require__(613);
-
-var _Menu2 = _interopRequireDefault(_Menu);
-
-var _Calendar = __webpack_require__(612);
-
-var _Calendar2 = _interopRequireDefault(_Calendar);
-
 var _Timeline = __webpack_require__(608);
 
 var _Timeline2 = _interopRequireDefault(_Timeline);
+
+var _Header = __webpack_require__(473);
+
+var _Header2 = _interopRequireDefault(_Header);
 
 var _habits2 = __webpack_require__(611);
 
@@ -38615,9 +38608,7 @@ var Habits = function (_Component) {
 									return _react2.default.createElement(
 												'div',
 												{ className: 'habits' },
-												_react2.default.createElement(_Menu2.default, null),
-												_react2.default.createElement(_Calendar2.default, null),
-												_react2.default.createElement('div', { className: 'clearfix' }),
+												_react2.default.createElement(_Header2.default, null),
 												this.renderHabits()
 									);
 						}
@@ -55156,7 +55147,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, habitsActions)(Check
 
 
 Object.defineProperty(exports, "__esModule", {
-   value: true
+			value: true
 });
 exports.updateCheckmark = updateCheckmark;
 exports.saveHabits = saveHabits;
@@ -55173,131 +55164,154 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function updateCheckmark(checkmark) {
-   return function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
-         return regeneratorRuntime.wrap(function _callee$(_context) {
-            while (1) {
-               switch (_context.prev = _context.next) {
-                  case 0:
-                     /* const res = await axios.get('/api/v1/profiles/user')
+			return function () {
+						var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
+									return regeneratorRuntime.wrap(function _callee$(_context) {
+												while (1) {
+															switch (_context.prev = _context.next) {
+																		case 0:
+																					/* const res = await axios.get('/api/v1/profiles/user')
                        const user = res.data*/
-                     /* console.log('Logged in ' + JSON.stringify(user))*/
-                     dispatch({
-                        type: 'UPDATE_CHECKMARK',
-                        payload: checkmark
-                     });
+																					/* console.log('Logged in ' + JSON.stringify(user))*/
+																					dispatch({
+																								type: 'UPDATE_CHECKMARK',
+																								payload: checkmark
+																					});
 
-                  case 1:
-                  case 'end':
-                     return _context.stop();
-               }
-            }
-         }, _callee, this);
-      }));
+																		case 1:
+																		case 'end':
+																					return _context.stop();
+															}
+												}
+									}, _callee, this);
+						}));
 
-      return function (_x) {
-         return _ref.apply(this, arguments);
-      };
-   }();
+						return function (_x) {
+									return _ref.apply(this, arguments);
+						};
+			}();
 }
 
-function saveHabits(habitsToSave) {
-   /* ../components/Habits.js triggers this action every time habits in state change  */
-   /* For some weird reason, if Im using "habits" vairable, inside the following
+function saveHabits(habits) {
+			/* ../components/Habits.js triggers this action every time habits in state change  */
+			/* For some weird reason, if Im using "habits" vairable, inside the following
       function it becomes empty. if I rename it to "habitsToSave", everything works.
       why? no idea. */
-   habitsToSave.lastSaved = new Date();
-   return function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
-         var res, habits;
-         return regeneratorRuntime.wrap(function _callee2$(_context2) {
-            while (1) {
-               switch (_context2.prev = _context2.next) {
-                  case 0:
-                     _context2.next = 2;
-                     return _axios2.default.post('/api/v1/habits', habitsToSave);
+			var data = {
+						habits: habits,
+						lastSaved: new Date()
+			};
+			return function () {
+						var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
+									var res, habits;
+									return regeneratorRuntime.wrap(function _callee2$(_context2) {
+												while (1) {
+															switch (_context2.prev = _context2.next) {
+																		case 0:
+																					_context2.next = 2;
+																					return _axios2.default.post('/api/v1/habits', data);
 
-                  case 2:
-                     res = _context2.sent;
-                     habits = res.data;
+																		case 2:
+																					res = _context2.sent;
+																					habits = res.data;
 
-                     console.log('Saved habits ' + JSON.stringify(habits));
+																					console.log('Saved habits to server'); /* + JSON.stringify(habits))*/
 
-                     dispatch({
-                        type: 'SAVE_HABITS',
-                        payload: habits
-                     });
+																					dispatch({
+																								type: 'SAVE_HABITS',
+																								payload: habits
+																					});
 
-                  case 6:
-                  case 'end':
-                     return _context2.stop();
-               }
-            }
-         }, _callee2, this);
-      }));
+																		case 6:
+																		case 'end':
+																					return _context2.stop();
+															}
+												}
+									}, _callee2, this);
+						}));
 
-      return function (_x2) {
-         return _ref2.apply(this, arguments);
-      };
-   }();
+						return function (_x2) {
+									return _ref2.apply(this, arguments);
+						};
+			}();
 }
 
 function loadHabits() {
-   /* I'm loading habits when ../components/Habits.js is mounted  */
-   console.log("Fetching habits");
-   return function () {
-      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(dispatch) {
-         var res, serverHabits;
-         return regeneratorRuntime.wrap(function _callee3$(_context3) {
-            while (1) {
-               switch (_context3.prev = _context3.next) {
-                  case 0:
-                     _context3.next = 2;
-                     return _axios2.default.get('/api/v1/habits');
+			/* I'm loading habits when ../components/Habits.js is mounted  */
+			console.log("Fetching habits");
+			return function () {
+						var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(dispatch) {
+									var res, serverHabits, browserHabits, serverLastSaved, browserLastSaved, habits;
+									return regeneratorRuntime.wrap(function _callee3$(_context3) {
+												while (1) {
+															switch (_context3.prev = _context3.next) {
+																		case 0:
+																					_context3.next = 2;
+																					return _axios2.default.get('/api/v1/profiles/user');
 
-                  case 2:
-                     res = _context3.sent;
-                     serverHabits = JSON.parse(res.data);
+																		case 2:
+																					res = _context3.sent;
 
-                     console.log('Fetched habits');
-                     dispatch({
-                        type: 'LOAD_HABITS',
-                        payload: serverHabits
-                     });
+																					console.log('Fetched habits');
 
-                  case 6:
-                  case 'end':
-                     return _context3.stop();
-               }
-            }
-         }, _callee3, this);
-      }));
+																					serverHabits = JSON.parse(res.data.habits);
+																					browserHabits = JSON.parse(localStorage.getItem('habits'));
+																					serverLastSaved = Date.parse(res.data.lastSaved);
+																					browserLastSaved = Date.parse(localStorage.getItem('lastSaved'));
+																					habits = [];
+																					/* TODO: doesn't work right yet. after I fetch habits in Habits.js,
+                        it automatically resaves it. Making debugging this more confusing.  */
+																					/* Compare habits from DB and local storage */
 
-      return function (_x3) {
-         return _ref3.apply(this, arguments);
-      };
-   }();
+																					if (serverLastSaved > browserLastSaved) {
+																								/* Local storage habits were changed more recently,
+                           because  I was logged out or offline. */
+																								console.log("Loading browser habits");
+																								habits = browserHabits;
+																					} else {
+																								/* DB habits were changed more recently, on another device */
+																								console.log("Loading server habits");
+																								habits = serverHabits;
+																					}
+
+																					dispatch({
+																								type: 'LOAD_HABITS',
+																								payload: serverHabits
+																					});
+
+																		case 11:
+																		case 'end':
+																					return _context3.stop();
+															}
+												}
+									}, _callee3, this);
+						}));
+
+						return function (_x3) {
+									return _ref3.apply(this, arguments);
+						};
+			}();
 }
 
 function saveHabitsBrowser(habits) {
-   /* ../components/Habits.js triggers this action every time habits in state change  */
-   localStorage.setItem('habits', JSON.stringify(habits));
-   /* localStorage.setItem('lastSaved', new Date())    */
-   console.log("Saved habits");
-   return {
-      type: 'SAVE_HABITS',
-      payload: habits
-   };
+			/* ../components/Habits.js triggers this action every time habits in state change  */
+			localStorage.setItem('habits', JSON.stringify(habits));
+			localStorage.setItem('lastSaved', new Date());
+			console.log("Saved habits");
+			return {
+						type: 'SAVE_HABITS',
+						payload: habits
+			};
 }
 
 function loadHabitsBrowser() {
-   /* I'm loading habits when ../components/Habits.js is mounted  */
-   var habits = JSON.parse(localStorage.getItem('habits'));
-   console.log("Load habits");
-   return {
-      type: 'LOAD_HABITS',
-      payload: habits
-   };
+			/* I'm loading habits when ../components/Habits.js is mounted  */
+			var habits = JSON.parse(localStorage.getItem('habits'));
+			console.log("Load habits");
+			return {
+						type: 'LOAD_HABITS',
+						payload: habits
+			};
 }
 
 /***/ }),

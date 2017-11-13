@@ -407,64 +407,31 @@ textarea, textarea:focus, textarea:active {
 }
 
 /* Header */
-/* line 14, ../sass/style.scss */
+/* line 15, ../sass/style.scss */
 header {
-  max-width: 640px;
+  width: 640px;
+  padding-top: 10px;
   margin: auto;
   background: #282C37;
-  display: none;
+ /* 
+ position: relative;
+ box-shadow: 2px 2px 10px 0 #191b22;
+*/
 }
 @media (max-width: 740px) {
-  /* line 14, ../sass/style.scss */
+  /* line 15, ../sass/style.scss */
   header {
     width: 100%;
     max-width: 100%;
   }
 }
-/* line 23, ../sass/style.scss */
-header .logo {
-  float: left;
-  color: #9BAEC8;
-  line-height: 30px;
-}
-/* line 27, ../sass/style.scss */
-header .logo img {
-  width: 30px;
-  float: left;
-  margin-right: 4px;
-}
-/* line 33, ../sass/style.scss */
+/* line 29, ../sass/style.scss */
 header .main-menu {
-  float: right;
-}
-/* line 35, ../sass/style.scss */
-header .main-menu i {
-  line-height: 30px;
-  margin-right: 20px;
-  color: #9BAEC8;
-}
-
-/* line 46, ../sass/style.scss */
-.habits {
-  width: 640px;
-  margin: auto;
-  padding-top: 10px;
-  background: #282C37;
-}
-@media (max-width: 740px) {
-  /* line 46, ../sass/style.scss */
-  .habits {
-    width: 100%;
-    max-width: 100%;
-  }
-}
-/* line 57, ../sass/style.scss */
-.habits .main-menu {
   float: left;
   margin-top: -10px;
 }
-/* line 60, ../sass/style.scss */
-.habits .main-menu i {
+/* line 32, ../sass/style.scss */
+header .main-menu i {
   font-size: 18px;
   margin-right: 4px;
   color: #9BAEC8;
@@ -473,38 +440,39 @@ header .main-menu i {
   text-align: center;
   line-height: 40px;
 }
-/* line 70, ../sass/style.scss */
-.habits .main-menu .dropdown {
+/* line 42, ../sass/style.scss */
+header .main-menu .dropdown {
   float: left;
   width: 200px;
   /* Hacky fix, there's a distance between dropdown element and menu */
   height: 42px;
   margin-bottom: -2px;
 }
-/* line 76, ../sass/style.scss */
-.habits .main-menu .dropdown .dropdown-menu {
+/* line 48, ../sass/style.scss */
+header .main-menu .dropdown .dropdown-menu {
   background-color: #313543;
+  box-shadow: 2px 2px 10px 0 #191b22;
   top: calc(100% - 3px);
   padding: 0;
 }
-/* line 80, ../sass/style.scss */
-.habits .main-menu .dropdown .dropdown-menu li {
+/* line 53, ../sass/style.scss */
+header .main-menu .dropdown .dropdown-menu li {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   margin: 0;
   padding: 10px;
 }
-/* line 84, ../sass/style.scss */
-.habits .main-menu .dropdown .dropdown-menu li a {
+/* line 57, ../sass/style.scss */
+header .main-menu .dropdown .dropdown-menu li a {
   color: #9BAEC8;
 }
-/* line 86, ../sass/style.scss */
-.habits .main-menu .dropdown .dropdown-menu li a i {
+/* line 59, ../sass/style.scss */
+header .main-menu .dropdown .dropdown-menu li a i {
   display: inline;
   width: 20px;
   margin-right: 10px;
 }
-/* line 100, ../sass/style.scss */
-.habits .calendar {
+/* line 73, ../sass/style.scss */
+header .calendar {
   margin-right: 10px;
   float: right;
   /* @media  (max-width: 740px) { */
@@ -517,37 +485,37 @@ header .main-menu i {
   direction: rtl;
   position: relative;
 }
-/* line 111, ../sass/style.scss */
-.habits .calendar::-webkit-scrollbar {
+/* line 84, ../sass/style.scss */
+header .calendar::-webkit-scrollbar {
   height: 0px;
 }
-/* line 112, ../sass/style.scss */
-.habits .calendar .dates {
+/* line 85, ../sass/style.scss */
+header .calendar .dates {
   width: calc(50px * 7);
 }
-/* line 117, ../sass/style.scss */
-.habits .calendar .prev-week, .habits .calendar .next-week {
+/* line 90, ../sass/style.scss */
+header .calendar .prev-week, header .calendar .next-week {
   display: none;
   position: absolute;
   height: 30px;
   width: 0;
   top: 0px;
 }
-/* line 123, ../sass/style.scss */
-.habits .calendar .prev-week .fa, .habits .calendar .next-week .fa {
+/* line 96, ../sass/style.scss */
+header .calendar .prev-week .fa, header .calendar .next-week .fa {
   line-height: 30px;
   color: #9BAEC8;
 }
-/* line 128, ../sass/style.scss */
-.habits .calendar .prev-week {
+/* line 101, ../sass/style.scss */
+header .calendar .prev-week {
   left: -10px;
 }
-/* line 129, ../sass/style.scss */
-.habits .calendar .next-week {
+/* line 102, ../sass/style.scss */
+header .calendar .next-week {
   right: 0px;
 }
-/* line 130, ../sass/style.scss */
-.habits .calendar .day {
+/* line 103, ../sass/style.scss */
+header .calendar .day {
   float: left;
   height: 30px;
   width: 40px;
@@ -556,22 +524,22 @@ header .main-menu i {
   font-weight: bold;
   position: relative;
 }
-/* line 137, ../sass/style.scss */
-.habits .calendar .day .name {
+/* line 110, ../sass/style.scss */
+header .calendar .day .name {
   text-transform: uppercase;
   font-size: 8px;
   color: #9BAEC8;
   /* font-family: 'Roboto Mono', sans-serif; */
   /* font-weight: 800; */
 }
-/* line 144, ../sass/style.scss */
-.habits .calendar .day .date {
+/* line 117, ../sass/style.scss */
+header .calendar .day .date {
   font-size: 15px;
   line-height: 15px;
   color: #9BAEC8;
 }
-/* line 151, ../sass/style.scss */
-.habits .calendar .day .today {
+/* line 124, ../sass/style.scss */
+header .calendar .day .today {
   position: absolute;
   top: -6px;
   left: -6px;
@@ -580,13 +548,27 @@ header .main-menu i {
   border: 1px solid rgba(156, 175, 201, 0.4);
   pointer-events: none;
 }
-/* line 165, ../sass/style.scss */
+
+/* line 139, ../sass/style.scss */
+.habits {
+  width: 640px;
+  margin: auto;
+  background: #282C37;
+}
+@media (max-width: 740px) {
+  /* line 139, ../sass/style.scss */
+  .habits {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+/* line 149, ../sass/style.scss */
 .habits .habit {
   padding: 10px;
   margin: 2px 0;
   background: #313543;
 }
-/* line 169, ../sass/style.scss */
+/* line 153, ../sass/style.scss */
 .habits .habit .streak {
   float: left;
   height: 40px;
@@ -598,30 +580,30 @@ header .main-menu i {
   color: #9BAEC8;
   margin-right: 10px;
 }
-/* line 180, ../sass/style.scss */
+/* line 164, ../sass/style.scss */
 .habits .habit .title {
   float: left;
   width: 140px;
 }
-/* line 184, ../sass/style.scss */
+/* line 168, ../sass/style.scss */
 .habits .habit .orange {
   color: #d77c40;
 }
-/* line 185, ../sass/style.scss */
+/* line 169, ../sass/style.scss */
 .habits .habit .blue {
   color: #7890cb;
 }
-/* line 186, ../sass/style.scss */
+/* line 170, ../sass/style.scss */
 .habits .habit .gray {
   color: #67778e;
 }
-/* line 188, ../sass/style.scss */
+/* line 172, ../sass/style.scss */
 .habits .habit .description {
   color: #9BAEC8;
   font-size: 10px;
   margin-bottom: -50px;
 }
-/* line 194, ../sass/style.scss */
+/* line 178, ../sass/style.scss */
 .habits .habit .timeline {
   float: right;
   width: calc(100% - 190px);
@@ -631,20 +613,20 @@ header .main-menu i {
   direction: rtl;
 }
 @media (max-width: 740px) {
-  /* line 194, ../sass/style.scss */
+  /* line 178, ../sass/style.scss */
   .habits .habit .timeline {
     /* float:left; */
   }
 }
-/* line 205, ../sass/style.scss */
+/* line 189, ../sass/style.scss */
 .habits .habit .timeline::-webkit-scrollbar {
   height: 0px;
 }
-/* line 206, ../sass/style.scss */
+/* line 190, ../sass/style.scss */
 .habits .habit .timeline .checkmarks {
   width: calc(50px * 7);
 }
-/* line 210, ../sass/style.scss */
+/* line 194, ../sass/style.scss */
 .habits .habit .timeline .checkmark {
   float: left;
   height: 40px;
@@ -655,25 +637,25 @@ header .main-menu i {
   margin-right: 10px;
   cursor: pointer;
 }
-/* line 219, ../sass/style.scss */
+/* line 203, ../sass/style.scss */
 .habits .habit .timeline .checkmark i {
   line-height: 40px;
   font-size: 20px;
   color: #9BAEC8;
 }
-/* line 224, ../sass/style.scss */
+/* line 208, ../sass/style.scss */
 .habits .habit .timeline .checkmark .empty-day {
   color: #9BAEC8;
 }
-/* line 227, ../sass/style.scss */
+/* line 211, ../sass/style.scss */
 .habits .habit .timeline .checkmark .fa-times {
   color: #af6e6e;
 }
-/* line 230, ../sass/style.scss */
+/* line 214, ../sass/style.scss */
 .habits .habit .timeline .checkmark .fa-check {
   color: #9dc89b;
 }
-/* line 233, ../sass/style.scss */
+/* line 217, ../sass/style.scss */
 .habits .habit .timeline .checkmark .fa-thumbs-up {
   color: #cb9c6f;
 }

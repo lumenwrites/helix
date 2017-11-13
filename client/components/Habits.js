@@ -5,16 +5,15 @@ import { connect } from 'react-redux';
 import * as habitsActions from '../actions/habits.actions'
 
 /* Components */
-import Menu from './Menu'
-import Calendar from './Calendar'
 import Timeline from './Timeline'
+import Header from './Header'
 
 /* Utils */
 import { calculateStreak } from '../utils/habits.utils'
 
 class Habits extends Component {
     componentDidMount() {
-	    /* Temporarily, fetch habits from local storage for logged out user */
+	/* Temporarily, fetch habits from local storage for logged out user */
 	if (localStorage.getItem('habits')) {
 	    this.props.loadHabitsBrowser()
 	}
@@ -63,9 +62,7 @@ class Habits extends Component {
     render() {
 	return (
 	    <div className="habits">
-		<Menu />
-		<Calendar />
-		<div className="clearfix"/>		
+		<Header />			
 		{ this.renderHabits() }
 	    </div>
 	)

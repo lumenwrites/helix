@@ -5,7 +5,8 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
     email: { type: 'String' },    
     googleId: { type: 'String', required: true },
-    habits: { type: 'String' }        
+    habits: { type: 'String' },
+    lastSaved: { type: 'String' }            
 })
 
 /* User collection */

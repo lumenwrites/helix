@@ -5,21 +5,18 @@ import { Link } from 'react-router-dom';
 /* Actions */
 import * as profilesActions from '../actions/profiles.actions'
 
+/* Components */
+import Menu from './Menu'
+import Calendar from './Calendar'
+
 
 class Header extends Component {
     render() {
 	return (
-	    <header>
-		<div className="logo">
-		    <img src="/img/logo_256x256.png"/>
-		    helix
-		</div>
-		<div className="main-menu">
-		    <a>
-			<i className="fa fa-gear"></i>
-		    </a>
-		</div>
-		<div className="clearfix"/>		    
+	    <header className="header">
+		<Menu />
+		<Calendar />
+		<div className="clearfix"/>
 	    </header>
 	);
     }
