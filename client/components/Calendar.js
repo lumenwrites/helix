@@ -3,7 +3,7 @@ import moment from 'moment'
 import React, { Component } from 'react'
 
 /* Utils */
-import { generateCurrentWeek, generateRecentDays } from '../utils/habits.utils'
+import { generateCurrentWeek, generateRecentDays, syncScroll } from '../utils/habits.utils'
 
 const Calendar = (props) => {
     /* var days = generateCurrentWeek()*/
@@ -19,7 +19,7 @@ const Calendar = (props) => {
     })
 
     return (
-	<div className="calendar">
+	<div className="calendar" onScroll={syncScroll}>
 	    <div className="dates">	    
 		<a className="prev-week">
 		    <i className="fa fa-chevron-left"></i>

@@ -55010,7 +55010,7 @@ var Timeline = function Timeline(props) {
 
 			return _react2.default.createElement(
 						'div',
-						{ className: 'timeline' },
+						{ className: 'timeline', onScroll: _habits.syncScroll },
 						_react2.default.createElement(
 									'div',
 									{ className: 'checkmarks' },
@@ -55209,6 +55209,7 @@ exports.generateRecentDays = generateRecentDays;
 exports.loadCheckmarks = loadCheckmarks;
 exports.updateCheckmark = updateCheckmark;
 exports.calculateStreak = calculateStreak;
+exports.syncScroll = syncScroll;
 
 var _moment = __webpack_require__(480);
 
@@ -55243,7 +55244,7 @@ function generateRecentDays() {
 	var thisDate = today.format('YYYY-MM-DD');
 
 	/* Count backwards from today, adding past 10 days to the calendar */
-	for (var i = 0; i <= 9; i++) {
+	for (var i = 0; i <= 6; i++) {
 		days.push({
 			date: thisDate,
 			value: null,
@@ -55349,6 +55350,17 @@ function calculateStreak(checkmarks) {
 	return currentStreak;
 }
 
+function syncScroll() {
+	var calendar = document.getElementsByClassName("calendar")[0];
+	var timelines = document.getElementsByClassName("timeline");
+	var scroll = calendar.scrollLeft;
+	/* console.log("Scroll! " + scroll)*/
+	/* Looping over all timelines to synchronize scroll. */
+	Array.prototype.forEach.call(timelines, function (t) {
+		t.scrollLeft = scroll;
+	});
+}
+
 /***/ }),
 /* 612 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -55394,7 +55406,7 @@ var Calendar = function Calendar(props) {
 
 	return _react2.default.createElement(
 		'div',
-		{ className: 'calendar' },
+		{ className: 'calendar', onScroll: _habits.syncScroll },
 		_react2.default.createElement(
 			'div',
 			{ className: 'dates' },

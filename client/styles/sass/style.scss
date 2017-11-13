@@ -107,11 +107,10 @@ header {
 	width: calc(100% - 210px); /* minus width of the menu and 10px padding */
 	overflow-y: hidden;
 	overflow-x: scroll;
-	overflow-x: hidden;	
 	direction:rtl;
 	&::-webkit-scrollbar { height: 0px; }
 	.dates {
-	    width: calc(50px * 10);
+	    width: calc(50px * 7);
 	}
 	
 	position: relative;
@@ -204,10 +203,11 @@ header {
 	    width: calc(100% - 200px);
 	    overflow-y: hidden;
 	    overflow-x: scroll;
+	    overflow-x: hidden;
 	    direction:rtl;
 	    &::-webkit-scrollbar { height: 0px; }
 	    .checkmarks {
-		width: calc(50px * 10);
+		width: calc(50px * 7);
 	    }
 
 	    .checkmark {

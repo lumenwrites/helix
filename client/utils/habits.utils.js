@@ -27,7 +27,7 @@ export function generateRecentDays() {
     var thisDate = today.format('YYYY-MM-DD')
 
     /* Count backwards from today, adding past 10 days to the calendar */
-    for (var i = 0; i <= 9; i++) {
+    for (var i = 0; i <= 6; i++) {
 	days.push({
 	    date: thisDate,
 	    value: null,
@@ -132,3 +132,15 @@ export function calculateStreak(checkmarks) {
     return currentStreak;
 }
 
+
+
+export function syncScroll () {
+    const calendar = document.getElementsByClassName("calendar")[0]
+    const timelines = document.getElementsByClassName("timeline")
+    var scroll = calendar.scrollLeft
+    /* console.log("Scroll! " + scroll)*/
+    /* Looping over all timelines to synchronize scroll. */
+    Array.prototype.forEach.call(timelines, function(t) {
+	t.scrollLeft = scroll
+    })
+}

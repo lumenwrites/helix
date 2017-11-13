@@ -514,19 +514,18 @@ header .main-menu i {
   /* minus width of the menu and 10px padding */
   overflow-y: hidden;
   overflow-x: scroll;
-  overflow-x: hidden;
   direction: rtl;
   position: relative;
 }
-/* line 112, ../sass/style.scss */
+/* line 111, ../sass/style.scss */
 .habits .calendar::-webkit-scrollbar {
   height: 0px;
 }
-/* line 113, ../sass/style.scss */
+/* line 112, ../sass/style.scss */
 .habits .calendar .dates {
-  width: calc(50px * 10);
+  width: calc(50px * 7);
 }
-/* line 118, ../sass/style.scss */
+/* line 117, ../sass/style.scss */
 .habits .calendar .prev-week, .habits .calendar .next-week {
   display: none;
   position: absolute;
@@ -534,20 +533,20 @@ header .main-menu i {
   width: 0;
   top: 0px;
 }
-/* line 124, ../sass/style.scss */
+/* line 123, ../sass/style.scss */
 .habits .calendar .prev-week .fa, .habits .calendar .next-week .fa {
   line-height: 30px;
   color: #9BAEC8;
 }
-/* line 129, ../sass/style.scss */
+/* line 128, ../sass/style.scss */
 .habits .calendar .prev-week {
   left: -10px;
 }
-/* line 130, ../sass/style.scss */
+/* line 129, ../sass/style.scss */
 .habits .calendar .next-week {
   right: 0px;
 }
-/* line 131, ../sass/style.scss */
+/* line 130, ../sass/style.scss */
 .habits .calendar .day {
   float: left;
   height: 30px;
@@ -557,7 +556,7 @@ header .main-menu i {
   font-weight: bold;
   position: relative;
 }
-/* line 138, ../sass/style.scss */
+/* line 137, ../sass/style.scss */
 .habits .calendar .day .name {
   text-transform: uppercase;
   font-size: 8px;
@@ -565,13 +564,13 @@ header .main-menu i {
   /* font-family: 'Roboto Mono', sans-serif; */
   /* font-weight: 800; */
 }
-/* line 145, ../sass/style.scss */
+/* line 144, ../sass/style.scss */
 .habits .calendar .day .date {
   font-size: 15px;
   line-height: 15px;
   color: #9BAEC8;
 }
-/* line 152, ../sass/style.scss */
+/* line 151, ../sass/style.scss */
 .habits .calendar .day .today {
   position: absolute;
   top: -6px;
@@ -581,13 +580,13 @@ header .main-menu i {
   border: 1px solid rgba(156, 175, 201, 0.4);
   pointer-events: none;
 }
-/* line 166, ../sass/style.scss */
+/* line 165, ../sass/style.scss */
 .habits .habit {
   padding: 10px;
   margin: 2px 0;
   background: #313543;
 }
-/* line 170, ../sass/style.scss */
+/* line 169, ../sass/style.scss */
 .habits .habit .streak {
   float: left;
   height: 40px;
@@ -599,45 +598,46 @@ header .main-menu i {
   color: #9BAEC8;
   margin-right: 10px;
 }
-/* line 181, ../sass/style.scss */
+/* line 180, ../sass/style.scss */
 .habits .habit .title {
   float: left;
   width: calc(100% - 350px);
 }
 @media (max-width: 740px) {
-  /* line 181, ../sass/style.scss */
+  /* line 180, ../sass/style.scss */
   .habits .habit .title {
     width: calc(100% - 60px);
   }
 }
-/* line 188, ../sass/style.scss */
+/* line 187, ../sass/style.scss */
 .habits .habit .orange {
   color: #d77c40;
 }
-/* line 189, ../sass/style.scss */
+/* line 188, ../sass/style.scss */
 .habits .habit .blue {
   color: #7890cb;
 }
-/* line 190, ../sass/style.scss */
+/* line 189, ../sass/style.scss */
 .habits .habit .gray {
   color: #67778e;
 }
-/* line 192, ../sass/style.scss */
+/* line 191, ../sass/style.scss */
 .habits .habit .description {
   color: #9BAEC8;
   font-size: 10px;
   margin-bottom: -50px;
 }
-/* line 198, ../sass/style.scss */
+/* line 197, ../sass/style.scss */
 .habits .habit .timeline {
   float: right;
   width: calc(100% - 200px);
   overflow-y: hidden;
   overflow-x: scroll;
+  overflow-x: hidden;
   direction: rtl;
 }
 @media (max-width: 740px) {
-  /* line 198, ../sass/style.scss */
+  /* line 197, ../sass/style.scss */
   .habits .habit .timeline {
     /* float:left; */
   }
@@ -648,7 +648,7 @@ header .main-menu i {
 }
 /* line 209, ../sass/style.scss */
 .habits .habit .timeline .checkmarks {
-  width: calc(50px * 10);
+  width: calc(50px * 7);
 }
 /* line 213, ../sass/style.scss */
 .habits .habit .timeline .checkmark {

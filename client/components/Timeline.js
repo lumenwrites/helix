@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import Checkmark from './Checkmark'
 
 /* Utils */
-import { loadCheckmarks } from '../utils/habits.utils'
+import { loadCheckmarks, syncScroll } from '../utils/habits.utils'
 
 /* Timeline component  */
 const Timeline = (props) => {
@@ -25,7 +25,7 @@ const Timeline = (props) => {
     })
 
     return (
-	<div className="timeline">
+	<div className="timeline" onScroll={syncScroll}>
 	    <div className="checkmarks">	    
 		{ checkmarks }
 	    </div>
