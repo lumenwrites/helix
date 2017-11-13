@@ -43,7 +43,7 @@ router.route('/google').get(
 router.route('/google/callback').get(
     passport.authenticate('google'),
     (req, res) => {
-	res.redirect('/dashboard')
+	res.redirect('/')
     }
 )
 

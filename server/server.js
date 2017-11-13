@@ -2,11 +2,13 @@ import express from 'express'
 import mongoose from 'mongoose'
 import path from 'path'
 
+import bodyParser from 'body-parser'
 import cookieSession from 'cookie-session'
 import passport from 'passport'
 
 /* Import Routes */
 import profilesRoutes from './routes/profiles.routes.js'
+import habitsRoutes from './routes/habits.routes.js'
 
 /* Import config */
 import keys from './config/keys'
@@ -29,6 +31,8 @@ app.use(cookieSession({
 app.use(passport.initialize())
 /* Passport takes info from req.session and uses it to deserialize a user */
 app.use(passport.session())
+/* body-parser allows me to receive json, and puts it into req.body */
+app.use(bodyParser.json({ limit: '20mb' }));
 
 /* Connect to DB */
 mongoose.Promise = global.Promise;
@@ -44,6 +48,7 @@ mongoose.connect(MONGO_DB_URL, (error) => {
 
 /* API Routes */
 app.use('/api/v1/profiles', profilesRoutes);
+app.use('/api/v1/habits', habitsRoutes);
 
 /* Serve client react app */
 /* Static files */

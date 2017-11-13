@@ -68,8 +68,6 @@ export default function (state = INITIAL_STATE, action) {
 	    var habits = JSON.parse(JSON.stringify(state))
 	    /* Find a checkmark, update it's state, return updated habits  */
 	    habits = updateCheckmark(checkmark, habits)
-	    /* Save habits (hacky, should do it in action) */
-	    localStorage.setItem('habits', JSON.stringify(habits))
 	    return habits
 	case 'LOAD_HABITS':
 	    var habits = action.payload

@@ -4728,7 +4728,7 @@ function fetchUser() {
 																												res = _context.sent;
 																												user = res.data;
 
-																												console.log('Logged in ' + JSON.stringify(user));
+																												console.log('Fetched user ' + user.email);
 																												dispatch({
 																																type: 'FETCH_USER',
 																																payload: user
@@ -38490,7 +38490,7 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, profilesActions)(Hea
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+			value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -38539,76 +38539,101 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var Habits = function (_Component) {
-	_inherits(Habits, _Component);
+			_inherits(Habits, _Component);
 
-	function Habits() {
-		_classCallCheck(this, Habits);
+			function Habits() {
+						_classCallCheck(this, Habits);
 
-		return _possibleConstructorReturn(this, (Habits.__proto__ || Object.getPrototypeOf(Habits)).apply(this, arguments));
-	}
-
-	_createClass(Habits, [{
-		key: 'componentDidMount',
-		value: function componentDidMount() {
-			/* Load habits if they're saved. */
-			if (localStorage.getItem('habits')) {
-				this.props.loadHabitsBrowser();
+						return _possibleConstructorReturn(this, (Habits.__proto__ || Object.getPrototypeOf(Habits)).apply(this, arguments));
 			}
-		}
-	}, {
-		key: 'renderHabits',
-		value: function renderHabits() {
-			var habits = this.props.habits;
 
-			return habits.map(function (habit) {
-				return _react2.default.createElement(
-					'div',
-					{ className: 'habit', key: habit.title },
-					_react2.default.createElement(
-						'div',
-						{ className: 'streak' },
-						(0, _habits2.calculateStreak)(habit.checkmarks)
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: "title " + habit.color },
-						habit.title,
-						habit.description ? _react2.default.createElement(
-							'div',
-							{ className: 'description' },
-							habit.description
-						) : null
-					),
-					_react2.default.createElement(_Timeline2.default, { habit: habit }),
-					_react2.default.createElement('div', { className: 'clearfix' })
-				);
-			});
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			return _react2.default.createElement(
-				'div',
-				{ className: 'habits' },
-				_react2.default.createElement(_Menu2.default, null),
-				_react2.default.createElement(_Calendar2.default, null),
-				_react2.default.createElement('div', { className: 'clearfix' }),
-				this.renderHabits()
-			);
-		}
-	}]);
+			_createClass(Habits, [{
+						key: 'componentDidMount',
+						value: function componentDidMount() {
+									/* Temporarily, fetch habits from local storage for logged out user */
+									if (localStorage.getItem('habits')) {
+												this.props.loadHabitsBrowser();
+									}
+						}
+			}, {
+						key: 'componentDidUpdate',
+						value: function componentDidUpdate(pastProps, pastState) {
+									var _props = this.props,
+									    habits = _props.habits,
+									    user = _props.user;
 
-	return Habits;
+									var pastUser = pastProps.user;
+									if (user != pastUser && user) {
+												/* If user is logged in, fetch his habits from db. */
+												console.log("Fetched user, loading habits");
+												this.props.loadHabits();
+									}
+									var pastHabits = pastProps.habits;
+									/* Clicking on checkmarks updates state. I want to save it after it's updated. */
+									/* So if the habits have changed, I run action that saves them. */
+									if (habits != pastHabits) {
+												if (this.props.user) {
+															/* if user is logged in, save his habits to db */
+															this.props.saveHabits(this.props.habits);
+												}
+												/* save habits to browser, whether user is logged in or not. */
+												this.props.saveHabitsBrowser(this.props.habits);
+									}
+						}
+			}, {
+						key: 'renderHabits',
+						value: function renderHabits() {
+									var habits = this.props.habits;
+
+									return habits.map(function (habit) {
+												return _react2.default.createElement(
+															'div',
+															{ className: 'habit', key: habit.title },
+															_react2.default.createElement(
+																		'div',
+																		{ className: 'streak' },
+																		(0, _habits2.calculateStreak)(habit.checkmarks)
+															),
+															_react2.default.createElement(
+																		'div',
+																		{ className: "title " + habit.color },
+																		habit.title,
+																		habit.description ? _react2.default.createElement(
+																					'div',
+																					{ className: 'description' },
+																					habit.description
+																		) : null
+															),
+															_react2.default.createElement(_Timeline2.default, { habit: habit }),
+															_react2.default.createElement('div', { className: 'clearfix' })
+												);
+									});
+						}
+			}, {
+						key: 'render',
+						value: function render() {
+									return _react2.default.createElement(
+												'div',
+												{ className: 'habits' },
+												_react2.default.createElement(_Menu2.default, null),
+												_react2.default.createElement(_Calendar2.default, null),
+												_react2.default.createElement('div', { className: 'clearfix' }),
+												this.renderHabits()
+									);
+						}
+			}]);
+
+			return Habits;
 }(_react.Component);
 
 /* Magic connecting component to redux */
 
 
 function mapStateToProps(state) {
-	return {
-		habits: state.habits,
-		user: state.profiles.user
-	};
+			return {
+						habits: state.habits,
+						user: state.profiles.user
+			};
 }
 /* First argument allows to access state */
 /* Second allows to fire actions */
@@ -38705,8 +38730,6 @@ exports.default = function () {
 									var habits = JSON.parse(JSON.stringify(state));
 									/* Find a checkmark, update it's state, return updated habits  */
 									habits = (0, _habits.updateCheckmark)(checkmark, habits);
-									/* Save habits (hacky, should do it in action) */
-									localStorage.setItem('habits', JSON.stringify(habits));
 									return habits;
 						case 'LOAD_HABITS':
 									var habits = action.payload;
@@ -55074,7 +55097,6 @@ var Checkmark = function (_Component) {
 			var checkmark = this.props.checkmark;
 
 			this.props.updateCheckmark(checkmark);
-			/* this.props.saveHabitsBrowser(this.props.habits)	*/
 		}
 	}, {
 		key: 'render',
@@ -55118,7 +55140,8 @@ var Checkmark = function (_Component) {
 
 function mapStateToProps(state) {
 	return {
-		habits: state.habits
+		habits: state.habits,
+		user: state.profiles.user
 	};
 }
 /* First argument allows to access state */
@@ -55133,9 +55156,11 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, habitsActions)(Check
 
 
 Object.defineProperty(exports, "__esModule", {
-				value: true
+   value: true
 });
 exports.updateCheckmark = updateCheckmark;
+exports.saveHabits = saveHabits;
+exports.loadHabits = loadHabits;
 exports.saveHabitsBrowser = saveHabitsBrowser;
 exports.loadHabitsBrowser = loadHabitsBrowser;
 
@@ -55148,50 +55173,131 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function updateCheckmark(checkmark) {
-				return function () {
-								var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
-												return regeneratorRuntime.wrap(function _callee$(_context) {
-																while (1) {
-																				switch (_context.prev = _context.next) {
-																								case 0:
-																												/* const res = await axios.get('/api/v1/profiles/user')
-                               const user = res.data*/
-																												/* console.log('Logged in ' + JSON.stringify(user))*/
-																												dispatch({
-																																type: 'UPDATE_CHECKMARK',
-																																payload: checkmark
-																												});
+   return function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
+         return regeneratorRuntime.wrap(function _callee$(_context) {
+            while (1) {
+               switch (_context.prev = _context.next) {
+                  case 0:
+                     /* const res = await axios.get('/api/v1/profiles/user')
+                       const user = res.data*/
+                     /* console.log('Logged in ' + JSON.stringify(user))*/
+                     dispatch({
+                        type: 'UPDATE_CHECKMARK',
+                        payload: checkmark
+                     });
 
-																								case 1:
-																								case 'end':
-																												return _context.stop();
-																				}
-																}
-												}, _callee, this);
-								}));
+                  case 1:
+                  case 'end':
+                     return _context.stop();
+               }
+            }
+         }, _callee, this);
+      }));
 
-								return function (_x) {
-												return _ref.apply(this, arguments);
-								};
-				}();
+      return function (_x) {
+         return _ref.apply(this, arguments);
+      };
+   }();
+}
+
+function saveHabits(habitsToSave) {
+   /* ../components/Habits.js triggers this action every time habits in state change  */
+   /* For some weird reason, if Im using "habits" vairable, inside the following
+      function it becomes empty. if I rename it to "habitsToSave", everything works.
+      why? no idea. */
+   habitsToSave.lastSaved = new Date();
+   return function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
+         var res, habits;
+         return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            while (1) {
+               switch (_context2.prev = _context2.next) {
+                  case 0:
+                     _context2.next = 2;
+                     return _axios2.default.post('/api/v1/habits', habitsToSave);
+
+                  case 2:
+                     res = _context2.sent;
+                     habits = res.data;
+
+                     console.log('Saved habits ' + JSON.stringify(habits));
+
+                     dispatch({
+                        type: 'SAVE_HABITS',
+                        payload: habits
+                     });
+
+                  case 6:
+                  case 'end':
+                     return _context2.stop();
+               }
+            }
+         }, _callee2, this);
+      }));
+
+      return function (_x2) {
+         return _ref2.apply(this, arguments);
+      };
+   }();
+}
+
+function loadHabits() {
+   /* I'm loading habits when ../components/Habits.js is mounted  */
+   console.log("Fetching habits");
+   return function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(dispatch) {
+         var res, serverHabits;
+         return regeneratorRuntime.wrap(function _callee3$(_context3) {
+            while (1) {
+               switch (_context3.prev = _context3.next) {
+                  case 0:
+                     _context3.next = 2;
+                     return _axios2.default.get('/api/v1/habits');
+
+                  case 2:
+                     res = _context3.sent;
+                     serverHabits = JSON.parse(res.data);
+
+                     console.log('Fetched habits');
+                     dispatch({
+                        type: 'LOAD_HABITS',
+                        payload: serverHabits
+                     });
+
+                  case 6:
+                  case 'end':
+                     return _context3.stop();
+               }
+            }
+         }, _callee3, this);
+      }));
+
+      return function (_x3) {
+         return _ref3.apply(this, arguments);
+      };
+   }();
 }
 
 function saveHabitsBrowser(habits) {
-				/* localStorage.setItem('habits', JSON.stringify(habits))*/
-				console.log("Saved habits");
-				return {
-								type: 'SAVE_HABITS',
-								payload: habits
-				};
+   /* ../components/Habits.js triggers this action every time habits in state change  */
+   localStorage.setItem('habits', JSON.stringify(habits));
+   /* localStorage.setItem('lastSaved', new Date())    */
+   console.log("Saved habits");
+   return {
+      type: 'SAVE_HABITS',
+      payload: habits
+   };
 }
 
 function loadHabitsBrowser() {
-				var habits = JSON.parse(localStorage.getItem('habits'));
-				console.log("Load habits");
-				return {
-								type: 'LOAD_HABITS',
-								payload: habits
-				};
+   /* I'm loading habits when ../components/Habits.js is mounted  */
+   var habits = JSON.parse(localStorage.getItem('habits'));
+   console.log("Load habits");
+   return {
+      type: 'LOAD_HABITS',
+      payload: habits
+   };
 }
 
 /***/ }),
@@ -55487,54 +55593,23 @@ var Main = function (_Component) {
 					_react2.default.createElement(
 						'ul',
 						{ className: 'dropdown-menu', role: 'menu' },
-						_react2.default.createElement(
+						this.props.user ? _react2.default.createElement(
 							'li',
 							null,
 							_react2.default.createElement(
 								'a',
-								null,
-								_react2.default.createElement('i', { className: 'fa fa-download' }),
-								'Export'
-							)
-						),
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								'a',
-								null,
-								_react2.default.createElement('i', { className: 'fa fa-upload' }),
-								'Import'
-							)
-						),
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								'a',
-								null,
-								_react2.default.createElement('i', { className: 'fa fa-gear' }),
-								'Edit'
-							)
-						),
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								'a',
-								null,
-								_react2.default.createElement('i', { className: 'fa fa-info-circle' }),
-								'About'
-							)
-						),
-						_react2.default.createElement(
-							'li',
-							null,
-							_react2.default.createElement(
-								'a',
-								null,
+								{ href: '/api/v1/profiles/logout' },
 								_react2.default.createElement('i', { className: 'fa fa-sign-out' }),
 								'Logout'
+							)
+						) : _react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								'a',
+								{ href: '/api/v1/profiles/google' },
+								_react2.default.createElement('i', { className: 'fa fa-google' }),
+								'Signup/Login'
 							)
 						)
 					)

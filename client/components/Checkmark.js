@@ -10,7 +10,6 @@ class Checkmark extends Component {
     onClick() {
 	const { checkmark } = this.props
 	this.props.updateCheckmark(checkmark)
-	/* this.props.saveHabitsBrowser(this.props.habits)	*/
     }
     
     render() {
@@ -42,7 +41,8 @@ class Checkmark extends Component {
 /* Magic connecting component to redux */
 function mapStateToProps(state) {
     return {
-    	habits: state.habits
+    	habits: state.habits,
+	user: state.profiles.user	
     };
 }
 /* First argument allows to access state */

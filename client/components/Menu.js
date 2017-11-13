@@ -11,31 +11,40 @@ class Main extends Component {
 		<div className="dropdown">
 		    <i className="fa fa-bars"></i>
 		    <ul className="dropdown-menu" role="menu">
-			<li>
+			{/*  
+			    <li>
 			    <a>
-				<i className="fa fa-download"></i>Export
+			    <i className="fa fa-download"></i>Export
 			    </a>
-			</li>
-			<li>
+			    </li>
+			    <li>
 			    <a>
-				<i className="fa fa-upload"></i>Import
+			    <i className="fa fa-upload"></i>Import
 			    </a>
-			</li>
-			<li>			    
+			    </li>
+			    <li>			    
 			    <a>
-				<i className="fa fa-gear"></i>Edit
+			    <i className="fa fa-gear"></i>Edit
 			    </a>
-			</li>
-			<li>				
+			    </li>
+			    <li>				
 			    <a>
-				<i className="fa fa-info-circle"></i>About
+			    <i className="fa fa-info-circle"></i>About
 			    </a>
-			</li>
-			<li>				
-			    <a>
-				<i className="fa fa-sign-out"></i>Logout
-			    </a>
-			</li>
+			    </li>
+			  */}
+			{ this.props.user ?
+			  <li>				
+			      <a href="/api/v1/profiles/logout">
+				  <i className="fa fa-sign-out"></i>Logout
+			      </a>
+			  </li> :
+			  <li>				
+			      <a href="/api/v1/profiles/google">
+				  <i className="fa fa-google"></i>Signup/Login
+			      </a>
+			  </li>
+			}
 			
 		    </ul>
 		</div>
