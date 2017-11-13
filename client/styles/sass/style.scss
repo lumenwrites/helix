@@ -9,6 +9,9 @@ $heading:  #3d454b;
 
 @import "./general";
 
+html {
+    -webkit-text-size-adjust: none
+}
 
 /* Header */
 header {
