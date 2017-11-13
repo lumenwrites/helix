@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 import * as habitsActions from '../actions/habits.actions'
 
 /* Components */
+import Menu from './Menu'
 import Calendar from './Calendar'
 import Timeline from './Timeline'
+
 
 /* Utils */
 import { calculateStreak } from '../utils/habits.utils'
@@ -38,39 +40,7 @@ class Habits extends Component {
     render() {
 	return (
 	    <div className="habits">
-		<div className="main-menu">
-		    <div className="dropdown">
-			<i className="fa fa-bars"></i>
-			<ul className="dropdown-menu" role="menu">
-			    <li>
-				<a>
-				    <i className="fa fa-download"></i>Export
-				</a>
-			    </li>
-			    <li>
-				<a>
-				    <i className="fa fa-upload"></i>Import
-				</a>
-			    </li>
-			    <li>			    
-				<a>
-				    <i className="fa fa-gear"></i>Edit
-				</a>
-			    </li>
-			    <li>				
-				<a>
-				    <i className="fa fa-info-circle"></i>About
-				</a>
-			    </li>
-			    <li>				
-				<a>
-				    <i className="fa fa-sign-out"></i>Logout
-				</a>
-			    </li>
-			    
-			</ul>
-		    </div>
-		</div>
+		<Menu />
 		<Calendar />
 		<div className="clearfix"/>		
 		{ this.renderHabits() }

@@ -96,6 +96,9 @@ header {
     .calendar {
 	margin: 0 10px;	
 	float:right;
+	@media  (max-width: 740px) {
+	    float:left;
+	}	
 
 	position: relative;
 	.prev-week, .next-week {
@@ -164,10 +167,18 @@ header {
 	.title {
 	    float: left;
 	    width: 20%;
+	    @media  (max-width: 740px) {
+		width: calc(100% - 60px);
+	    }	
+	    
 	    padding: 10px 0;	    
 	}
 	.timeline {
-	    float: right;	    
+	    float: right;
+	    @media  (max-width: 740px) {
+		float:left;
+	    }	
+	    
 	    .checkmark {
 		float: left;
 		height: 40px;

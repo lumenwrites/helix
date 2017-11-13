@@ -505,7 +505,13 @@ header .main-menu i {
   float: right;
   position: relative;
 }
-/* line 101, ../sass/style.scss */
+@media (max-width: 740px) {
+  /* line 96, ../sass/style.scss */
+  .habits .calendar {
+    float: left;
+  }
+}
+/* line 104, ../sass/style.scss */
 .habits .calendar .prev-week, .habits .calendar .next-week {
   display: none;
   position: absolute;
@@ -513,20 +519,20 @@ header .main-menu i {
   width: 0;
   top: 0px;
 }
-/* line 107, ../sass/style.scss */
+/* line 110, ../sass/style.scss */
 .habits .calendar .prev-week .fa, .habits .calendar .next-week .fa {
   line-height: 30px;
   color: #9BAEC8;
 }
-/* line 112, ../sass/style.scss */
+/* line 115, ../sass/style.scss */
 .habits .calendar .prev-week {
   left: -10px;
 }
-/* line 113, ../sass/style.scss */
+/* line 116, ../sass/style.scss */
 .habits .calendar .next-week {
   right: 0px;
 }
-/* line 114, ../sass/style.scss */
+/* line 117, ../sass/style.scss */
 .habits .calendar .day {
   float: left;
   height: 30px;
@@ -536,7 +542,7 @@ header .main-menu i {
   font-weight: bold;
   position: relative;
 }
-/* line 121, ../sass/style.scss */
+/* line 124, ../sass/style.scss */
 .habits .calendar .day .name {
   text-transform: uppercase;
   font-size: 8px;
@@ -544,13 +550,13 @@ header .main-menu i {
   /* font-family: 'Roboto Mono', sans-serif; */
   /* font-weight: 800; */
 }
-/* line 128, ../sass/style.scss */
+/* line 131, ../sass/style.scss */
 .habits .calendar .day .date {
   font-size: 15px;
   line-height: 15px;
   color: #9BAEC8;
 }
-/* line 135, ../sass/style.scss */
+/* line 138, ../sass/style.scss */
 .habits .calendar .day .today {
   position: absolute;
   top: -6px;
@@ -560,13 +566,13 @@ header .main-menu i {
   border: 1px solid rgba(156, 175, 201, 0.4);
   pointer-events: none;
 }
-/* line 149, ../sass/style.scss */
+/* line 152, ../sass/style.scss */
 .habits .habit {
   padding: 10px;
   margin: 2px 0;
   background: #313543;
 }
-/* line 153, ../sass/style.scss */
+/* line 156, ../sass/style.scss */
 .habits .habit .streak {
   float: left;
   height: 40px;
@@ -578,17 +584,29 @@ header .main-menu i {
   color: #9BAEC8;
   margin-right: 10px;
 }
-/* line 164, ../sass/style.scss */
+/* line 167, ../sass/style.scss */
 .habits .habit .title {
   float: left;
   width: 20%;
   padding: 10px 0;
 }
-/* line 169, ../sass/style.scss */
+@media (max-width: 740px) {
+  /* line 167, ../sass/style.scss */
+  .habits .habit .title {
+    width: calc(100% - 60px);
+  }
+}
+/* line 176, ../sass/style.scss */
 .habits .habit .timeline {
   float: right;
 }
-/* line 171, ../sass/style.scss */
+@media (max-width: 740px) {
+  /* line 176, ../sass/style.scss */
+  .habits .habit .timeline {
+    float: left;
+  }
+}
+/* line 182, ../sass/style.scss */
 .habits .habit .timeline .checkmark {
   float: left;
   height: 40px;
@@ -599,25 +617,25 @@ header .main-menu i {
   margin-right: 10px;
   cursor: pointer;
 }
-/* line 180, ../sass/style.scss */
+/* line 191, ../sass/style.scss */
 .habits .habit .timeline .checkmark i {
   line-height: 40px;
   font-size: 20px;
   color: #9BAEC8;
 }
-/* line 185, ../sass/style.scss */
+/* line 196, ../sass/style.scss */
 .habits .habit .timeline .checkmark .empty-day {
   color: #9BAEC8;
 }
-/* line 188, ../sass/style.scss */
+/* line 199, ../sass/style.scss */
 .habits .habit .timeline .checkmark .fa-times {
   color: #af6e6e;
 }
-/* line 191, ../sass/style.scss */
+/* line 202, ../sass/style.scss */
 .habits .habit .timeline .checkmark .fa-check {
   color: #9dc89b;
 }
-/* line 194, ../sass/style.scss */
+/* line 205, ../sass/style.scss */
 .habits .habit .timeline .checkmark .fa-thumbs-up {
   color: #cb9c6f;
 }
