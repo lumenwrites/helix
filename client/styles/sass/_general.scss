@@ -1,0 +1,340 @@
+/* General */
+* {
+    color: $text;
+}
+
+html, body {
+    font-family: "Open Sans", sans-serif;
+    background: $background;
+    color: $text;
+    margin:0;
+}
+
+.page {
+    min-height: calc(100vh - 120px);
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+      background-color: #F2F2F2;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background-color: rgba(110, 110, 110, 0.2);
+}
+
+
+h1, h2, h3, h4 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+h1 {
+    font-size: 1.8em;
+}
+hr {
+    margin: 4px;
+}
+a {
+    cursor: pointer;
+    &:hover, &:active, &:focus, &:visited {
+	text-decoration: none;
+    }
+}
+
+
+/* Customize bootstrap */
+.container {
+    max-width: 55em;
+    @media(max-width: 960px) {
+	/* Some weird bug with too wide form on ipad? */
+	max-width: 45em;
+    }	
+}
+.btn {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    &:hover, &:active, &:focus, &:visited {
+	color: white;
+	outline:none;
+	box-shadow:none;
+    }
+}
+.btn-cta {
+    background: $orange;
+    &:hover, &:active, &:focus, &:visited {
+	background: $orange;
+    }
+
+    i {
+	width:0;
+	color: white;
+	margin:3px 2px 0 10px;
+	@media  (max-width: 960px) {
+	    /* margin-left: 5px; */
+	    display:none;
+	}
+    }
+    
+}
+.btn-large {
+    padding: 20px 40px;
+}
+.btn-outline {
+    border: 1px solid white;
+    padding: 20px 40px;
+    color: white;
+    background: none;
+    display: inline-block;
+    cursor: pointer;
+	
+}
+/* Customize bootstrap */
+
+.container {
+    max-width: 900px;
+}
+.btn-default {
+    border-radius: 2px;
+    background: transparent;
+    color: $dark;
+    border: 1px solid $gray;
+}
+.btn-primary {
+    color: white;
+    height: 40px;
+    &:hover, &:active, &:focus, &:visited {
+	color: white;
+    }
+}
+.btn-cta {
+    background: $orange;
+    border: none;
+    color: white;
+    &:hover, &:active, &:focus, &:visited {
+	color: white;
+    }
+}
+
+.btn-cta-large {
+    @extend .btn-cta;
+    padding: 15px 20px; 
+}
+.btn-disabled {
+    background: gray;
+    color: white;
+    height: 40px;
+    cursor: default;
+    &:hover, &:active, &:focus, &:visited {
+	color: white;
+    }
+}
+
+.form-control {
+    height: 40px;
+}
+
+.form-control-cta {
+    @extend .form-control;
+    height: auto;
+    padding: 12px 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.close {
+    margin: 20px;
+}
+
+/* Helpers */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+.centered {
+    margin: auto;
+}
+.center-text {
+    text-align: center;
+}
+.hidden {
+    display: none;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.fill { 
+    min-height: 100%;
+    height: 100%;
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+
+.gray {
+    color:$gray;
+}
+
+.paddings-10 {
+    padding: 10px;
+}
+
+.margins-h-10 {
+    margin: 0 10px;    
+}
+
+/* Typography */
+article h1 {
+    /* font-size: 36px; */
+    font-size: 32px;    
+    font-weight: bold;
+    border-bottom: 1px solid #dddddd;
+    line-height: 50px;
+    margin-top: 0;
+    color: $heading;
+}
+article h2, h2 a {
+    font-size: 30px;
+    font-weight: bold;
+    color: $heading;
+}
+h3 {
+    font-size: 24px;
+    font-weight: bold;		
+}
+h4 {
+    font-size: 24px;
+    font-weight: bold;		
+}
+
+article p {
+    font-size: 22px;
+    margin-bottom:20px;
+}
+
+
+
+
+a {
+    color: $black;
+    &:hover, &:active, &:focus, &:visited {
+	color: $black;
+	text-decoration: none;
+    }
+    cursor: pointer;
+}
+
+article .panel a, article p a {
+    color: $blue;
+    &:hover, &:active, &:focus, &:visited {
+        color: $blue;
+    }
+}
+
+article li {
+    font-size: 22px;
+}
+article ul {
+    padding-left: 22px;
+}
+hr {
+    border:none;
+    border-top: 1px solid rgba(0,0,0,.15);
+    margin: 10px 0;
+}
+
+textarea, textarea:focus, textarea:active {
+    resize: none;
+    box-shadow: none!important;    
+}
+
+
+
+/* Css magic that keeps images square, background in the center. */
+.image-wrapper-square {
+    width: 100%;
+    position: relative;
+
+    &:after {
+	padding-top: 100%;
+	display: block;
+	content: '';
+    }	
+    
+    .thumbnail {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;	    
+	background-position: 50% 50%;
+	background-size: cover;
+
+	margin: 0;
+	border: none;
+	background-color: #1f364d;
+    }    
+}
+
+
+/* Css magic that keeps images 16x9, background in the center. */
+.image-wrapper {
+    width: 100%;
+    position: relative;
+
+    &:after {
+	padding-top: 56.25%; /* 16:9 ratio */
+	display: block;
+	content: '';
+    }	
+    
+    .thumbnail {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;	    
+	background-position: 50% 50%;
+	background-size: cover;
+
+	margin: 0;
+	border: none;
+	background-color: #1f364d;
+    }    
+}
+
+
+
+
+/* Dropdown */
+.dropdown:hover .dropdown-menu {
+    display: block;
+    min-width: 100%;
+}
+

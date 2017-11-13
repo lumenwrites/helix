@@ -1,0 +1,609 @@
+/* #282C37; */
+/* General */
+/* line 2, ../sass/_general.scss */
+* {
+  color: white;
+}
+
+/* line 6, ../sass/_general.scss */
+html, body {
+  font-family: "Open Sans", sans-serif;
+  background: #191b22;
+  color: white;
+  margin: 0;
+}
+
+/* line 13, ../sass/_general.scss */
+.page {
+  min-height: calc(100vh - 120px);
+}
+
+/* line 18, ../sass/_general.scss */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* line 22, ../sass/_general.scss */
+::-webkit-scrollbar-track {
+  background-color: #F2F2F2;
+}
+
+/* line 26, ../sass/_general.scss */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(110, 110, 110, 0.2);
+}
+
+/* line 31, ../sass/_general.scss */
+h1, h2, h3, h4 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+/* line 35, ../sass/_general.scss */
+h1 {
+  font-size: 1.8em;
+}
+
+/* line 38, ../sass/_general.scss */
+hr {
+  margin: 4px;
+}
+
+/* line 41, ../sass/_general.scss */
+a {
+  cursor: pointer;
+}
+/* line 43, ../sass/_general.scss */
+a:hover, a:active, a:focus, a:visited {
+  text-decoration: none;
+}
+
+/* Customize bootstrap */
+/* line 50, ../sass/_general.scss */
+.container {
+  max-width: 55em;
+}
+@media (max-width: 960px) {
+  /* line 50, ../sass/_general.scss */
+  .container {
+    /* Some weird bug with too wide form on ipad? */
+    max-width: 45em;
+  }
+}
+
+/* line 57, ../sass/_general.scss */
+.btn {
+  color: white;
+  border: none;
+  padding: 10px 20px;
+}
+/* line 61, ../sass/_general.scss */
+.btn:hover, .btn:active, .btn:focus, .btn:visited {
+  color: white;
+  outline: none;
+  box-shadow: none;
+}
+
+/* line 67, ../sass/_general.scss */
+.btn-cta, .btn-cta-large {
+  background: #f66303;
+}
+/* line 69, ../sass/_general.scss */
+.btn-cta:hover, .btn-cta-large:hover, .btn-cta:active, .btn-cta-large:active, .btn-cta:focus, .btn-cta-large:focus, .btn-cta:visited, .btn-cta-large:visited {
+  background: #f66303;
+}
+/* line 73, ../sass/_general.scss */
+.btn-cta i, .btn-cta-large i {
+  width: 0;
+  color: white;
+  margin: 3px 2px 0 10px;
+}
+@media (max-width: 960px) {
+  /* line 73, ../sass/_general.scss */
+  .btn-cta i, .btn-cta-large i {
+    /* margin-left: 5px; */
+    display: none;
+  }
+}
+
+/* line 84, ../sass/_general.scss */
+.btn-large {
+  padding: 20px 40px;
+}
+
+/* line 87, ../sass/_general.scss */
+.btn-outline {
+  border: 1px solid white;
+  padding: 20px 40px;
+  color: white;
+  background: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Customize bootstrap */
+/* line 98, ../sass/_general.scss */
+.container {
+  max-width: 900px;
+}
+
+/* line 101, ../sass/_general.scss */
+.btn-default {
+  border-radius: 2px;
+  background: transparent;
+  color: rgba(0, 0, 0, 0.6);
+  border: 1px solid #999;
+}
+
+/* line 107, ../sass/_general.scss */
+.btn-primary {
+  color: white;
+  height: 40px;
+}
+/* line 110, ../sass/_general.scss */
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:visited {
+  color: white;
+}
+
+/* line 114, ../sass/_general.scss */
+.btn-cta, .btn-cta-large {
+  background: #f66303;
+  border: none;
+  color: white;
+}
+/* line 118, ../sass/_general.scss */
+.btn-cta:hover, .btn-cta-large:hover, .btn-cta:active, .btn-cta-large:active, .btn-cta:focus, .btn-cta-large:focus, .btn-cta:visited, .btn-cta-large:visited {
+  color: white;
+}
+
+/* line 123, ../sass/_general.scss */
+.btn-cta-large {
+  padding: 15px 20px;
+}
+
+/* line 127, ../sass/_general.scss */
+.btn-disabled {
+  background: gray;
+  color: white;
+  height: 40px;
+  cursor: default;
+}
+/* line 132, ../sass/_general.scss */
+.btn-disabled:hover, .btn-disabled:active, .btn-disabled:focus, .btn-disabled:visited {
+  color: white;
+}
+
+/* line 137, ../sass/_general.scss */
+.form-control, .form-control-cta {
+  height: 40px;
+}
+
+/* line 141, ../sass/_general.scss */
+.form-control-cta {
+  height: auto;
+  padding: 12px 15px;
+  width: 100%;
+  text-align: center;
+}
+
+/* line 149, ../sass/_general.scss */
+.close {
+  margin: 20px;
+}
+
+/* Helpers */
+/* line 154, ../sass/_general.scss */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* line 160, ../sass/_general.scss */
+.left {
+  float: left;
+}
+
+/* line 164, ../sass/_general.scss */
+.right {
+  float: right;
+}
+
+/* line 167, ../sass/_general.scss */
+.centered {
+  margin: auto;
+}
+
+/* line 170, ../sass/_general.scss */
+.center-text {
+  text-align: center;
+}
+
+/* line 173, ../sass/_general.scss */
+.hidden {
+  display: none;
+}
+
+/* line 177, ../sass/_general.scss */
+.bold {
+  font-weight: bold;
+}
+
+/* line 181, ../sass/_general.scss */
+.pointer {
+  cursor: pointer;
+}
+
+/* line 185, ../sass/_general.scss */
+.fill {
+  min-height: 100%;
+  height: 100%;
+}
+
+/* line 190, ../sass/_general.scss */
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+/* line 195, ../sass/_general.scss */
+.full-width {
+  width: 100%;
+}
+
+/* line 200, ../sass/_general.scss */
+.gray {
+  color: #999;
+}
+
+/* line 204, ../sass/_general.scss */
+.paddings-10 {
+  padding: 10px;
+}
+
+/* line 208, ../sass/_general.scss */
+.margins-h-10 {
+  margin: 0 10px;
+}
+
+/* Typography */
+/* line 213, ../sass/_general.scss */
+article h1 {
+  /* font-size: 36px; */
+  font-size: 32px;
+  font-weight: bold;
+  border-bottom: 1px solid #dddddd;
+  line-height: 50px;
+  margin-top: 0;
+  color: #3d454b;
+}
+
+/* line 222, ../sass/_general.scss */
+article h2, h2 a {
+  font-size: 30px;
+  font-weight: bold;
+  color: #3d454b;
+}
+
+/* line 227, ../sass/_general.scss */
+h3 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* line 231, ../sass/_general.scss */
+h4 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* line 236, ../sass/_general.scss */
+article p {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+/* line 244, ../sass/_general.scss */
+a {
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+/* line 246, ../sass/_general.scss */
+a:hover, a:active, a:focus, a:visited {
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
+}
+
+/* line 253, ../sass/_general.scss */
+article .panel a, article p a {
+  color: #008cba;
+}
+/* line 255, ../sass/_general.scss */
+article .panel a:hover, article .panel a:active, article .panel a:focus, article .panel a:visited, article p a:hover, article p a:active, article p a:focus, article p a:visited {
+  color: #008cba;
+}
+
+/* line 260, ../sass/_general.scss */
+article li {
+  font-size: 22px;
+}
+
+/* line 263, ../sass/_general.scss */
+article ul {
+  padding-left: 22px;
+}
+
+/* line 266, ../sass/_general.scss */
+hr {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  margin: 10px 0;
+}
+
+/* line 272, ../sass/_general.scss */
+textarea, textarea:focus, textarea:active {
+  resize: none;
+  box-shadow: none !important;
+}
+
+/* Css magic that keeps images square, background in the center. */
+/* line 280, ../sass/_general.scss */
+.image-wrapper-square {
+  width: 100%;
+  position: relative;
+}
+/* line 284, ../sass/_general.scss */
+.image-wrapper-square:after {
+  padding-top: 100%;
+  display: block;
+  content: '';
+}
+/* line 290, ../sass/_general.scss */
+.image-wrapper-square .thumbnail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-position: 50% 50%;
+  background-size: cover;
+  margin: 0;
+  border: none;
+  background-color: #1f364d;
+}
+
+/* Css magic that keeps images 16x9, background in the center. */
+/* line 307, ../sass/_general.scss */
+.image-wrapper {
+  width: 100%;
+  position: relative;
+}
+/* line 311, ../sass/_general.scss */
+.image-wrapper:after {
+  padding-top: 56.25%;
+  /* 16:9 ratio */
+  display: block;
+  content: '';
+}
+/* line 317, ../sass/_general.scss */
+.image-wrapper .thumbnail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-position: 50% 50%;
+  background-size: cover;
+  margin: 0;
+  border: none;
+  background-color: #1f364d;
+}
+
+/* Dropdown */
+/* line 336, ../sass/_general.scss */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  min-width: 100%;
+}
+
+/* Header */
+/* line 14, ../sass/style.scss */
+header {
+  max-width: 640px;
+  margin: auto;
+  background: #282C37;
+  display: none;
+}
+/* line 19, ../sass/style.scss */
+header .logo {
+  float: left;
+  color: #9BAEC8;
+  line-height: 30px;
+}
+/* line 23, ../sass/style.scss */
+header .logo img {
+  width: 30px;
+  float: left;
+  margin-right: 4px;
+}
+/* line 29, ../sass/style.scss */
+header .main-menu {
+  float: right;
+}
+/* line 31, ../sass/style.scss */
+header .main-menu i {
+  line-height: 30px;
+  margin-right: 20px;
+  color: #9BAEC8;
+}
+
+/* line 42, ../sass/style.scss */
+.habits {
+  width: 640px;
+  margin: auto;
+  padding-top: 10px;
+  background: #282C37;
+}
+/* line 48, ../sass/style.scss */
+.habits .main-menu {
+  float: left;
+  margin-left: 10px;
+}
+/* line 51, ../sass/style.scss */
+.habits .main-menu i {
+  font-size: 18px;
+  margin-right: 4px;
+  color: #9BAEC8;
+  cursor: pointer;
+  width: 200px;
+  height: 30px;
+}
+/* line 60, ../sass/style.scss */
+.habits .main-menu .dropdown {
+  float: left;
+}
+/* line 62, ../sass/style.scss */
+.habits .main-menu .dropdown .dropdown-menu {
+  margin-left: -10px;
+  background-color: #313543;
+  top: calc(100% - 1px);
+  padding: 0;
+}
+/* line 67, ../sass/style.scss */
+.habits .main-menu .dropdown .dropdown-menu li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  margin: 0;
+  padding: 10px;
+}
+/* line 71, ../sass/style.scss */
+.habits .main-menu .dropdown .dropdown-menu li a {
+  color: #9BAEC8;
+}
+/* line 73, ../sass/style.scss */
+.habits .main-menu .dropdown .dropdown-menu li a i {
+  display: inline;
+  width: 20px;
+  margin-right: 10px;
+}
+/* line 87, ../sass/style.scss */
+.habits .calendar {
+  margin: 0 10px;
+  float: right;
+  position: relative;
+}
+/* line 92, ../sass/style.scss */
+.habits .calendar .prev-week, .habits .calendar .next-week {
+  display: none;
+  position: absolute;
+  height: 30px;
+  width: 0;
+  top: 0px;
+}
+/* line 98, ../sass/style.scss */
+.habits .calendar .prev-week .fa, .habits .calendar .next-week .fa {
+  line-height: 30px;
+  color: #9BAEC8;
+}
+/* line 103, ../sass/style.scss */
+.habits .calendar .prev-week {
+  left: -10px;
+}
+/* line 104, ../sass/style.scss */
+.habits .calendar .next-week {
+  right: 0px;
+}
+/* line 105, ../sass/style.scss */
+.habits .calendar .day {
+  float: left;
+  height: 30px;
+  width: 40px;
+  text-align: center;
+  margin-right: 10px;
+  font-weight: bold;
+  position: relative;
+}
+/* line 112, ../sass/style.scss */
+.habits .calendar .day .name {
+  text-transform: uppercase;
+  font-size: 8px;
+  color: #9BAEC8;
+  /* font-family: 'Roboto Mono', sans-serif; */
+  /* font-weight: 800; */
+}
+/* line 119, ../sass/style.scss */
+.habits .calendar .day .date {
+  font-size: 15px;
+  line-height: 15px;
+  color: #9BAEC8;
+}
+/* line 126, ../sass/style.scss */
+.habits .calendar .day .today {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  height: calc(70px * 5 + 6px);
+  border: 1px solid rgba(156, 175, 201, 0.4);
+  pointer-events: none;
+}
+/* line 140, ../sass/style.scss */
+.habits .habit {
+  padding: 10px;
+  margin: 2px 0;
+  background: #313543;
+}
+/* line 144, ../sass/style.scss */
+.habits .habit .streak {
+  float: left;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 40px;
+  background: #282C37;
+  color: #9BAEC8;
+  margin-right: 10px;
+}
+/* line 155, ../sass/style.scss */
+.habits .habit .title {
+  float: left;
+  width: 20%;
+  padding: 10px 0;
+}
+/* line 160, ../sass/style.scss */
+.habits .habit .timeline {
+  float: right;
+}
+/* line 162, ../sass/style.scss */
+.habits .habit .timeline .checkmark {
+  float: left;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 40px;
+  background: #282C37;
+  margin-right: 10px;
+  cursor: pointer;
+}
+/* line 171, ../sass/style.scss */
+.habits .habit .timeline .checkmark i {
+  line-height: 40px;
+  font-size: 20px;
+  color: #9BAEC8;
+}
+/* line 176, ../sass/style.scss */
+.habits .habit .timeline .checkmark .empty-day {
+  color: #9BAEC8;
+}
+/* line 179, ../sass/style.scss */
+.habits .habit .timeline .checkmark .fa-times {
+  color: #af6e6e;
+}
+/* line 182, ../sass/style.scss */
+.habits .habit .timeline .checkmark .fa-check {
+  color: #9dc89b;
+}
+/* line 185, ../sass/style.scss */
+.habits .habit .timeline .checkmark .fa-thumbs-up {
+  color: #cb9c6f;
+}

@@ -1,0 +1,32 @@
+{
+    "name": "client",
+    "version": "0.1.0",
+    "private": true,
+    "proxy": {
+	"/auth/google": {
+	    "target": "http://localhost:3020"
+	},
+	"/api/*": {
+	    "target": "http://localhost:3020"
+	}
+    },
+    "dependencies": {
+	"axios": "^0.17.0",
+	"node-sass-chokidar": "0.0.3",
+	"react": "^16.0.0",
+	"react-dom": "^16.0.0",
+	"react-redux": "^5.0.6",
+	"react-router-dom": "^4.2.2",
+	"react-scripts": "1.0.14",
+	"redux": "^3.7.2",
+	"redux-thunk": "^2.2.0"
+    },
+    "scripts": {
+	"build:styles": "node-sass-chokidar src/ -o src/",
+	"watch:styles": "npm run build:styles && node-sass-chokidar src/ -o src/ --watch --recursive",
+	"start": "BROWSER=none react-scripts start",
+	"build": "react-scripts build",
+	"test": "react-scripts test --env=jsdom",
+	"eject": "react-scripts eject"
+    }
+}
