@@ -38571,8 +38571,13 @@ var Habits = function (_Component) {
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'title' },
-						habit.title
+						{ className: "title " + habit.color },
+						habit.title,
+						habit.description ? _react2.default.createElement(
+							'div',
+							{ className: 'description' },
+							habit.description
+						) : null
 					),
 					_react2.default.createElement(_Timeline2.default, { habit: habit }),
 					_react2.default.createElement('div', { className: 'clearfix' })
@@ -38717,22 +38722,44 @@ var _habits = __webpack_require__(611);
 var INITIAL_STATE = [{
 			id: 1,
 			title: 'Food',
+			description: '16 packs > 0 packs',
+			color: 'blue',
 			checkmarks: []
 }, {
 			id: 2,
 			title: 'Sport',
+			description: 'Basic + Abs > Lake',
+			color: 'blue',
 			checkmarks: []
 }, {
 			id: 3,
 			title: 'Code',
+			description: 'Udemy/AIPages > Art > Clients',
+			color: 'orange',
 			checkmarks: []
 }, {
 			id: 4,
-			title: 'Write',
+			title: 'Comedy',
+			description: '4 jokes > Tweets/Microscripts',
+			color: 'orange',
 			checkmarks: []
 }, {
 			id: 5,
-			title: 'Comedy',
+			title: '++ Info Value',
+			description: 'SL Paragraphs > Speak',
+			color: 'gray',
+			checkmarks: []
+}, {
+			id: 6,
+			title: '++ Info Diet',
+			description: 'RSS only. No yt/hn/rdt > Plug off.',
+			color: 'gray',
+			checkmarks: []
+}, {
+			id: 7,
+			title: '++ Withdrawal',
+			description: 'N/FO3/NFS > Draw/Lowpoly.',
+			color: 'gray',
 			checkmarks: []
 }];
 
@@ -54972,7 +54999,7 @@ var Timeline = function Timeline(props) {
 
 			/* Load habit's saved checkmarks, generate this week's calendar */
 			var days = (0, _habits.loadCheckmarks)(habit.checkmarks);
-			var timeline = days.map(function (day) {
+			var checkmarks = days.map(function (day) {
 						var checkmark = {
 									date: day.date,
 									value: day.value,
@@ -54984,7 +55011,11 @@ var Timeline = function Timeline(props) {
 			return _react2.default.createElement(
 						'div',
 						{ className: 'timeline' },
-						timeline,
+						_react2.default.createElement(
+									'div',
+									{ className: 'checkmarks' },
+									checkmarks
+						),
 						_react2.default.createElement('div', { className: 'clearfix' })
 			);
 };
@@ -55174,6 +55205,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.generateCurrentWeek = generateCurrentWeek;
+exports.generateRecentDays = generateRecentDays;
 exports.loadCheckmarks = loadCheckmarks;
 exports.updateCheckmark = updateCheckmark;
 exports.calculateStreak = calculateStreak;
@@ -55200,9 +55232,32 @@ function generateCurrentWeek() {
 	return days;
 }
 
+function generateRecentDays() {
+	/* Generate empty calendar for the past 10 days */
+	var names = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+	var currentDate = (0, _moment2.default)();
+	var weekStart = currentDate.clone().startOf('isoweek');
+	var days = [];
+
+	var today = (0, _moment2.default)();
+	var thisDate = today.format('YYYY-MM-DD');
+
+	/* Count backwards from today, adding past 10 days to the calendar */
+	for (var i = 0; i <= 9; i++) {
+		days.push({
+			date: thisDate,
+			value: null,
+			name: names[(0, _moment2.default)(thisDate).day()]
+		});
+		thisDate = (0, _moment2.default)(thisDate).subtract(1, 'days').format('YYYY-MM-DD');
+	}
+	return days.reverse();
+}
+
 function loadCheckmarks(savedCheckmarks) {
 	/* Generate empty calendar for the current week */
-	var days = generateCurrentWeek();
+	/* var days = generateCurrentWeek()*/
+	var days = generateRecentDays();
 	var timeline = days.map(function (day, i) {
 		/* Loop through saved checkmarks,
      if I find a saved value for today,
@@ -55318,7 +55373,8 @@ var _habits = __webpack_require__(611);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Calendar = function Calendar(props) {
-	var days = (0, _habits.generateCurrentWeek)();
+	/* var days = generateCurrentWeek()*/
+	var days = (0, _habits.generateRecentDays)();
 	var calendar = days.map(function (day, i) {
 		return _react2.default.createElement(
 			'div',
@@ -55332,8 +55388,7 @@ var Calendar = function Calendar(props) {
 				'div',
 				{ className: 'date' },
 				day.date.slice(-2)
-			),
-			day.date == (0, _moment2.default)().format("YYYY-MM-DD") ? _react2.default.createElement('div', { className: 'today' }) : null
+			)
 		);
 	});
 
@@ -55341,17 +55396,21 @@ var Calendar = function Calendar(props) {
 		'div',
 		{ className: 'calendar' },
 		_react2.default.createElement(
-			'a',
-			{ className: 'prev-week' },
-			_react2.default.createElement('i', { className: 'fa fa-chevron-left' })
-		),
-		calendar,
-		_react2.default.createElement(
-			'a',
-			{ className: 'next-week' },
-			_react2.default.createElement('i', { className: 'fa fa-chevron-right' })
-		),
-		_react2.default.createElement('div', { className: 'clearfix' })
+			'div',
+			{ className: 'dates' },
+			_react2.default.createElement(
+				'a',
+				{ className: 'prev-week' },
+				_react2.default.createElement('i', { className: 'fa fa-chevron-left' })
+			),
+			calendar,
+			_react2.default.createElement(
+				'a',
+				{ className: 'next-week' },
+				_react2.default.createElement('i', { className: 'fa fa-chevron-right' })
+			),
+			_react2.default.createElement('div', { className: 'clearfix' })
+		)
 	);
 };
 

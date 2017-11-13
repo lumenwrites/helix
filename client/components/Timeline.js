@@ -13,7 +13,7 @@ const Timeline = (props) => {
 
     /* Load habit's saved checkmarks, generate this week's calendar */
     const days = loadCheckmarks(habit.checkmarks)
-    const timeline = days.map((day)=> {
+    const checkmarks = days.map((day)=> {
 	const checkmark = {
 	    date: day.date,
 	    value: day.value,
@@ -26,7 +26,9 @@ const Timeline = (props) => {
 
     return (
 	<div className="timeline">
-	    { timeline }
+	    <div className="checkmarks">	    
+		{ checkmarks }
+	    </div>
 	    <div className="clearfix" />
 	</div>
     )

@@ -56,22 +56,26 @@ header {
 
     .main-menu {
 	float:left;
-	margin-left: 10px;
+	margin-top: -10px;	
 	i {
 	    font-size: 18px;
 	    margin-right: 4px;	    
 	    color: #9BAEC8;
 	    cursor: pointer;
-	    width: 200px;
-	    height: 30px;
+	    width: 40px;
+	    text-align: center;
+	    line-height: 40px;
 	}
 
 	.dropdown {
 	    float: left;
+	    width: 200px;
+	    /* Hacky fix, there's a distance between dropdown element and menu */
+	    height: 42px;
+	    margin-bottom:-2px;
 	    .dropdown-menu {
-		margin-left: -10px;
 		background-color:#313543;
-		top: calc(100% - 1px);
+		top: calc(100% - 3px);
 		padding:0;
 		li {
 		    border-bottom: 1px solid rgba(0,0,0,.15);
@@ -94,12 +98,22 @@ header {
     }
     
     .calendar {
-	margin: 0 10px;	
+	margin-right: 10px;	
 	float:right;
-	@media  (max-width: 740px) {
-	    float:left;
-	}	
-
+	/* @media  (max-width: 740px) { */
+	/*     float:left; */
+	/* }	 */
+	
+	width: calc(100% - 210px); /* minus width of the menu and 10px padding */
+	overflow-y: hidden;
+	overflow-x: scroll;
+	overflow-x: hidden;	
+	direction:rtl;
+	&::-webkit-scrollbar { height: 0px; }
+	.dates {
+	    width: calc(50px * 10);
+	}
+	
 	position: relative;
 	.prev-week, .next-week {
 	    display:none;
@@ -140,7 +154,7 @@ header {
 		top:-6px;
 		left:-6px;
 		right:-6px;
-		height: calc(70px * 5 + 6px);
+		height: calc(67px * 7 + 6px);
 		border: 1px solid rgba(156, 175, 201, 0.4);
 		pointer-events: none;
 	    }
@@ -166,19 +180,36 @@ header {
 	}
 	.title {
 	    float: left;
-	    width: 20%;
+	    width: calc(100% - 350px);
 	    @media  (max-width: 740px) {
 		width: calc(100% - 60px);
 	    }	
-	    
-	    padding: 10px 0;	    
 	}
+	.orange { color:#d77c40; }
+	.blue { color:#7890cb; }	    
+	.gray { color:#67778e; }	    
+	
+	.description {
+	    color: #9BAEC8;
+	    font-size: 10px;
+	    margin-bottom: -50px;
+	}
+
 	.timeline {
 	    float: right;
 	    @media  (max-width: 740px) {
-		float:left;
-	    }	
-	    
+		/* float:left; */
+	    }
+
+	    width: calc(100% - 200px);
+	    overflow-y: hidden;
+	    overflow-x: scroll;
+	    direction:rtl;
+	    &::-webkit-scrollbar { height: 0px; }
+	    .checkmarks {
+		width: calc(50px * 10);
+	    }
+
 	    .checkmark {
 		float: left;
 		height: 40px;

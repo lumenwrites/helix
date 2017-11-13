@@ -16,9 +16,32 @@ export function generateCurrentWeek() {
     return days
 }
 
+export function generateRecentDays() {
+    /* Generate empty calendar for the past 10 days */
+    var names = [ 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun' ];
+    var currentDate = moment();
+    var weekStart = currentDate.clone().startOf('isoweek');
+    var days = [];
+
+    var today = moment()
+    var thisDate = today.format('YYYY-MM-DD')
+
+    /* Count backwards from today, adding past 10 days to the calendar */
+    for (var i = 0; i <= 9; i++) {
+	days.push({
+	    date: thisDate,
+	    value: null,
+	    name: names[moment(thisDate).day()]
+	})
+	thisDate = moment(thisDate).subtract(1,'days').format('YYYY-MM-DD')	
+    }
+    return days.reverse()
+}
+
 export function loadCheckmarks(savedCheckmarks) {
     /* Generate empty calendar for the current week */
-    var days = generateCurrentWeek()
+    /* var days = generateCurrentWeek()*/
+    var days = generateRecentDays()    
     const timeline = days.map((day, i)=>{
 	/* Loop through saved checkmarks,
 	   if I find a saved value for today,

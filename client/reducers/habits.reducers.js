@@ -4,35 +4,59 @@ const INITIAL_STATE = [
     {
 	id: 1,
 	title: 'Food',
+	description: '16 packs > 0 packs',
+	color: 'blue',
 	checkmarks: [
 	]
     },
     {
 	id: 2,
 	title: 'Sport',
+	description: 'Basic + Abs > Lake',
+	color: 'blue',
 	checkmarks: [
 	]
     },
     {
 	id: 3,
 	title: 'Code',
+	description: 'Udemy/AIPages > Art > Clients',
+	color: 'orange',
 	checkmarks: [
 	]
     },
     {
 	id: 4,
-	title: 'Write',
+	title: 'Comedy',
+	description: '4 jokes > Tweets/Microscripts',
+	color: 'orange',
 	checkmarks: [
 	]
     },
     {
 	id: 5,
-	title: 'Comedy',
+	title: '++ Info Value',
+	description: 'SL Paragraphs > Speak',
+	color: 'gray',	
+	checkmarks: [
+	]
+    },
+    {
+	id: 6,
+	title: '++ Info Diet',
+	description: 'RSS only. No yt/hn/rdt > Plug off.',
+	color: 'gray',	
+	checkmarks: [
+	]
+    },
+    {
+	id: 7,
+	title: '++ Withdrawal',
+	description: 'N/FO3/NFS > Draw/Lowpoly.',
+	color: 'gray',	
 	checkmarks: [
 	]
     }
-
-
 ]
 
 /* Create and modify state. Passing initial state and actions. */

@@ -28,8 +28,10 @@ class Habits extends Component {
 		    <div className="streak">
 			{ calculateStreak(habit.checkmarks) }
 		    </div>
-		    <div className="title">
+		    <div className={ "title " + habit.color }>
 			{ habit.title }
+			{ habit.description ?
+			  <div className="description">{ habit.description }</div> : null }
 		    </div>
 		    <Timeline habit={habit} />
 		    <div className="clearfix" />
