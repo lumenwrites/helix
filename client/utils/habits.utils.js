@@ -81,7 +81,8 @@ export function updateCheckmark(checkmark, habits) {
 			c.value = checkmark.value + 1
 		    }
 		    savedCheckmarkFound = true
-		    console.log(`Update ${checkmark.habit} to ` + c.value)
+		    console.log(`[habits.utils]  Update ${checkmark.habit} to `
+			      + c.value)
 		}
 	    })
 	    if (!savedCheckmarkFound) {
@@ -90,7 +91,7 @@ export function updateCheckmark(checkmark, habits) {
 		    date: checkmark.date,
 		    value: 1
 		})
-		console.log("Added checkmark " + checkmark.date)
+		console.log("[habits.utils] Added checkmark " + checkmark.date)
 	    }
 	}
     })

@@ -24,7 +24,7 @@ export function saveHabits(habits) {
     return async function(dispatch) {
 	const res = await axios.post('/api/v1/habits', data)
 	const habits = res.data
-	console.log('Saved habits to server') /* + JSON.stringify(habits)) */
+	console.log('[habits.actions] Saved habits to server') /* + JSON.stringify(habits)) */
 
 	dispatch({
 	    type: 'SAVE_HABITS',
@@ -38,7 +38,7 @@ export function saveHabitsBrowser(habits) {
     habits.lastUpdated = new Date()
     habits.modified = false
     localStorage.setItem('habits', JSON.stringify(habits))
-    console.log("Saved habits to local storage")
+    console.log("[habits.actions]  Saved habits to local storage")
     return {
 	type: 'SAVE_HABITS',
 	payload: habits

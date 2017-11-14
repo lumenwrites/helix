@@ -79,6 +79,7 @@ export default function (state = INITIAL_STATE, action) {
 	    return {...state, modified: false}
 	case 'FETCH_USER':
 	    const profile = action.payload
+	    console.log('[habits.reducers]')
 	    console.log('Logged in ' + profile.email)
 	    /* Loading habits */
 	    if (profile.habits) {

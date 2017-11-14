@@ -17,7 +17,7 @@ class Habits extends Component {
 	const { habits } = this.props
 	/* Save habits if they've been updated. */
 	if (habits.modified) {
-	    console.log("Habits modified, saving habits.")
+	    console.log("[Habits.js] Habits modified, saving habits.")
 	    if (this.props.profile.email) {
 		/* if profile is logged in, save his habits to db */
 		this.props.saveHabits(this.props.habits)

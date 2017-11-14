@@ -7688,7 +7688,7 @@ function updateCheckmark(checkmark, habits) {
 						c.value = checkmark.value + 1;
 					}
 					savedCheckmarkFound = true;
-					console.log('Update ' + checkmark.habit + ' to ' + c.value);
+					console.log('[habits.utils]  Update ' + checkmark.habit + ' to ' + c.value);
 				}
 			});
 			if (!savedCheckmarkFound) {
@@ -7697,7 +7697,7 @@ function updateCheckmark(checkmark, habits) {
 					date: checkmark.date,
 					value: 1
 				});
-				console.log("Added checkmark " + checkmark.date);
+				console.log("[habits.utils] Added checkmark " + checkmark.date);
 			}
 		}
 	});
@@ -9401,7 +9401,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function fetchUser() {
-				console.log("Fetching user");
+				console.log("[profiles.actions] Fetching user");
 				return function () {
 								var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
 												var res, user;
@@ -9415,14 +9415,14 @@ function fetchUser() {
 																								case 2:
 																												res = _context.sent;
 																												user = res.data;
+																												/* console.log('Fetched user ' + user.email)*/
 
-																												console.log('Fetched user ' + user.email);
 																												dispatch({
 																																type: 'FETCH_USER',
 																																payload: user
 																												});
 
-																								case 6:
+																								case 5:
 																								case 'end':
 																												return _context.stop();
 																				}
@@ -24028,7 +24028,7 @@ function saveHabits(habits) {
                      res = _context2.sent;
                      habits = res.data;
 
-                     console.log('Saved habits to server'); /* + JSON.stringify(habits)) */
+                     console.log('[habits.actions] Saved habits to server'); /* + JSON.stringify(habits)) */
 
                      dispatch({
                         type: 'SAVE_HABITS',
@@ -24054,7 +24054,7 @@ function saveHabitsBrowser(habits) {
    habits.lastUpdated = new Date();
    habits.modified = false;
    localStorage.setItem('habits', JSON.stringify(habits));
-   console.log("Saved habits to local storage");
+   console.log("[habits.actions]  Saved habits to local storage");
    return {
       type: 'SAVE_HABITS',
       payload: habits
@@ -55225,7 +55225,7 @@ var Habits = function (_Component) {
 			/* Save habits if they've been updated. */
 
 			if (habits.modified) {
-				console.log("Habits modified, saving habits.");
+				console.log("[Habits.js] Habits modified, saving habits.");
 				if (this.props.profile.email) {
 					/* if profile is logged in, save his habits to db */
 					this.props.saveHabits(this.props.habits);
@@ -55553,6 +55553,7 @@ exports.default = function () {
 												return _extends({}, state, { modified: false });
 								case 'FETCH_USER':
 												var profile = action.payload;
+												console.log('[habits.reducers]');
 												console.log('Logged in ' + profile.email);
 												/* Loading habits */
 												if (profile.habits) {
