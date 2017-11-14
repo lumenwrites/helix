@@ -16,9 +16,9 @@ export function saveHabits(req, res) {
     /* Passport deserializes cookie (finds user by id),
        attaches it to req, and then I send it back. */
     const user = req.user
-    const { habits, lastSaved } = req.body
+    const habits = req.body
+    /* console.log('Received habits ' + JSON.stringify(req.body))*/
     user.habits = JSON.stringify(habits)
-    user.lastSaved = JSON.stringify(lastSaved)    
     user.save((err, usr)=>{
 	console.log(`Saved ${usr.email}'s habits ` + usr.habits)
 	res.json(usr.habits)

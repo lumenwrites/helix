@@ -33,7 +33,7 @@ class Main extends Component {
 			    </a>
 			    </li>
 			  */}
-			{ this.props.user ?
+			{ this.props.profile ?
 			  <li>				
 			      <a href="/api/v1/profiles/logout">
 				  <i className="fa fa-sign-out"></i>Logout
@@ -56,7 +56,7 @@ class Main extends Component {
 /* Magic connecting component to redux */
 function mapStateToProps(state) {
     return {
-    	user: state.profiles.user	
+    	profile: state.profile
     };
 }
 /* First argument allows to access state */

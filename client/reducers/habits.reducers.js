@@ -1,63 +1,68 @@
 import { updateCheckmark } from '../utils/habits.utils'
 
-const INITIAL_STATE = [
-    {
-	id: 1,
-	title: 'Food',
-	description: '16 packs > 0 packs',
-	color: 'blue',
-	checkmarks: [
-	]
-    },
-    {
-	id: 2,
-	title: 'Sport',
-	description: 'Basic + Abs > Lake',
-	color: 'blue',
-	checkmarks: [
-	]
-    },
-    {
-	id: 3,
-	title: 'Code',
-	description: 'Udemy/AIPages > Art > Clients',
-	color: 'orange',
-	checkmarks: [
-	]
-    },
-    {
-	id: 4,
-	title: 'Comedy',
-	description: '4 jokes > Tweets/Microscripts',
-	color: 'orange',
-	checkmarks: [
-	]
-    },
-    {
-	id: 5,
-	title: '++ Info Value',
-	description: 'SL Paragraphs > Speak',
-	color: 'gray',	
-	checkmarks: [
-	]
-    },
-    {
-	id: 6,
-	title: '++ Info Diet',
-	description: 'RSS only. No yt/hn/rdt > Plug off.',
-	color: 'gray',	
-	checkmarks: [
-	]
-    },
-    {
-	id: 7,
-	title: '++ Withdrawal',
-	description: 'N/FO3/NFS > Draw/Lowpoly.',
-	color: 'gray',	
-	checkmarks: [
-	]
-    }
-]
+const INITIAL_STATE = {
+    modified: false,
+    lastUpdated: null,    
+    habitList: [
+	{
+	    id: 1,
+	    title: 'Food',
+	    description: '16 packs > 0 packs',
+	    color: 'blue',
+	    checkmarks: [
+	    ]
+	},
+	{
+	    id: 2,
+	    title: 'Sport',
+	    description: 'Basic + Abs > Lake',
+	    color: 'blue',
+	    checkmarks: [
+	    ]
+	},
+	{
+	    id: 3,
+	    title: 'Code',
+	    description: 'Udemy/AIPages > Art > Clients',
+	    color: 'orange',
+	    checkmarks: [
+	    ]
+	},
+	{
+	    id: 4,
+	    title: 'Comedy',
+	    description: '4 jokes > Tweets/Microscripts',
+	    color: 'orange',
+	    checkmarks: [
+	    ]
+	},
+	{
+	    id: 5,
+	    title: '++ Info Value',
+	    description: 'SL Paragraphs > Speak',
+	    color: 'gray',	
+	    checkmarks: [
+	    ]
+	},
+	{
+	    id: 6,
+	    title: '++ Info Diet',
+	    description: 'RSS only. No yt/hn/rdt > Plug off.',
+	    color: 'gray',	
+	    checkmarks: [
+	    ]
+	},
+	{
+	    id: 7,
+	    title: '++ Withdrawal',
+	    description: 'N/FO3/NFS > Draw/Lowpoly.',
+	    color: 'gray',	
+	    checkmarks: [
+	    ]
+	}
+    ]
+}
+    
 
 /* Create and modify state. Passing initial state and actions. */
 export default function (state = INITIAL_STATE, action) {
@@ -65,14 +70,40 @@ export default function (state = INITIAL_STATE, action) {
 	case 'UPDATE_CHECKMARK':
 	    /* When ../components/Checkmark is clicked */
 	    var checkmark = action.payload
-	    var habits = JSON.parse(JSON.stringify(state))
+	    var habitList = JSON.parse(JSON.stringify(state.habitList)) /* deep copy */
 	    /* Find a checkmark, update it's state, return updated habits  */
-	    habits = updateCheckmark(checkmark, habits)
-	    return habits
-	case 'LOAD_HABITS':
-	    var habits = action.payload
-	    /* Load habits when ../components/Habits mounts */
-	    return habits
+	    habitList = updateCheckmark(checkmark, habitList)
+	    return { ...state, habitList, modified: true }
+	case 'SAVE_HABITS':
+	    /* Habits have been saved to db, turn off the modified flag. */
+	    return {...state, modified: false}
+	case 'FETCH_USER':
+	    const profile = action.payload
+	    console.log('Logged in ' + profile.email)
+	    /* Loading habits */
+	    if (profile.habits) {
+		const serverHabits = JSON.parse(profile.habits)
+
+		/* Check if browser habits were updated more recently */
+		const browserHabits = JSON.parse(localStorage.getItem('habits'))
+		if (browserHabits &&
+		    browserHabits.lastUpdated > serverHabits.lastUpdated ) {
+		    console.log('Loading habits from browser (recently modified).')
+		    return browserHabits
+		}
+		
+		console.log('Loading habits from server (recently modified).')
+		return serverHabits
+	    } else {
+		const habits = JSON.parse(localStorage.getItem('habits'))
+		if (habits) {
+		    console.log('Loading habits from browser.')		    
+		    return habits
+		} else {
+		    console.log('Loading default habits.')
+		    return state
+		}
+	    }
 	default:
 	    return state
     }

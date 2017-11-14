@@ -12,37 +12,26 @@ import Header from './Header'
 import { calculateStreak } from '../utils/habits.utils'
 
 class Habits extends Component {
-    componentDidMount() {
-	/* Temporarily, fetch habits from local storage for logged out user */
-	if (localStorage.getItem('habits')) {
-	    this.props.loadHabitsBrowser()
-	}
-    }
-
+    
     componentDidUpdate(pastProps, pastState) {
-	const { habits, user } = this.props
-	const pastUser = pastProps.user
-	if (user != pastUser && user) {
-	    /* If user is logged in, fetch his habits from db. */
-	    console.log("Fetched user, loading habits")
-	    this.props.loadHabits()
-	}
-	const pastHabits = pastProps.habits
-	/* Clicking on checkmarks updates state. I want to save it after it's updated. */
-	/* So if the habits have changed, I run action that saves them. */
-	if (habits != pastHabits) {
-	    if (this.props.user) {
-		/* if user is logged in, save his habits to db */
+	const { habits } = this.props
+	/* Save habits if they've been updated. */
+	if (habits.modified) {
+	    console.log("Habits modified, saving habits.")
+	    if (this.props.profile.email) {
+		/* if profile is logged in, save his habits to db */
 		this.props.saveHabits(this.props.habits)
 	    } 
-	    /* save habits to browser, whether user is logged in or not. */
+	    /* save habits to browser, whether profile is logged in or not. */
 	    this.props.saveHabitsBrowser(this.props.habits)	    
 	}
 	
     }
     renderHabits() {
-	const { habits } = this.props
-	return habits.map((habit) => {
+	const habitList = this.props.habits.habitList
+	if (!habitList) { return <div>Fetching....</div> }
+
+	return habitList.map((habit) => {
 	    return (
 		<div className="habit" key={habit.title}>
 		<div className="streak">
@@ -73,7 +62,7 @@ class Habits extends Component {
 function mapStateToProps(state) {
     return {
     	habits: state.habits,
-	user: state.profiles.user,
+	profile: state.profile
     };
 }
 /* First argument allows to access state */

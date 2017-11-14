@@ -25,7 +25,7 @@ class Header extends Component {
 /* Magic connecting component to redux */
 function mapStateToProps(state) {
     return {
-    	user: state.profiles.user	
+    	profile: state.profile
     };
 }
 /* First argument allows to access state */

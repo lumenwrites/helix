@@ -42,7 +42,7 @@ class Checkmark extends Component {
 function mapStateToProps(state) {
     return {
     	habits: state.habits,
-	user: state.profiles.user	
+	profile: state.profile
     };
 }
 /* First argument allows to access state */

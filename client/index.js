@@ -4,7 +4,7 @@ import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { thunk } from 'redux'
 import reduxThunk from 'redux-thunk'
 
@@ -16,13 +16,14 @@ import reducers from './reducers/index.reducers'
 
 /* Create new instance of redux store out of reducers and initial state */
 const INITIAL_STATE = {}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
     reducers,
     INITIAL_STATE,
     /* Redux Thunk is middleware for Redux that gives me access to dispatch function,
        which allows me to do async stuff in action creators,
        manually dispatching actions once async stuff resolves. */    
-    applyMiddleware(reduxThunk)
+    compose(applyMiddleware(reduxThunk))
 )
 
 
