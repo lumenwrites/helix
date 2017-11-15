@@ -6,13 +6,15 @@ class ColorPicker extends Component {
 	super(props)
 	this.state = {
 	    editing: false,
-	    color: 'red'
+	    color: '#7890cb'
 	}
     }
 
     render() {
-	const colors = ["#d77c40","#7890cb", "#EB5A46","#61BD4F","#C377E0", "#67778e",
-			"#C477E0", "#67772e"]
+	const colors = ["#d77c40","#7890cb", "#EB5A46",
+			"#61BD4F","#C377E0", "#67778e",
+			"#C477E0", "#67772e","#27772e"]
+
 	const colorCircles = colors.map((c)=> {
 	    return (
 		<div key={c}
@@ -26,16 +28,19 @@ class ColorPicker extends Component {
 	return (
 	    <div className="color-picker">
 		{ this.state.editing ?
-		  <div className="color-grid">
-		      { colorCircles }
-		  </div> :
+		  <div className="my-modal color-grid">
+		      <div className="my-modal-body">		      
+			  { colorCircles }
+			  <div className="clearfix"/>		      
+		      </div>
+		      </div>:
 		  <div className="open-picker"
 		       style={{background:this.state.color}}
 		       onClick={()=> this.setState({ editing: true })}>
 		      <i className="fa fa-paint-brush"/>
 		  </div>
 		}
-	    </div>
+		  </div>
 	);
     }
 }

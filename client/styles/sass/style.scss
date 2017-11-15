@@ -266,15 +266,37 @@ form {
 
     }
     .color-grid {
-	width: 40px;
+	.my-modal-body {
+	    width: 260px;
+	}
 	.color-swatch {
-	    width: 20px;
-	    height: 20px;
+	    width: 40px;
+	    height: 40px;
+	    margin: 10px;
 	    border-radius:20px;
 	    float: left;
 	    cursor:pointer;
 	}
     }
+}
+
+/* General modal */
+.my-modal {
+    position: fixed;
+    background: #282c37e6;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;    
+    z-index: 100;
+    overflow: auto;
+    .my-modal-body {
+	background: #313543;
+	margin: 15% auto;
+	padding: 40px;
+	width: 80%;
+    }
+    
 }
 .habit form {
     width: 200px;

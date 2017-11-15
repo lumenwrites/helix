@@ -708,49 +708,70 @@ form .btn-submit {
 .color-picker .open-picker i {
   line-height: 40px;
 }
-/* line 268, ../sass/style.scss */
-.color-picker .color-grid {
-  width: 40px;
+/* line 269, ../sass/style.scss */
+.color-picker .color-grid .my-modal-body {
+  width: 260px;
 }
-/* line 270, ../sass/style.scss */
+/* line 272, ../sass/style.scss */
 .color-picker .color-grid .color-swatch {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
   border-radius: 20px;
   float: left;
   cursor: pointer;
 }
 
-/* line 279, ../sass/style.scss */
+/* General modal */
+/* line 284, ../sass/style.scss */
+.my-modal {
+  position: fixed;
+  background: #282c37e6;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  overflow: auto;
+}
+/* line 293, ../sass/style.scss */
+.my-modal .my-modal-body {
+  background: #313543;
+  margin: 15% auto;
+  padding: 40px;
+  width: 80%;
+}
+
+/* line 301, ../sass/style.scss */
 .habit form {
   width: 200px;
   float: left;
 }
-/* line 282, ../sass/style.scss */
+/* line 304, ../sass/style.scss */
 .habit form input[type=text] {
   width: 100%;
   font-size: 15px;
   color: #9BAEC8;
 }
-/* line 287, ../sass/style.scss */
+/* line 309, ../sass/style.scss */
 .habit form .title-edit {
   width: 100%;
 }
-/* line 291, ../sass/style.scss */
+/* line 313, ../sass/style.scss */
 .habit form .description {
   font-size: 10px;
 }
 
-/* line 296, ../sass/style.scss */
+/* line 318, ../sass/style.scss */
 .about {
   padding: 40px;
   color: #9BAEC8;
 }
-/* line 299, ../sass/style.scss */
+/* line 321, ../sass/style.scss */
 .about h1 {
   text-align: center;
 }
-/* line 302, ../sass/style.scss */
+/* line 324, ../sass/style.scss */
 .about p {
   color: #9BAEC8;
 }

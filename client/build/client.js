@@ -56188,7 +56188,7 @@ var ColorPicker = function (_Component) {
 
 		_this.state = {
 			editing: false,
-			color: 'red'
+			color: '#7890cb'
 		};
 		return _this;
 	}
@@ -56198,7 +56198,8 @@ var ColorPicker = function (_Component) {
 		value: function render() {
 			var _this2 = this;
 
-			var colors = ["#d77c40", "#7890cb", "#EB5A46", "#61BD4F", "#C377E0", "#67778e", "#C477E0", "#67772e"];
+			var colors = ["#d77c40", "#7890cb", "#EB5A46", "#61BD4F", "#C377E0", "#67778e", "#C477E0", "#67772e", "#27772e"];
+
 			var colorCircles = colors.map(function (c) {
 				return _react2.default.createElement('div', { key: c,
 					className: 'color-swatch',
@@ -56213,8 +56214,13 @@ var ColorPicker = function (_Component) {
 				{ className: 'color-picker' },
 				this.state.editing ? _react2.default.createElement(
 					'div',
-					{ className: 'color-grid' },
-					colorCircles
+					{ className: 'my-modal color-grid' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'my-modal-body' },
+						colorCircles,
+						_react2.default.createElement('div', { className: 'clearfix' })
+					)
 				) : _react2.default.createElement(
 					'div',
 					{ className: 'open-picker',
