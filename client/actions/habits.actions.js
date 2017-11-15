@@ -1,6 +1,13 @@
 import axios from 'axios'
 
 
+export function createHabit() {
+    return {
+	type: 'CREATE_HABIT',
+	payload: null
+    }
+}
+
 export function updateHabit(habit) {
     return {
 	type: 'UPDATE_HABIT',

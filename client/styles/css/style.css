@@ -676,39 +676,46 @@ form input {
   background: #282c37;
   border: none;
   padding: 4px;
+  margin-bottom: 4px;
 }
-/* line 239, ../sass/style.scss */
+/* line 240, ../sass/style.scss */
 form .btn {
   background: #282c37;
   margin-top: 4px;
   padding: 4px 10px;
 }
-/* line 244, ../sass/style.scss */
+/* line 245, ../sass/style.scss */
 form .btn-submit {
   margin-left: 4px;
 }
 
 /* Habit specific form */
-/* line 252, ../sass/style.scss */
+/* line 253, ../sass/style.scss */
 .habit form {
   width: 200px;
   margin-left: 50px;
 }
-/* line 255, ../sass/style.scss */
+/* line 256, ../sass/style.scss */
 .habit form input[type=text] {
   width: 100%;
+  font-size: 15px;
+  color: #9BAEC8;
+}
+/* line 261, ../sass/style.scss */
+.habit form .description {
+  font-size: 10px;
 }
 
-/* line 261, ../sass/style.scss */
+/* line 266, ../sass/style.scss */
 .about {
   padding: 40px;
   color: #9BAEC8;
 }
-/* line 264, ../sass/style.scss */
+/* line 269, ../sass/style.scss */
 .about h1 {
   text-align: center;
 }
-/* line 267, ../sass/style.scss */
+/* line 272, ../sass/style.scss */
 .about p {
   color: #9BAEC8;
 }

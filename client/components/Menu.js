@@ -4,8 +4,13 @@ import { Link } from 'react-router-dom';
 
 /* Actions */
 import * as profilesActions from '../actions/profiles.actions'
+import * as habitsActions from '../actions/habits.actions'
 
-class Main extends Component {
+class Menu extends Component {
+    createHabit(event) {
+	event.preventDefault()
+	this.props.createHabit()
+    }    
     render() {
 	return (
 	    <div className="main-menu">
@@ -35,7 +40,7 @@ class Main extends Component {
 			    </li>
 			  */}
 			<li>				
-			    <a>
+			    <a onClick={this.createHabit.bind(this)}>
 				<i className="fa fa-plus"></i>Add Habit
 			    </a>
 			</li>
@@ -72,4 +77,4 @@ function mapStateToProps(state) {
 }
 /* First argument allows to access state */
 /* Second allows to fire actions */
-export default connect(mapStateToProps, profilesActions)(Main);
+export default connect(mapStateToProps, habitsActions)(Menu);

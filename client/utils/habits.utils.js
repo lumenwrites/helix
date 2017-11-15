@@ -1,4 +1,20 @@
 import moment from 'moment'
+import cuid from 'cuid';
+
+export function createHabit( habits) {
+    const newHabit = {
+	id: cuid.slug(),
+	title: 'New Habit',
+	description: 'Description...',
+	color: 'gray',
+	editing: true,
+	checkmarks: []
+    }
+
+    habits.push(newHabit)
+
+    return habits
+}
 
 export function updateHabit(habit, habits) {
     /* Loop through all habits */

@@ -1,4 +1,5 @@
-import { updateHabit, deleteHabit, updateCheckmark } from '../utils/habits.utils'
+import { createHabit, updateHabit, deleteHabit,
+	 updateCheckmark } from '../utils/habits.utils'
 
 const INITIAL_STATE = {
     modified: false,
@@ -64,26 +65,30 @@ const INITIAL_STATE = {
 
 /* Create and modify state. Passing initial state and actions. */
 export default function (state = INITIAL_STATE, action) {
+    var habitList = JSON.parse(JSON.stringify(state.habitList)) /* deep copy */
+
     switch (action.type) {
+	case 'CREATE_HABIT':
+	    habitList = createHabit(habitList)
+	    console.log("Create habit")
+	    return { ...state, habitList, modified: true}  
+
 	case 'UPDATE_HABIT':
 	    var habit = action.payload
-	    var habitList = JSON.parse(JSON.stringify(state.habitList)) /* deep copy */
 
 	    /* Find a checkmark, update it's state, return updated habits  */
 	    habitList = updateHabit(habit, habitList)
-	    console.log("Updating habit " + JSON.stringify(habitList))
+	    console.log("Updating habit " + JSON.stringify(habit))
 	    
 	    return { ...state, habitList, modified: true}  
 	case 'DELETE_HABIT':
 	    var habit = action.payload
-	    var habitList = JSON.parse(JSON.stringify(state.habitList)) /* deep copy */
 	    habitList = deleteHabit(habit, habitList)
 	    return { ...state, habitList, modified: true}
 	    
 	case 'UPDATE_CHECKMARK':
 	    /* When ../components/Checkmark is clicked */
 	    var checkmark = action.payload
-	    var habitList = JSON.parse(JSON.stringify(state.habitList)) /* deep copy */
 	    /* Find a checkmark, update it's state, return updated habits  */
 	    habitList = updateCheckmark(checkmark, habitList)
 	    return { ...state, habitList, modified: true }

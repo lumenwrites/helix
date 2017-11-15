@@ -32,7 +32,13 @@ class Habit extends Component {
 	const { habit } = this.props
 	/* Get form data */
 	const title = ReactDOM.findDOMNode(this.refs.title).value
-	this.props.updateHabit({...habit, title: title, editing:false})
+	const description = ReactDOM.findDOMNode(this.refs.description).value
+	this.props.updateHabit({
+	    ...habit,
+	    title: title,
+	    description: description,				
+	    editing:false
+	})
     }
     render() {
 	const { habit } = this.props	    
@@ -62,7 +68,12 @@ class Habit extends Component {
 		    <form onSubmit={this.onSubmit.bind(this)}>
 			<input type="text"
 			       ref="title"
+			       className="title"
 			       defaultValue={habit.title} />
+			<input type="text"
+			       ref="description"
+			       className="description"			
+			       defaultValue={habit.description} />
 			<br/>
 			<button className="btn btn-delete"
 				onClick={this.onDelete.bind(this)}>

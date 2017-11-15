@@ -235,6 +235,7 @@ form {
 	background: #282c37;
 	border: none;
 	padding: 4px;
+	margin-bottom: 4px;
     }
     .btn {
 	background: #282c37;
@@ -254,8 +255,12 @@ form {
     margin-left: 50px;
     input[type=text] {
 	width: 100%;
+	font-size: 15px;
+	color: #9BAEC8;
     }
-
+    .description {
+	font-size: 10px;
+    }
     
 }
 .about {

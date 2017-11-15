@@ -7595,6 +7595,7 @@ var locationsAreEqual = function locationsAreEqual(a, b) {
 Object.defineProperty(exports, "__esModule", {
 				value: true
 });
+exports.createHabit = createHabit;
 exports.updateHabit = updateHabit;
 exports.deleteHabit = deleteHabit;
 exports.generateCurrentWeek = generateCurrentWeek;
@@ -7608,7 +7609,26 @@ var _moment = __webpack_require__(1);
 
 var _moment2 = _interopRequireDefault(_moment);
 
+var _cuid = __webpack_require__(602);
+
+var _cuid2 = _interopRequireDefault(_cuid);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function createHabit(habits) {
+				var newHabit = {
+								id: _cuid2.default.slug(),
+								title: 'New Habit',
+								description: 'Description...',
+								color: 'gray',
+								editing: true,
+								checkmarks: []
+				};
+
+				habits.push(newHabit);
+
+				return habits;
+}
 
 function updateHabit(habit, habits) {
 				/* Loop through all habits */
@@ -23987,6 +24007,7 @@ return zhTw;
 Object.defineProperty(exports, "__esModule", {
    value: true
 });
+exports.createHabit = createHabit;
 exports.updateHabit = updateHabit;
 exports.deleteHabit = deleteHabit;
 exports.updateCheckmark = updateCheckmark;
@@ -24002,6 +24023,13 @@ var _axios2 = _interopRequireDefault(_axios);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function createHabit() {
+   return {
+      type: 'CREATE_HABIT',
+      payload: null
+   };
+}
 
 function updateHabit(habit) {
    return {
@@ -54804,6 +54832,10 @@ var _profiles = __webpack_require__(119);
 
 var profilesActions = _interopRequireWildcard(_profiles);
 
+var _habits = __webpack_require__(303);
+
+var habitsActions = _interopRequireWildcard(_habits);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -54817,16 +54849,22 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /* Actions */
 
 
-var Main = function (_Component) {
-	_inherits(Main, _Component);
+var Menu = function (_Component) {
+	_inherits(Menu, _Component);
 
-	function Main() {
-		_classCallCheck(this, Main);
+	function Menu() {
+		_classCallCheck(this, Menu);
 
-		return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
+		return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).apply(this, arguments));
 	}
 
-	_createClass(Main, [{
+	_createClass(Menu, [{
+		key: 'createHabit',
+		value: function createHabit(event) {
+			event.preventDefault();
+			this.props.createHabit();
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
@@ -54854,7 +54892,7 @@ var Main = function (_Component) {
 							null,
 							_react2.default.createElement(
 								'a',
-								null,
+								{ onClick: this.createHabit.bind(this) },
 								_react2.default.createElement('i', { className: 'fa fa-plus' }),
 								'Add Habit'
 							)
@@ -54894,7 +54932,7 @@ var Main = function (_Component) {
 		}
 	}]);
 
-	return Main;
+	return Menu;
 }(_react.Component);
 
 /* Magic connecting component to redux */
@@ -54907,7 +54945,7 @@ function mapStateToProps(state) {
 }
 /* First argument allows to access state */
 /* Second allows to fire actions */
-exports.default = (0, _reactRedux.connect)(mapStateToProps, profilesActions)(Main);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, habitsActions)(Menu);
 
 /***/ }),
 /* 591 */
@@ -55582,123 +55620,127 @@ var INITIAL_STATE = {};
 
 
 Object.defineProperty(exports, "__esModule", {
-				value: true
+	value: true
 });
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 exports.default = function () {
-				var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
-				var action = arguments[1];
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+	var action = arguments[1];
 
-				switch (action.type) {
-								case 'UPDATE_HABIT':
-												var habit = action.payload;
-												var habitList = JSON.parse(JSON.stringify(state.habitList)); /* deep copy */
+	var habitList = JSON.parse(JSON.stringify(state.habitList)); /* deep copy */
 
-												/* Find a checkmark, update it's state, return updated habits  */
-												habitList = (0, _habits.updateHabit)(habit, habitList);
-												console.log("Updating habit " + JSON.stringify(habitList));
+	switch (action.type) {
+		case 'CREATE_HABIT':
+			habitList = (0, _habits.createHabit)(habitList);
+			console.log("Create habit");
+			return _extends({}, state, { habitList: habitList, modified: true });
 
-												return _extends({}, state, { habitList: habitList, modified: true });
-								case 'DELETE_HABIT':
-												var habit = action.payload;
-												var habitList = JSON.parse(JSON.stringify(state.habitList)); /* deep copy */
-												habitList = (0, _habits.deleteHabit)(habit, habitList);
-												return _extends({}, state, { habitList: habitList, modified: true });
+		case 'UPDATE_HABIT':
+			var habit = action.payload;
 
-								case 'UPDATE_CHECKMARK':
-												/* When ../components/Checkmark is clicked */
-												var checkmark = action.payload;
-												var habitList = JSON.parse(JSON.stringify(state.habitList)); /* deep copy */
-												/* Find a checkmark, update it's state, return updated habits  */
-												habitList = (0, _habits.updateCheckmark)(checkmark, habitList);
-												return _extends({}, state, { habitList: habitList, modified: true });
-								case 'SAVE_HABITS':
-												/* Habits have been saved to db, turn off the modified flag. */
-												return _extends({}, state, { modified: false });
-								case 'FETCH_USER':
-												var profile = action.payload;
-												console.log('[habits.reducers]');
-												console.log('Logged in ' + profile.email);
-												/* Loading habits */
-												if (profile.habits) {
-																var serverHabits = JSON.parse(profile.habits);
+			/* Find a checkmark, update it's state, return updated habits  */
+			habitList = (0, _habits.updateHabit)(habit, habitList);
+			console.log("Updating habit " + JSON.stringify(habit));
 
-																/* Check if browser habits were updated more recently */
-																var browserHabits = JSON.parse(localStorage.getItem('habits'));
-																if (browserHabits && browserHabits.lastUpdated > serverHabits.lastUpdated) {
-																				console.log('Loading habits from browser (recently modified).');
-																				return browserHabits;
-																}
+			return _extends({}, state, { habitList: habitList, modified: true });
+		case 'DELETE_HABIT':
+			var habit = action.payload;
+			habitList = (0, _habits.deleteHabit)(habit, habitList);
+			return _extends({}, state, { habitList: habitList, modified: true });
 
-																console.log('Loading habits from server (recently modified).');
-																return serverHabits;
-												} else {
-																var habits = JSON.parse(localStorage.getItem('habits'));
-																if (habits) {
-																				console.log('Loading habits from browser.');
-																				return habits;
-																} else {
-																				console.log('Loading default habits.');
-																				return state;
-																}
-												}
-								default:
-												return state;
+		case 'UPDATE_CHECKMARK':
+			/* When ../components/Checkmark is clicked */
+			var checkmark = action.payload;
+			/* Find a checkmark, update it's state, return updated habits  */
+			habitList = (0, _habits.updateCheckmark)(checkmark, habitList);
+			return _extends({}, state, { habitList: habitList, modified: true });
+		case 'SAVE_HABITS':
+			/* Habits have been saved to db, turn off the modified flag. */
+			return _extends({}, state, { modified: false });
+		case 'FETCH_USER':
+			var profile = action.payload;
+			console.log('[habits.reducers]');
+			console.log('Logged in ' + profile.email);
+			/* Loading habits */
+			if (profile.habits) {
+				var serverHabits = JSON.parse(profile.habits);
+
+				/* Check if browser habits were updated more recently */
+				var browserHabits = JSON.parse(localStorage.getItem('habits'));
+				if (browserHabits && browserHabits.lastUpdated > serverHabits.lastUpdated) {
+					console.log('Loading habits from browser (recently modified).');
+					return browserHabits;
 				}
+
+				console.log('Loading habits from server (recently modified).');
+				return serverHabits;
+			} else {
+				var habits = JSON.parse(localStorage.getItem('habits'));
+				if (habits) {
+					console.log('Loading habits from browser.');
+					return habits;
+				} else {
+					console.log('Loading default habits.');
+					return state;
+				}
+			}
+		default:
+			return state;
+	}
 };
 
 var _habits = __webpack_require__(80);
 
 var INITIAL_STATE = {
-				modified: false,
-				lastUpdated: null,
-				habitList: [{
-								id: "1",
-								title: 'Food',
-								description: '16 packs > 0 packs',
-								color: 'blue',
-								editing: false,
-								checkmarks: []
-				}, {
-								id: "2",
-								title: 'Sport',
-								description: 'Basic + Abs > Lake',
-								color: 'blue',
-								editing: false,
-								checkmarks: []
-				}, {
-								id: "3",
-								title: 'Code',
-								description: 'Udemy/AIPages > Art > Clients',
-								color: 'orange',
-								editing: false,
-								checkmarks: []
-				}, {
-								id: "4",
-								title: 'Comedy',
-								description: '4 jokes > Tweets/Microscripts',
-								color: 'orange',
-								editing: false,
-								checkmarks: []
-				}, {
-								id: "5",
-								title: '++ Info Value',
-								description: 'SL Paragraphs > Speak',
-								color: 'gray',
-								editing: false,
-								checkmarks: []
-				}, {
-								id: "6",
-								title: '++ Info Diet',
-								description: 'RSS only. No yt/hn/rdt > Plug off.',
-								color: 'gray',
-								editing: false,
-								checkmarks: []
-				}]
+	modified: false,
+	lastUpdated: null,
+	habitList: [{
+		id: "1",
+		title: 'Food',
+		description: '16 packs > 0 packs',
+		color: 'blue',
+		editing: false,
+		checkmarks: []
+	}, {
+		id: "2",
+		title: 'Sport',
+		description: 'Basic + Abs > Lake',
+		color: 'blue',
+		editing: false,
+		checkmarks: []
+	}, {
+		id: "3",
+		title: 'Code',
+		description: 'Udemy/AIPages > Art > Clients',
+		color: 'orange',
+		editing: false,
+		checkmarks: []
+	}, {
+		id: "4",
+		title: 'Comedy',
+		description: '4 jokes > Tweets/Microscripts',
+		color: 'orange',
+		editing: false,
+		checkmarks: []
+	}, {
+		id: "5",
+		title: '++ Info Value',
+		description: 'SL Paragraphs > Speak',
+		color: 'gray',
+		editing: false,
+		checkmarks: []
+	}, {
+		id: "6",
+		title: '++ Info Diet',
+		description: 'RSS only. No yt/hn/rdt > Plug off.',
+		color: 'gray',
+		editing: false,
+		checkmarks: []
+	}]
 
-				/* Create and modify state. Passing initial state and actions. */
+	/* Create and modify state. Passing initial state and actions. */
 };
 
 /***/ }),
@@ -55894,7 +55936,12 @@ var Habit = function (_Component) {
 			/* Get form data */
 
 			var title = _reactDom2.default.findDOMNode(this.refs.title).value;
-			this.props.updateHabit(_extends({}, habit, { title: title, editing: false }));
+			var description = _reactDom2.default.findDOMNode(this.refs.description).value;
+			this.props.updateHabit(_extends({}, habit, {
+				title: title,
+				description: description,
+				editing: false
+			}));
 		}
 	}, {
 		key: 'render',
@@ -55937,7 +55984,12 @@ var Habit = function (_Component) {
 						{ onSubmit: this.onSubmit.bind(this) },
 						_react2.default.createElement('input', { type: 'text',
 							ref: 'title',
+							className: 'title',
 							defaultValue: habit.title }),
+						_react2.default.createElement('input', { type: 'text',
+							ref: 'description',
+							className: 'description',
+							defaultValue: habit.description }),
 						_react2.default.createElement('br', null),
 						_react2.default.createElement(
 							'button',
@@ -55978,6 +56030,122 @@ function mapStateToProps(state) {
 /* First argument allows to access state */
 /* Second allows to fire actions */
 exports.default = (0, _reactRedux.connect)(mapStateToProps, habitsActions)(Habit);
+
+/***/ }),
+/* 602 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * cuid.js
+ * Collision-resistant UID generator for browsers and node.
+ * Sequential for fast db lookups and recency sorting.
+ * Safe for element IDs and server-side lookups.
+ *
+ * Extracted from CLCTR
+ *
+ * Copyright (c) Eric Elliott 2012
+ * MIT License
+ */
+
+/*global window, navigator, document, require, process, module */
+(function (app) {
+  'use strict';
+  var namespace = 'cuid',
+    c = 0,
+    blockSize = 4,
+    base = 36,
+    discreteValues = Math.pow(base, blockSize),
+
+    pad = function pad(num, size) {
+      var s = "000000000" + num;
+      return s.substr(s.length-size);
+    },
+
+    randomBlock = function randomBlock() {
+      return pad((Math.random() *
+            discreteValues << 0)
+            .toString(base), blockSize);
+    },
+
+    safeCounter = function () {
+      c = (c < discreteValues) ? c : 0;
+      c++; // this is not subliminal
+      return c - 1;
+    },
+
+    api = function cuid() {
+      // Starting with a lowercase letter makes
+      // it HTML element ID friendly.
+      var letter = 'c', // hard-coded allows for sequential access
+
+        // timestamp
+        // warning: this exposes the exact date and time
+        // that the uid was created.
+        timestamp = (new Date().getTime()).toString(base),
+
+        // Prevent same-machine collisions.
+        counter,
+
+        // A few chars to generate distinct ids for different
+        // clients (so different computers are far less
+        // likely to generate the same id)
+        fingerprint = api.fingerprint(),
+
+        // Grab some more chars from Math.random()
+        random = randomBlock() + randomBlock();
+
+        counter = pad(safeCounter().toString(base), blockSize);
+
+      return  (letter + timestamp + counter + fingerprint + random);
+    };
+
+  api.slug = function slug() {
+    var date = new Date().getTime().toString(36),
+      counter,
+      print = api.fingerprint().slice(0,1) +
+        api.fingerprint().slice(-1),
+      random = randomBlock().slice(-2);
+
+      counter = safeCounter().toString(36).slice(-4);
+
+    return date.slice(-2) +
+      counter + print + random;
+  };
+
+  api.globalCount = function globalCount() {
+    // We want to cache the results of this
+    var cache = (function calc() {
+        var i,
+          count = 0;
+
+        for (i in window) {
+          count++;
+        }
+
+        return count;
+      }());
+
+    api.globalCount = function () { return cache; };
+    return cache;
+  };
+
+  api.fingerprint = function browserPrint() {
+    return pad((navigator.mimeTypes.length +
+      navigator.userAgent.length).toString(36) +
+      api.globalCount().toString(36), 4);
+  };
+
+  // don't change anything from here down.
+  if (app.register) {
+    app.register(namespace, api);
+  } else if (true) {
+    module.exports = api;
+  } else {
+    app[namespace] = api;
+  }
+
+}(this.applitude || this));
+
 
 /***/ })
 /******/ ]);
