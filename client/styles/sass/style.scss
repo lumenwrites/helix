@@ -250,14 +250,44 @@ form {
 }
 
 /* Habit specific form */
+.color-picker {
+    margin-right: 10px;
+    float: left;
+    .open-picker {
+	width: 40px;
+	height: 40px;
+	border-radius:40px;
+	text-align: center;
+	background: #7890cb;
+	cursor:pointer;
+	i {
+	    line-height: 40px;
+	}
+
+    }
+    .color-grid {
+	width: 40px;
+	.color-swatch {
+	    width: 20px;
+	    height: 20px;
+	    border-radius:20px;
+	    float: left;
+	    cursor:pointer;
+	}
+    }
+}
 .habit form {
     width: 200px;
-    margin-left: 50px;
+    float:left;
     input[type=text] {
 	width: 100%;
 	font-size: 15px;
 	color: #9BAEC8;
     }
+    .title-edit {
+	width: 100%;	
+    }
+
     .description {
 	font-size: 10px;
     }

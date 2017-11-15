@@ -55879,6 +55879,10 @@ var _Timeline = __webpack_require__(594);
 
 var _Timeline2 = _interopRequireDefault(_Timeline);
 
+var _ColorPicker = __webpack_require__(603);
+
+var _ColorPicker2 = _interopRequireDefault(_ColorPicker);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -55979,12 +55983,13 @@ var Habit = function (_Component) {
 				return _react2.default.createElement(
 					'div',
 					{ className: 'habit', key: habit.id },
+					_react2.default.createElement(_ColorPicker2.default, null),
 					_react2.default.createElement(
 						'form',
 						{ onSubmit: this.onSubmit.bind(this) },
 						_react2.default.createElement('input', { type: 'text',
 							ref: 'title',
-							className: 'title',
+							className: 'title-edit',
 							defaultValue: habit.title }),
 						_react2.default.createElement('input', { type: 'text',
 							ref: 'description',
@@ -56010,7 +56015,8 @@ var Habit = function (_Component) {
 								type: 'submit',
 								value: 'Save' })
 						)
-					)
+					),
+					_react2.default.createElement('div', { className: 'clearfix' })
 				);
 			}
 		}
@@ -56146,6 +56152,86 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, habitsActions)(Habit
 
 }(this.applitude || this));
 
+
+/***/ }),
+/* 603 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ColorPicker = function (_Component) {
+	_inherits(ColorPicker, _Component);
+
+	function ColorPicker(props) {
+		_classCallCheck(this, ColorPicker);
+
+		var _this = _possibleConstructorReturn(this, (ColorPicker.__proto__ || Object.getPrototypeOf(ColorPicker)).call(this, props));
+
+		_this.state = {
+			editing: false,
+			color: 'red'
+		};
+		return _this;
+	}
+
+	_createClass(ColorPicker, [{
+		key: 'render',
+		value: function render() {
+			var _this2 = this;
+
+			var colors = ["#d77c40", "#7890cb", "#EB5A46", "#61BD4F", "#C377E0", "#67778e", "#C477E0", "#67772e"];
+			var colorCircles = colors.map(function (c) {
+				return _react2.default.createElement('div', { key: c,
+					className: 'color-swatch',
+					style: { background: c },
+					onClick: function onClick() {
+						return _this2.setState({ editing: false, color: c });
+					} });
+			});
+
+			return _react2.default.createElement(
+				'div',
+				{ className: 'color-picker' },
+				this.state.editing ? _react2.default.createElement(
+					'div',
+					{ className: 'color-grid' },
+					colorCircles
+				) : _react2.default.createElement(
+					'div',
+					{ className: 'open-picker',
+						style: { background: this.state.color },
+						onClick: function onClick() {
+							return _this2.setState({ editing: true });
+						} },
+					_react2.default.createElement('i', { className: 'fa fa-paint-brush' })
+				)
+			);
+		}
+	}]);
+
+	return ColorPicker;
+}(_react.Component);
+
+exports.default = ColorPicker;
 
 /***/ })
 /******/ ]);

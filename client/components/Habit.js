@@ -11,9 +11,9 @@ import { calculateStreak } from '../utils/habits.utils'
 
 /* Components */
 import Timeline from './Timeline'
+import ColorPicker from './ColorPicker'
 
 class Habit extends Component {
-
     onDoubleClick() {
 	const { habit } = this.props
 	this.props.updateHabit({...habit, editing:true})
@@ -40,6 +40,7 @@ class Habit extends Component {
 	    editing:false
 	})
     }
+
     render() {
 	const { habit } = this.props	    
 
@@ -65,10 +66,11 @@ class Habit extends Component {
 	    /* Edit Habit */
 	    return (
 		<div className="habit" key={habit.id}>
+		    <ColorPicker />
 		    <form onSubmit={this.onSubmit.bind(this)}>
 			<input type="text"
 			       ref="title"
-			       className="title"
+			       className="title-edit"
 			       defaultValue={habit.title} />
 			<input type="text"
 			       ref="description"
@@ -76,12 +78,12 @@ class Habit extends Component {
 			       defaultValue={habit.description} />
 			<br/>
 			<button className="btn btn-delete"
-				onClick={this.onDelete.bind(this)}>
+			    onClick={this.onDelete.bind(this)}>
 			    <i className="fa fa-trash"></i>
 			</button>
 			<div className="right">
 			    <button className="btn btn-submit"
-				    onClick={this.onCancel.bind(this)}>
+				onClick={this.onCancel.bind(this)}>
 				Cancel
 			    </button>
 			    <input className="btn btn-submit right"
@@ -89,6 +91,7 @@ class Habit extends Component {
 				   value="Save" />
 			</div>
 		    </form>
+		    <div className="clearfix"/>
 		</div>
 	    )
 	}
