@@ -55885,7 +55885,7 @@ var About = function (_Component) {
 						),
 						', and mark a day with ',
 						_react2.default.createElement('i', { className: 'fa fa-thumbs-up' }),
-						' every time you accomplish more significant progress you\'re proud of. Doing 10 pushups, reading one page of a book, or writing a line of code are good examples of microhabits; going to the gym or developing a cool feature for your app are good examples of thumbsup-worthy days.'
+						' every time you accomplish more significant progress. Doing 10 pushups, reading one page of a book, or writing a line of code are good examples of microhabits; going to the gym or developing a cool feature for your app are good examples of thumbsup-worthy days.'
 					),
 					_react2.default.createElement(
 						'p',
