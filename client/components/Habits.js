@@ -5,11 +5,8 @@ import { connect } from 'react-redux';
 import * as habitsActions from '../actions/habits.actions'
 
 /* Components */
-import Timeline from './Timeline'
 import Header from './Header'
-
-/* Utils */
-import { calculateStreak } from '../utils/habits.utils'
+import Habit from './Habit'
 
 class Habits extends Component {
     
@@ -27,32 +24,22 @@ class Habits extends Component {
 	}
 	
     }
-    renderHabits() {
+
+    render() {
 	const habitList = this.props.habits.habitList
 	if (!habitList) { return <div>Fetching....</div> }
 
-	return habitList.map((habit) => {
+	/* Generate list of all habits. */
+	const habits = habitList.map((habit) => {
 	    return (
-		<div className="habit" key={habit.title}>
-		<div className="streak">
-		{ calculateStreak(habit.checkmarks) }
-		    </div>
-		    <div className={ "title " + habit.color }>
-			{ habit.title }
-			{ habit.description ?
-			  <div className="description">{ habit.description }</div> : null }
-		    </div>
-		    <Timeline habit={habit} />
-		    <div className="clearfix" />
-		</div>
+		<Habit key={habit.id} habit={habit} />
 	    )
 	})
-    }
-    render() {
+	
 	return (
 	    <div className="habits">
 		<Header />			
-		{ this.renderHabits() }
+		{ habits }
 	    </div>
 	)
     }

@@ -12,6 +12,7 @@ import * as profilesActions from '../actions/profiles.actions'
 /* My components  */
 import Header from './Header'
 import Habits from './Habits'
+import About from './About'
 
 
 class Main extends Component {
@@ -24,7 +25,8 @@ class Main extends Component {
 	    <div>
 		<BrowserRouter>
 		    <div className="mainWrapper">
-			<Route exact path="/" component={Habits} />		    
+			<Route exact path="/" component={Habits} />
+			<Route exact path="/about" component={About} />
 		    </div>
 		</BrowserRouter>
 	    </div>

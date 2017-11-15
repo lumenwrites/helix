@@ -38,7 +38,14 @@ header {
 	    text-align: center;
 	    line-height: 40px;
 	}
-
+	.logo {
+	    display: none;
+	    color: #9BAEC8;
+	    img {
+		width: 40px;
+		float: left;
+	    }
+	}
 	.dropdown {
 	    float: left;
 	    width: 200px;
@@ -219,5 +226,45 @@ header {
 		}
 	    }
 	}
+    }
+}
+
+/* General form */
+form {
+    input {
+	background: #282c37;
+	border: none;
+	padding: 4px;
+    }
+    .btn {
+	background: #282c37;
+	margin-top: 4px;
+	padding: 4px 10px;
+    }
+    .btn-submit {
+	margin-left: 4px;
+    }    
+    .btn-delete {
+    }
+}
+
+/* Habit specific form */
+.habit form {
+    width: 200px;
+    margin-left: 50px;
+    input[type=text] {
+	width: 100%;
+    }
+
+    
+}
+.about {
+    padding: 40px;
+    color: #9BAEC8;
+    h1 {
+	text-align: center;
+    }
+    p {
+	color: #9BAEC8;
     }
 }

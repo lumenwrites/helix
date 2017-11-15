@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 /* Actions */
 import * as profilesActions from '../actions/profiles.actions'
@@ -9,7 +10,12 @@ class Main extends Component {
 	return (
 	    <div className="main-menu">
 		<div className="dropdown">
-		    <i className="fa fa-bars"></i>
+		    <Link to="/">
+			<i className="fa fa-bars"></i>
+			<div className="logo">
+			    <img src="/img/logo_256x256.png"/> Helix
+			</div>
+		    </Link>
 		    <ul className="dropdown-menu" role="menu">
 			{/*  
 			    <li>
@@ -27,12 +33,17 @@ class Main extends Component {
 			    <i className="fa fa-gear"></i>Edit
 			    </a>
 			    </li>
-			    <li>				
-			    <a>
-			    <i className="fa fa-info-circle"></i>About
-			    </a>
-			    </li>
 			  */}
+			<li>				
+			    <a>
+				<i className="fa fa-plus"></i>Add Habit
+			    </a>
+			</li>
+			<li>				
+			    <Link to="/about">
+				<i className="fa fa-info-circle"></i>About
+			    </Link>
+			</li>
 			{ this.props.profile ?
 			  <li>				
 			      <a href="/api/v1/profiles/logout">

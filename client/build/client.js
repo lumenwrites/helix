@@ -7593,8 +7593,10 @@ var locationsAreEqual = function locationsAreEqual(a, b) {
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+				value: true
 });
+exports.updateHabit = updateHabit;
+exports.deleteHabit = deleteHabit;
 exports.generateCurrentWeek = generateCurrentWeek;
 exports.generateRecentDays = generateRecentDays;
 exports.loadCheckmarks = loadCheckmarks;
@@ -7608,148 +7610,171 @@ var _moment2 = _interopRequireDefault(_moment);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function updateHabit(habit, habits) {
+				/* Loop through all habits */
+				habits = habits.map(function (h) {
+								/* Find a habit, replace it with a new one. */
+								if (h.id == habit.id) {
+												/* console.log("Found habit")*/
+												h = habit;
+								}
+								return h;
+				});
+
+				return habits;
+}
+
+function deleteHabit(habit, habits) {
+				/* Return all habits except for the one I want to delete  */
+				habits = habits.filter(function (h) {
+								return h.id != habit.id;
+				});
+
+				return habits;
+}
+
 function generateCurrentWeek() {
-	/* Generate empty calendar for the current week */
-	var names = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-	var currentDate = (0, _moment2.default)();
-	var weekStart = currentDate.clone().startOf('isoweek');
-	var days = [];
-	for (var i = 0; i <= 6; i++) {
-		days.push({
-			date: (0, _moment2.default)(weekStart).add(i, 'days').format("YYYY-MM-DD"),
-			value: null,
-			name: names[i]
-		});
-	}
-	return days;
+				/* Generate empty calendar for the current week */
+				var names = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+				var currentDate = (0, _moment2.default)();
+				var weekStart = currentDate.clone().startOf('isoweek');
+				var days = [];
+				for (var i = 0; i <= 6; i++) {
+								days.push({
+												date: (0, _moment2.default)(weekStart).add(i, 'days').format("YYYY-MM-DD"),
+												value: null,
+												name: names[i]
+								});
+				}
+				return days;
 }
 
 function generateRecentDays() {
-	/* Generate empty calendar for the past 10 days */
-	var names = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-	var currentDate = (0, _moment2.default)();
-	var weekStart = currentDate.clone().startOf('isoweek');
-	var days = [];
+				/* Generate empty calendar for the past 10 days */
+				var names = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+				var currentDate = (0, _moment2.default)();
+				var weekStart = currentDate.clone().startOf('isoweek');
+				var days = [];
 
-	var today = (0, _moment2.default)();
-	var thisDate = today.format('YYYY-MM-DD');
+				var today = (0, _moment2.default)();
+				var thisDate = today.format('YYYY-MM-DD');
 
-	/* Count backwards from today, adding past 10 days to the calendar */
-	for (var i = 0; i <= 6; i++) {
-		days.push({
-			date: thisDate,
-			value: null,
-			name: names[(0, _moment2.default)(thisDate).day()]
-		});
-		thisDate = (0, _moment2.default)(thisDate).subtract(1, 'days').format('YYYY-MM-DD');
-	}
-	return days.reverse();
+				/* Count backwards from today, adding past 10 days to the calendar */
+				for (var i = 0; i <= 6; i++) {
+								days.push({
+												date: thisDate,
+												value: null,
+												name: names[(0, _moment2.default)(thisDate).day()]
+								});
+								thisDate = (0, _moment2.default)(thisDate).subtract(1, 'days').format('YYYY-MM-DD');
+				}
+				return days.reverse();
 }
 
 function loadCheckmarks(savedCheckmarks) {
-	/* Generate empty calendar for the current week */
-	/* var days = generateCurrentWeek()*/
-	var days = generateRecentDays();
-	var timeline = days.map(function (day, i) {
-		/* Loop through saved checkmarks,
-     if I find a saved value for today,
-     I load it into the calendar */
-		savedCheckmarks.map(function (c) {
-			if (c.date === day.date) {
-				day.value = c.value;
-			}
-		});
-		return day;
-	});
-	return timeline;
+				/* Generate empty calendar for the current week */
+				/* var days = generateCurrentWeek()*/
+				var days = generateRecentDays();
+				var timeline = days.map(function (day, i) {
+								/* Loop through saved checkmarks,
+           if I find a saved value for today,
+           I load it into the calendar */
+								savedCheckmarks.map(function (c) {
+												if (c.date === day.date) {
+																day.value = c.value;
+												}
+								});
+								return day;
+				});
+				return timeline;
 }
 
 function updateCheckmark(checkmark, habits) {
-	/* Loop through all habits */
-	habits.map(function (habit) {
-		var savedCheckmarkFound = false;
-		/* Find the habit this checkmark belongs to */
-		if (habit.title == checkmark.habit) {
-			/* Loop through all it's' checkmarks */
-			habit.checkmarks.map(function (c) {
-				/* Find the checkmark I want to update (at this date) */
-				if (c.date == checkmark.date) {
-					/* Set value */
-					/* Loop through checkmark states:
-        null is empty
-        1 is check
-        2 is thumbsup
-        0 is fail */
-					if (c.value == 0) {
-						c.value = null;
-					} else if (c.value == 2) {
-						c.value = 0;
-					} else {
-						c.value = checkmark.value + 1;
-					}
-					savedCheckmarkFound = true;
-					console.log('[habits.utils]  Update ' + checkmark.habit + ' to ' + c.value);
-				}
-			});
-			if (!savedCheckmarkFound) {
-				/* If I haven't found saved checkmark to update, Im saving a new one. */
-				habit.checkmarks.push({
-					date: checkmark.date,
-					value: 1
+				/* Loop through all habits */
+				habits.map(function (habit) {
+								var savedCheckmarkFound = false;
+								/* Find the habit this checkmark belongs to */
+								if (habit.title == checkmark.habit) {
+												/* Loop through all it's' checkmarks */
+												habit.checkmarks.map(function (c) {
+																/* Find the checkmark I want to update (at this date) */
+																if (c.date == checkmark.date) {
+																				/* Set value */
+																				/* Loop through checkmark states:
+                       null is empty
+                       1 is check
+                       2 is thumbsup
+                       0 is fail */
+																				if (c.value == 0) {
+																								c.value = null;
+																				} else if (c.value == 2) {
+																								c.value = 0;
+																				} else {
+																								c.value = checkmark.value + 1;
+																				}
+																				savedCheckmarkFound = true;
+																				console.log('[habits.utils]  Update ' + checkmark.habit + ' to ' + c.value);
+																}
+												});
+												if (!savedCheckmarkFound) {
+																/* If I haven't found saved checkmark to update, Im saving a new one. */
+																habit.checkmarks.push({
+																				date: checkmark.date,
+																				value: 1
+																});
+																console.log("[habits.utils] Added checkmark " + checkmark.date);
+												}
+								}
 				});
-				console.log("[habits.utils] Added checkmark " + checkmark.date);
-			}
-		}
-	});
 
-	return habits;
+				return habits;
 }
 
 function calculateStreak(checkmarks) {
-	/* console.log("Calculating streak " + JSON.stringify(checkmarks))*/
-	var currentStreak = 0;
-	/* Order days starting with the most recent one  */
-	checkmarks.reverse();
+				/* console.log("Calculating streak " + JSON.stringify(checkmarks))*/
+				var currentStreak = 0;
+				/* Order days starting with the most recent one  */
+				checkmarks.reverse();
 
-	var today = (0, _moment2.default)();
-	var thisDate = today.format('YYYY-MM-DD');
+				var today = (0, _moment2.default)();
+				var thisDate = today.format('YYYY-MM-DD');
 
-	/* Loop through dates backwards, starting from today,
-    if checkmark is there and is checked, I increment the streak. */
-	for (var i = 0; i < checkmarks.length; i++) {
-		var checked = false;
-		checkmarks.map(function (checkmark) {
-			/* Find today's checkmark */
-			if (checkmark.date == thisDate) {
-				if (checkmark.value == 1 || checkmark.value == 2) {
-					/* Increment the streak if this habit is completed */
-					currentStreak += 1;
-					checked = true;
+				/* Loop through dates backwards, starting from today,
+       if checkmark is there and is checked, I increment the streak. */
+				for (var i = 0; i < checkmarks.length; i++) {
+								var checked = false;
+								checkmarks.map(function (checkmark) {
+												/* Find today's checkmark */
+												if (checkmark.date == thisDate) {
+																if (checkmark.value == 1 || checkmark.value == 2) {
+																				/* Increment the streak if this habit is completed */
+																				currentStreak += 1;
+																				checked = true;
+																}
+												}
+								});
+								/* If the checkmark for this day isn't checked, streak is over */
+								if (!checked) {
+												break;
+								}
+
+								/* The previous day  */
+								thisDate = (0, _moment2.default)(thisDate).subtract(1, 'days').format('YYYY-MM-DD');
 				}
-			}
-		});
-		/* If the checkmark for this day isn't checked, streak is over */
-		if (!checked) {
-			break;
-		}
 
-		/* The previous day  */
-		thisDate = (0, _moment2.default)(thisDate).subtract(1, 'days').format('YYYY-MM-DD');
-	}
-
-	/* console.log("Return Current streak " + currentStreak);*/
-	return currentStreak;
+				/* console.log("Return Current streak " + currentStreak);*/
+				return currentStreak;
 }
 
 function syncScroll() {
-	var calendar = document.getElementsByClassName("calendar")[0];
-	var timelines = document.getElementsByClassName("timeline");
-	var scroll = calendar.scrollLeft;
-	/* console.log("Scroll! " + scroll)*/
-	/* Looping over all timelines to synchronize scroll. */
-	Array.prototype.forEach.call(timelines, function (t) {
-		t.scrollLeft = scroll;
-	});
+				var calendar = document.getElementsByClassName("calendar")[0];
+				var timelines = document.getElementsByClassName("timeline");
+				var scroll = calendar.scrollLeft;
+				/* console.log("Scroll! " + scroll)*/
+				/* Looping over all timelines to synchronize scroll. */
+				Array.prototype.forEach.call(timelines, function (t) {
+								t.scrollLeft = scroll;
+				});
 }
 
 /***/ }),
@@ -23962,6 +23987,8 @@ return zhTw;
 Object.defineProperty(exports, "__esModule", {
    value: true
 });
+exports.updateHabit = updateHabit;
+exports.deleteHabit = deleteHabit;
 exports.updateCheckmark = updateCheckmark;
 exports.saveHabits = saveHabits;
 exports.saveHabitsBrowser = saveHabitsBrowser;
@@ -23975,6 +24002,20 @@ var _axios2 = _interopRequireDefault(_axios);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function updateHabit(habit) {
+   return {
+      type: 'UPDATE_HABIT',
+      payload: habit
+   };
+}
+
+function deleteHabit(habit) {
+   return {
+      type: 'DELETE_HABIT',
+      payload: habit
+   };
+}
 
 function updateCheckmark(checkmark) {
    return function () {
@@ -50838,6 +50879,10 @@ var _Habits = __webpack_require__(593);
 
 var _Habits2 = _interopRequireDefault(_Habits);
 
+var _About = __webpack_require__(599);
+
+var _About2 = _interopRequireDefault(_About);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -50884,7 +50929,8 @@ var Main = function (_Component) {
 					_react2.default.createElement(
 						'div',
 						{ className: 'mainWrapper' },
-						_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Habits2.default })
+						_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Habits2.default }),
+						_react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/about', component: _About2.default })
 					)
 				)
 			);
@@ -54752,6 +54798,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(55);
 
+var _reactRouterDom = __webpack_require__(170);
+
 var _profiles = __webpack_require__(119);
 
 var profilesActions = _interopRequireWildcard(_profiles);
@@ -54787,10 +54835,40 @@ var Main = function (_Component) {
 				_react2.default.createElement(
 					'div',
 					{ className: 'dropdown' },
-					_react2.default.createElement('i', { className: 'fa fa-bars' }),
+					_react2.default.createElement(
+						_reactRouterDom.Link,
+						{ to: '/' },
+						_react2.default.createElement('i', { className: 'fa fa-bars' }),
+						_react2.default.createElement(
+							'div',
+							{ className: 'logo' },
+							_react2.default.createElement('img', { src: '/img/logo_256x256.png' }),
+							' Helix'
+						)
+					),
 					_react2.default.createElement(
 						'ul',
 						{ className: 'dropdown-menu', role: 'menu' },
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								'a',
+								null,
+								_react2.default.createElement('i', { className: 'fa fa-plus' }),
+								'Add Habit'
+							)
+						),
+						_react2.default.createElement(
+							'li',
+							null,
+							_react2.default.createElement(
+								_reactRouterDom.Link,
+								{ to: '/about' },
+								_react2.default.createElement('i', { className: 'fa fa-info-circle' }),
+								'About'
+							)
+						),
 						this.props.profile ? _react2.default.createElement(
 							'li',
 							null,
@@ -55180,15 +55258,13 @@ var _habits = __webpack_require__(303);
 
 var habitsActions = _interopRequireWildcard(_habits);
 
-var _Timeline = __webpack_require__(594);
-
-var _Timeline2 = _interopRequireDefault(_Timeline);
-
 var _Header = __webpack_require__(184);
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _habits2 = __webpack_require__(80);
+var _Habit = __webpack_require__(601);
+
+var _Habit2 = _interopRequireDefault(_Habit);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -55204,9 +55280,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 /* Components */
-
-
-/* Utils */
 
 
 var Habits = function (_Component) {
@@ -55235,8 +55308,8 @@ var Habits = function (_Component) {
 			}
 		}
 	}, {
-		key: 'renderHabits',
-		value: function renderHabits() {
+		key: 'render',
+		value: function render() {
 			var habitList = this.props.habits.habitList;
 			if (!habitList) {
 				return _react2.default.createElement(
@@ -55246,38 +55319,16 @@ var Habits = function (_Component) {
 				);
 			}
 
-			return habitList.map(function (habit) {
-				return _react2.default.createElement(
-					'div',
-					{ className: 'habit', key: habit.title },
-					_react2.default.createElement(
-						'div',
-						{ className: 'streak' },
-						(0, _habits2.calculateStreak)(habit.checkmarks)
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: "title " + habit.color },
-						habit.title,
-						habit.description ? _react2.default.createElement(
-							'div',
-							{ className: 'description' },
-							habit.description
-						) : null
-					),
-					_react2.default.createElement(_Timeline2.default, { habit: habit }),
-					_react2.default.createElement('div', { className: 'clearfix' })
-				);
+			/* Generate list of all habits. */
+			var habits = habitList.map(function (habit) {
+				return _react2.default.createElement(_Habit2.default, { key: habit.id, habit: habit });
 			});
-		}
-	}, {
-		key: 'render',
-		value: function render() {
+
 			return _react2.default.createElement(
 				'div',
 				{ className: 'habits' },
 				_react2.default.createElement(_Header2.default, null),
-				this.renderHabits()
+				habits
 			);
 		}
 	}]);
@@ -55541,6 +55592,21 @@ exports.default = function () {
 				var action = arguments[1];
 
 				switch (action.type) {
+								case 'UPDATE_HABIT':
+												var habit = action.payload;
+												var habitList = JSON.parse(JSON.stringify(state.habitList)); /* deep copy */
+
+												/* Find a checkmark, update it's state, return updated habits  */
+												habitList = (0, _habits.updateHabit)(habit, habitList);
+												console.log("Updating habit " + JSON.stringify(habitList));
+
+												return _extends({}, state, { habitList: habitList, modified: true });
+								case 'DELETE_HABIT':
+												var habit = action.payload;
+												var habitList = JSON.parse(JSON.stringify(state.habitList)); /* deep copy */
+												habitList = (0, _habits.deleteHabit)(habit, habitList);
+												return _extends({}, state, { habitList: habitList, modified: true });
+
 								case 'UPDATE_CHECKMARK':
 												/* When ../components/Checkmark is clicked */
 												var checkmark = action.payload;
@@ -55589,51 +55655,329 @@ var INITIAL_STATE = {
 				modified: false,
 				lastUpdated: null,
 				habitList: [{
-								id: 1,
+								id: "1",
 								title: 'Food',
 								description: '16 packs > 0 packs',
 								color: 'blue',
+								editing: false,
 								checkmarks: []
 				}, {
-								id: 2,
+								id: "2",
 								title: 'Sport',
 								description: 'Basic + Abs > Lake',
 								color: 'blue',
+								editing: false,
 								checkmarks: []
 				}, {
-								id: 3,
+								id: "3",
 								title: 'Code',
 								description: 'Udemy/AIPages > Art > Clients',
 								color: 'orange',
+								editing: false,
 								checkmarks: []
 				}, {
-								id: 4,
+								id: "4",
 								title: 'Comedy',
 								description: '4 jokes > Tweets/Microscripts',
 								color: 'orange',
+								editing: false,
 								checkmarks: []
 				}, {
-								id: 5,
+								id: "5",
 								title: '++ Info Value',
 								description: 'SL Paragraphs > Speak',
 								color: 'gray',
+								editing: false,
 								checkmarks: []
 				}, {
-								id: 6,
+								id: "6",
 								title: '++ Info Diet',
 								description: 'RSS only. No yt/hn/rdt > Plug off.',
 								color: 'gray',
-								checkmarks: []
-				}, {
-								id: 7,
-								title: '++ Withdrawal',
-								description: 'N/FO3/NFS > Draw/Lowpoly.',
-								color: 'gray',
+								editing: false,
 								checkmarks: []
 				}]
 
 				/* Create and modify state. Passing initial state and actions. */
 };
+
+/***/ }),
+/* 599 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+				value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(55);
+
+var _profiles = __webpack_require__(119);
+
+var profilesActions = _interopRequireWildcard(_profiles);
+
+var _Menu = __webpack_require__(590);
+
+var _Menu2 = _interopRequireDefault(_Menu);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/* Actions */
+
+
+/* Components */
+
+
+var About = function (_Component) {
+				_inherits(About, _Component);
+
+				function About() {
+								_classCallCheck(this, About);
+
+								return _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).apply(this, arguments));
+				}
+
+				_createClass(About, [{
+								key: 'render',
+								value: function render() {
+												return _react2.default.createElement(
+																'div',
+																null,
+																_react2.default.createElement(
+																				'header',
+																				null,
+																				_react2.default.createElement(_Menu2.default, null)
+																),
+																_react2.default.createElement(
+																				'div',
+																				{ className: 'habits about' },
+																				_react2.default.createElement(
+																								'h1',
+																								null,
+																								' About '
+																				),
+																				_react2.default.createElement(
+																								'p',
+																								null,
+																								' About helix '
+																				)
+																)
+												);
+								}
+				}]);
+
+				return About;
+}(_react.Component);
+
+/* Magic connecting component to redux */
+
+
+function mapStateToProps(state) {
+				return {
+								profile: state.profile
+				};
+}
+/* First argument allows to access state */
+/* Second allows to fire actions */
+exports.default = (0, _reactRedux.connect)(mapStateToProps, profilesActions)(About);
+
+/***/ }),
+/* 600 */,
+/* 601 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(509);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRedux = __webpack_require__(55);
+
+var _profiles = __webpack_require__(119);
+
+var profilesActions = _interopRequireWildcard(_profiles);
+
+var _habits = __webpack_require__(303);
+
+var habitsActions = _interopRequireWildcard(_habits);
+
+var _habits2 = __webpack_require__(80);
+
+var _Timeline = __webpack_require__(594);
+
+var _Timeline2 = _interopRequireDefault(_Timeline);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/* Actions */
+
+
+/* Utils */
+
+
+/* Components */
+
+
+var Habit = function (_Component) {
+	_inherits(Habit, _Component);
+
+	function Habit() {
+		_classCallCheck(this, Habit);
+
+		return _possibleConstructorReturn(this, (Habit.__proto__ || Object.getPrototypeOf(Habit)).apply(this, arguments));
+	}
+
+	_createClass(Habit, [{
+		key: 'onDoubleClick',
+		value: function onDoubleClick() {
+			var habit = this.props.habit;
+
+			this.props.updateHabit(_extends({}, habit, { editing: true }));
+		}
+	}, {
+		key: 'onCancel',
+		value: function onCancel() {
+			var habit = this.props.habit;
+
+			this.props.updateHabit(_extends({}, habit, { editing: false }));
+		}
+	}, {
+		key: 'onDelete',
+		value: function onDelete() {
+			var habit = this.props.habit;
+
+			this.props.deleteHabit(habit);
+		}
+	}, {
+		key: 'onSubmit',
+		value: function onSubmit(event) {
+			event.preventDefault();
+			var habit = this.props.habit;
+			/* Get form data */
+
+			var title = _reactDom2.default.findDOMNode(this.refs.title).value;
+			this.props.updateHabit(_extends({}, habit, { title: title, editing: false }));
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var habit = this.props.habit;
+
+
+			if (!habit.editing) {
+				/* Render habit */
+				return _react2.default.createElement(
+					'div',
+					{ className: 'habit',
+						key: habit.title,
+						onDoubleClick: this.onDoubleClick.bind(this) },
+					_react2.default.createElement(
+						'div',
+						{ className: 'streak' },
+						(0, _habits2.calculateStreak)(habit.checkmarks)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: "title " + habit.color },
+						habit.title,
+						habit.description ? _react2.default.createElement(
+							'div',
+							{ className: 'description' },
+							habit.description
+						) : null
+					),
+					_react2.default.createElement(_Timeline2.default, { habit: habit }),
+					_react2.default.createElement('div', { className: 'clearfix' })
+				);
+			} else {
+				/* Edit Habit */
+				return _react2.default.createElement(
+					'div',
+					{ className: 'habit', key: habit.id },
+					_react2.default.createElement(
+						'form',
+						{ onSubmit: this.onSubmit.bind(this) },
+						_react2.default.createElement('input', { type: 'text',
+							ref: 'title',
+							defaultValue: habit.title }),
+						_react2.default.createElement('br', null),
+						_react2.default.createElement(
+							'button',
+							{ className: 'btn btn-delete',
+								onClick: this.onDelete.bind(this) },
+							_react2.default.createElement('i', { className: 'fa fa-trash' })
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'right' },
+							_react2.default.createElement(
+								'button',
+								{ className: 'btn btn-submit',
+									onClick: this.onCancel.bind(this) },
+								'Cancel'
+							),
+							_react2.default.createElement('input', { className: 'btn btn-submit right',
+								type: 'submit',
+								value: 'Save' })
+						)
+					)
+				);
+			}
+		}
+	}]);
+
+	return Habit;
+}(_react.Component);
+
+/* Magic connecting component to redux */
+
+
+function mapStateToProps(state) {
+	return {
+		profile: state.profile
+	};
+}
+/* First argument allows to access state */
+/* Second allows to fire actions */
+exports.default = (0, _reactRedux.connect)(mapStateToProps, habitsActions)(Habit);
 
 /***/ })
 /******/ ]);

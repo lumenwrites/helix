@@ -1,5 +1,27 @@
 import moment from 'moment'
 
+export function updateHabit(habit, habits) {
+    /* Loop through all habits */
+    habits = habits.map((h)=>{
+	/* Find a habit, replace it with a new one. */
+	if (h.id == habit.id) {
+	    /* console.log("Found habit")*/
+	    h = habit
+	}
+	return h
+    })
+
+    return habits
+}
+
+export function deleteHabit(habit, habits) {
+    /* Return all habits except for the one I want to delete  */
+    habits = habits.filter((h)=> h.id != habit.id)
+
+    return habits
+}
+
+
 export function generateCurrentWeek() {
     /* Generate empty calendar for the current week */
     var names = [ 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun' ];

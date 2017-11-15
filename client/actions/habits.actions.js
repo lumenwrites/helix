@@ -1,5 +1,21 @@
 import axios from 'axios'
 
+
+export function updateHabit(habit) {
+    return {
+	type: 'UPDATE_HABIT',
+	payload: habit
+    }
+}
+
+export function deleteHabit(habit) {
+    return {
+	type: 'DELETE_HABIT',
+	payload: habit
+    }
+}
+
+
 export function updateCheckmark(checkmark) {
     return async function(dispatch) {
  	/* const res = await axios.get('/api/v1/profiles/user')
