@@ -55700,42 +55700,42 @@ var INITIAL_STATE = {
 		id: "1",
 		title: 'Food',
 		description: '16 packs > 0 packs',
-		color: 'blue',
+		color: '#7890cb',
 		editing: false,
 		checkmarks: []
 	}, {
 		id: "2",
 		title: 'Sport',
 		description: 'Basic + Abs > Lake',
-		color: 'blue',
+		color: '#7890cb',
 		editing: false,
 		checkmarks: []
 	}, {
 		id: "3",
 		title: 'Code',
 		description: 'Udemy/AIPages > Art > Clients',
-		color: 'orange',
+		color: '#d77c40',
 		editing: false,
 		checkmarks: []
 	}, {
 		id: "4",
 		title: 'Comedy',
 		description: '4 jokes > Tweets/Microscripts',
-		color: 'orange',
+		color: '#d77c40',
 		editing: false,
 		checkmarks: []
 	}, {
 		id: "5",
 		title: '++ Info Value',
 		description: 'SL Paragraphs > Speak',
-		color: 'gray',
+		color: '#67778e',
 		editing: false,
 		checkmarks: []
 	}, {
 		id: "6",
 		title: '++ Info Diet',
 		description: 'RSS only. No yt/hn/rdt > Plug off.',
-		color: 'gray',
+		color: '#67778e',
 		editing: false,
 		checkmarks: []
 	}]
@@ -55941,15 +55941,19 @@ var Habit = function (_Component) {
 
 			var title = _reactDom2.default.findDOMNode(this.refs.title).value;
 			var description = _reactDom2.default.findDOMNode(this.refs.description).value;
+			var color = _reactDom2.default.findDOMNode(this.refs.selectedColor).value;
 			this.props.updateHabit(_extends({}, habit, {
 				title: title,
 				description: description,
+				color: color,
 				editing: false
 			}));
 		}
 	}, {
 		key: 'render',
 		value: function render() {
+			var _this2 = this;
+
 			var habit = this.props.habit;
 
 
@@ -55967,7 +55971,8 @@ var Habit = function (_Component) {
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: "title " + habit.color },
+						{ className: 'title',
+							style: { color: habit.color } },
 						habit.title,
 						habit.description ? _react2.default.createElement(
 							'div',
@@ -55983,7 +55988,17 @@ var Habit = function (_Component) {
 				return _react2.default.createElement(
 					'div',
 					{ className: 'habit', key: habit.id },
-					_react2.default.createElement(_ColorPicker2.default, null),
+					_react2.default.createElement(_ColorPicker2.default, {
+						defaultColor: habit.color,
+						setColor: function setColor(color) {
+							/* When color is selected, ColorPicker component
+          will call this callback function,
+          passing it the chosen color.  */
+							/* console.log("Selected Color " + newColor) */
+							/* I take selected color, and put it into a hidden field,
+          which I will then use in onSubmit when I save the form. */
+							_reactDom2.default.findDOMNode(_this2.refs.selectedColor).value = color;
+						} }),
 					_react2.default.createElement(
 						'form',
 						{ onSubmit: this.onSubmit.bind(this) },
@@ -55995,6 +56010,8 @@ var Habit = function (_Component) {
 							ref: 'description',
 							className: 'description',
 							defaultValue: habit.description }),
+						_react2.default.createElement('input', { type: 'hidden',
+							ref: 'selectedColor' }),
 						_react2.default.createElement('br', null),
 						_react2.default.createElement(
 							'button',
@@ -56187,48 +56204,52 @@ var ColorPicker = function (_Component) {
 		var _this = _possibleConstructorReturn(this, (ColorPicker.__proto__ || Object.getPrototypeOf(ColorPicker)).call(this, props));
 
 		_this.state = {
-			editing: false,
-			color: '#7890cb'
+			openPicker: false,
+			selectedColor: _this.props.defaultColor
 		};
 		return _this;
 	}
 
 	_createClass(ColorPicker, [{
-		key: 'render',
+		key: "render",
 		value: function render() {
 			var _this2 = this;
 
 			var colors = ["#d77c40", "#7890cb", "#EB5A46", "#61BD4F", "#C377E0", "#67778e", "#C477E0", "#67772e", "#27772e"];
 
+			/* Render color options */
 			var colorCircles = colors.map(function (c) {
-				return _react2.default.createElement('div', { key: c,
-					className: 'color-swatch',
+				return _react2.default.createElement("div", { key: c,
+					className: "color-swatch",
 					style: { background: c },
 					onClick: function onClick() {
-						return _this2.setState({ editing: false, color: c });
+						_this2.setState({ openPicker: false, selectedColor: c });
+						/* I'm passing a function setColor to this component,
+      which will be able to use the color I've picked.*/
+						_this2.props.setColor(c);
 					} });
 			});
 
 			return _react2.default.createElement(
-				'div',
-				{ className: 'color-picker' },
-				this.state.editing ? _react2.default.createElement(
-					'div',
-					{ className: 'my-modal color-grid' },
+				"div",
+				{ className: "color-picker" },
+				this.state.openPicker ? _react2.default.createElement(
+					"div",
+					{ className: "my-modal color-grid" },
 					_react2.default.createElement(
-						'div',
-						{ className: 'my-modal-body' },
+						"div",
+						{ className: "my-modal-body" },
 						colorCircles,
-						_react2.default.createElement('div', { className: 'clearfix' })
+						_react2.default.createElement("div", { className: "clearfix" })
 					)
 				) : _react2.default.createElement(
-					'div',
-					{ className: 'open-picker',
-						style: { background: this.state.color },
+					"div",
+					{ className: "open-picker",
+						style: { background: this.state.selectedColor },
 						onClick: function onClick() {
-							return _this2.setState({ editing: true });
+							return _this2.setState({ openPicker: true });
 						} },
-					_react2.default.createElement('i', { className: 'fa fa-paint-brush' })
+					_react2.default.createElement("i", { className: "fa fa-paint-brush" })
 				)
 			);
 		}

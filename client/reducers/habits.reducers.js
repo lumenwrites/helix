@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 	    id: "1",
 	    title: 'Food',
 	    description: '16 packs > 0 packs',
-	    color: 'blue',
+	    color: '#7890cb',
 	    editing: false,
 	    checkmarks: [
 	    ]
@@ -18,7 +18,7 @@ const INITIAL_STATE = {
 	    id: "2",
 	    title: 'Sport',
 	    description: 'Basic + Abs > Lake',
-	    color: 'blue',
+	    color: '#7890cb',
 	    editing: false,	    
 	    checkmarks: [
 	    ]
@@ -27,7 +27,7 @@ const INITIAL_STATE = {
 	    id: "3",
 	    title: 'Code',
 	    description: 'Udemy/AIPages > Art > Clients',
-	    color: 'orange',
+	    color: '#d77c40',
 	    editing: false,	    
 	    checkmarks: [
 	    ]
@@ -36,7 +36,7 @@ const INITIAL_STATE = {
 	    id: "4",
 	    title: 'Comedy',
 	    description: '4 jokes > Tweets/Microscripts',
-	    color: 'orange',
+	    color: '#d77c40',
 	    editing: false,	    
 	    checkmarks: [
 	    ]
@@ -45,7 +45,7 @@ const INITIAL_STATE = {
 	    id: "5",
 	    title: '++ Info Value',
 	    description: 'SL Paragraphs > Speak',
-	    color: 'gray',
+	    color: '#67778e',
 	    editing: false,	    
 	    checkmarks: [
 	    ]
@@ -54,7 +54,7 @@ const INITIAL_STATE = {
 	    id: "6",
 	    title: '++ Info Diet',
 	    description: 'RSS only. No yt/hn/rdt > Plug off.',
-	    color: 'gray',
+	    color: '#67778e',
 	    editing: false,
 	    checkmarks: [
 	    ]
