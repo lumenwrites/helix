@@ -595,25 +595,13 @@ header .calendar .day .today {
   float: left;
   width: 140px;
 }
-/* line 175, ../sass/style.scss */
-.habits .habit .orange {
-  color: #d77c40;
-}
 /* line 176, ../sass/style.scss */
-.habits .habit .blue {
-  color: #7890cb;
-}
-/* line 177, ../sass/style.scss */
-.habits .habit .gray {
-  color: #67778e;
-}
-/* line 179, ../sass/style.scss */
 .habits .habit .description {
   color: #9BAEC8;
   font-size: 10px;
   margin-bottom: -50px;
 }
-/* line 185, ../sass/style.scss */
+/* line 182, ../sass/style.scss */
 .habits .habit .timeline {
   float: right;
   width: calc(100% - 190px);
@@ -623,20 +611,20 @@ header .calendar .day .today {
   direction: rtl;
 }
 @media (max-width: 740px) {
-  /* line 185, ../sass/style.scss */
+  /* line 182, ../sass/style.scss */
   .habits .habit .timeline {
     /* float:left; */
   }
 }
-/* line 196, ../sass/style.scss */
+/* line 193, ../sass/style.scss */
 .habits .habit .timeline::-webkit-scrollbar {
   height: 0px;
 }
-/* line 197, ../sass/style.scss */
+/* line 194, ../sass/style.scss */
 .habits .habit .timeline .checkmarks {
   width: calc(50px * 7);
 }
-/* line 201, ../sass/style.scss */
+/* line 198, ../sass/style.scss */
 .habits .habit .timeline .checkmark {
   float: left;
   height: 40px;
@@ -647,55 +635,55 @@ header .calendar .day .today {
   margin-right: 10px;
   cursor: pointer;
 }
-/* line 210, ../sass/style.scss */
+/* line 207, ../sass/style.scss */
 .habits .habit .timeline .checkmark i {
   line-height: 40px;
   font-size: 20px;
   color: #9BAEC8;
 }
-/* line 215, ../sass/style.scss */
+/* line 212, ../sass/style.scss */
 .habits .habit .timeline .checkmark .empty-day {
   color: #9BAEC8;
 }
-/* line 218, ../sass/style.scss */
+/* line 215, ../sass/style.scss */
 .habits .habit .timeline .checkmark .fa-times {
   color: #af6e6e;
 }
-/* line 221, ../sass/style.scss */
+/* line 218, ../sass/style.scss */
 .habits .habit .timeline .checkmark .fa-check {
   color: #9dc89b;
 }
-/* line 224, ../sass/style.scss */
+/* line 221, ../sass/style.scss */
 .habits .habit .timeline .checkmark .fa-thumbs-up {
   color: #cb9c6f;
 }
 
 /* General form */
-/* line 234, ../sass/style.scss */
+/* line 231, ../sass/style.scss */
 form input {
   background: #282c37;
   border: none;
   padding: 4px;
   margin-bottom: 4px;
 }
-/* line 240, ../sass/style.scss */
+/* line 237, ../sass/style.scss */
 form .btn {
   background: #282c37;
   margin-top: 4px;
   padding: 4px 10px;
 }
-/* line 245, ../sass/style.scss */
+/* line 242, ../sass/style.scss */
 form .btn-submit {
   margin-left: 4px;
 }
 
 /* Habit specific form */
-/* line 253, ../sass/style.scss */
+/* line 250, ../sass/style.scss */
 .color-picker {
   margin-right: 10px;
   float: left;
 }
-/* line 256, ../sass/style.scss */
+/* line 253, ../sass/style.scss */
 .color-picker .open-picker {
   width: 40px;
   height: 40px;
@@ -704,15 +692,15 @@ form .btn-submit {
   background: #7890cb;
   cursor: pointer;
 }
-/* line 263, ../sass/style.scss */
+/* line 260, ../sass/style.scss */
 .color-picker .open-picker i {
   line-height: 40px;
 }
-/* line 269, ../sass/style.scss */
+/* line 266, ../sass/style.scss */
 .color-picker .color-grid .my-modal-body {
   width: 260px;
 }
-/* line 272, ../sass/style.scss */
+/* line 269, ../sass/style.scss */
 .color-picker .color-grid .color-swatch {
   width: 40px;
   height: 40px;
@@ -723,7 +711,7 @@ form .btn-submit {
 }
 
 /* General modal */
-/* line 284, ../sass/style.scss */
+/* line 281, ../sass/style.scss */
 .my-modal {
   position: fixed;
   background: #282c37e6;
@@ -734,7 +722,7 @@ form .btn-submit {
   z-index: 100;
   overflow: auto;
 }
-/* line 293, ../sass/style.scss */
+/* line 290, ../sass/style.scss */
 .my-modal .my-modal-body {
   background: #313543;
   margin: 15% auto;
@@ -742,36 +730,36 @@ form .btn-submit {
   width: 80%;
 }
 
-/* line 301, ../sass/style.scss */
+/* line 298, ../sass/style.scss */
 .habit form {
   width: 200px;
   float: left;
 }
-/* line 304, ../sass/style.scss */
+/* line 301, ../sass/style.scss */
 .habit form input[type=text] {
   width: 100%;
   font-size: 15px;
   color: #9BAEC8;
 }
-/* line 309, ../sass/style.scss */
+/* line 306, ../sass/style.scss */
 .habit form .title-edit {
   width: 100%;
 }
-/* line 313, ../sass/style.scss */
+/* line 310, ../sass/style.scss */
 .habit form .description {
   font-size: 10px;
 }
 
-/* line 318, ../sass/style.scss */
+/* line 315, ../sass/style.scss */
 .about {
   padding: 40px;
   color: #9BAEC8;
 }
-/* line 321, ../sass/style.scss */
+/* line 318, ../sass/style.scss */
 .about h1 {
   text-align: center;
 }
-/* line 324, ../sass/style.scss */
+/* line 321, ../sass/style.scss */
 .about p {
   color: #9BAEC8;
 }

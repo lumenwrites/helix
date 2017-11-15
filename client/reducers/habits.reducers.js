@@ -1,7 +1,7 @@
 import { createHabit, updateHabit, deleteHabit,
 	 updateCheckmark } from '../utils/habits.utils'
 
-const INITIAL_STATE = {
+var INITIAL_STATE = {
     modified: false,
     lastUpdated: null,    
     habitList: [
@@ -61,7 +61,59 @@ const INITIAL_STATE = {
 	}
     ]
 }
-    
+
+INITIAL_STATE = {
+    modified: false,
+    lastUpdated: null,    
+    habitList: [
+	{
+	    id: "1",
+	    title: 'Clean Diet',
+	    description: 'No junk food, limit coffee',
+	    color: '#7890cb',
+	    editing: false,
+	    checkmarks: [
+	    ]
+	},
+	{
+	    id: "2",
+	    title: 'Exercise',
+	    description: 'Pushups, Jogging',
+	    color: '#7890cb',
+	    editing: false,	    
+	    checkmarks: [
+	    ]
+	},
+	{
+	    id: "3",
+	    title: 'Programming',
+	    description: 'Watch tutorials, write code',
+	    color: '#d77c40',
+	    editing: false,	    
+	    checkmarks: [
+	    ]
+	},
+	{
+	    id: "4",
+	    title: 'Writing',
+	    description: 'Write 500+ words',
+	    color: '#d77c40',
+	    editing: false,	    
+	    checkmarks: [
+	    ]
+	},
+	{
+	    id: "6",
+	    title: 'Info Diet',
+	    description: 'Avoid Reddit and Twitter, Listen to AudioBooks',
+	    color: '#67778e',
+	    editing: false,
+	    checkmarks: [
+	    ]
+	}
+    ]
+}
+
 
 /* Create and modify state. Passing initial state and actions. */
 export default function (state = INITIAL_STATE, action) {

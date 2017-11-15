@@ -7620,7 +7620,7 @@ function createHabit(habits) {
 								id: _cuid2.default.slug(),
 								title: 'New Habit',
 								description: 'Description...',
-								color: 'gray',
+								color: '#67778e',
 								editing: true,
 								checkmarks: []
 				};
@@ -55735,6 +55735,47 @@ var INITIAL_STATE = {
 		id: "6",
 		title: '++ Info Diet',
 		description: 'RSS only. No yt/hn/rdt > Plug off.',
+		color: '#67778e',
+		editing: false,
+		checkmarks: []
+	}]
+};
+
+INITIAL_STATE = {
+	modified: false,
+	lastUpdated: null,
+	habitList: [{
+		id: "1",
+		title: 'Clean Diet',
+		description: 'No junk food, limit coffee',
+		color: '#7890cb',
+		editing: false,
+		checkmarks: []
+	}, {
+		id: "2",
+		title: 'Exercise',
+		description: 'Pushups, Jogging',
+		color: '#7890cb',
+		editing: false,
+		checkmarks: []
+	}, {
+		id: "3",
+		title: 'Programming',
+		description: 'Watch tutorials, write code',
+		color: '#d77c40',
+		editing: false,
+		checkmarks: []
+	}, {
+		id: "4",
+		title: 'Writing',
+		description: 'Write 500+ words',
+		color: '#d77c40',
+		editing: false,
+		checkmarks: []
+	}, {
+		id: "6",
+		title: 'Info Diet',
+		description: 'Avoid Reddit and Twitter, Listen to AudioBooks',
 		color: '#67778e',
 		editing: false,
 		checkmarks: []

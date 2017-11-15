@@ -6,7 +6,7 @@ export function createHabit( habits) {
 	id: cuid.slug(),
 	title: 'New Habit',
 	description: 'Description...',
-	color: 'gray',
+	color: '#67778e',
 	editing: true,
 	checkmarks: []
     }
