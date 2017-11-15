@@ -55895,12 +55895,12 @@ var About = function (_Component) {
 					_react2.default.createElement(
 						'p',
 						null,
-						' Double click on the habit to edit it. By default habits are saved in your browser, you can create an account to save them on the server and synchronize them across the devices.'
+						' Double click on the habit to edit it. By default habits are saved in your browser, you can create an account to save them on server and synchronize them across the devices.'
 					),
 					_react2.default.createElement(
 						'p',
 						null,
-						' If you are on mobile - open settings and click "Add to Home Screen", and helix will work like a native app. '
+						' If you are on mobile - open browser settings and click "Add to Home Screen", and helix will work like a native app. '
 					),
 					_react2.default.createElement('hr', null),
 					_react2.default.createElement(
