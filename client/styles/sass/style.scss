@@ -313,12 +313,32 @@ form {
     
 }
 .about {
-    padding: 40px;
+    padding: 20px 40px;
     color: #9BAEC8;
+    .logo {
+	width: 120px;
+	margin: auto;
+	display:block;
+	margin-bottom: 10px;
+    }
+    img {
+	width: 100%;
+	margin-bottom: 10px;
+    }
+    hr {
+       border-top: 1px solid #9baec896;
+   }
     h1 {
 	text-align: center;
     }
     p {
+	color: #9BAEC8;
+    }
+    a {
+	color: white;
+	text-decoration: underline;
+    }
+    li {
 	color: #9BAEC8;
     }
 }

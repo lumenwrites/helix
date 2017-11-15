@@ -78,7 +78,7 @@ INITIAL_STATE = {
 	{
 	    id: "2",
 	    title: 'Exercise',
-	    description: 'Pushups, Jogging',
+	    description: '50 pushups, Jogging',
 	    color: '#7890cb',
 	    editing: false,	    
 	    checkmarks: [
@@ -105,7 +105,7 @@ INITIAL_STATE = {
 	{
 	    id: "6",
 	    title: 'Info Diet',
-	    description: 'Avoid Reddit and Twitter, Listen to AudioBooks',
+	    description: 'Avoid Reddit and Twitter, Listen to audiobooks',
 	    color: '#67778e',
 	    editing: false,
 	    checkmarks: [

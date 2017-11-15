@@ -752,14 +752,39 @@ form .btn-submit {
 
 /* line 315, ../sass/style.scss */
 .about {
-  padding: 40px;
+  padding: 20px 40px;
   color: #9BAEC8;
 }
 /* line 318, ../sass/style.scss */
+.about .logo {
+  width: 120px;
+  margin: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+/* line 324, ../sass/style.scss */
+.about img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+/* line 328, ../sass/style.scss */
+.about hr {
+  border-top: 1px solid #9baec896;
+}
+/* line 331, ../sass/style.scss */
 .about h1 {
   text-align: center;
 }
-/* line 321, ../sass/style.scss */
+/* line 334, ../sass/style.scss */
 .about p {
+  color: #9BAEC8;
+}
+/* line 337, ../sass/style.scss */
+.about a {
+  color: white;
+  text-decoration: underline;
+}
+/* line 341, ../sass/style.scss */
+.about li {
   color: #9BAEC8;
 }

@@ -55754,7 +55754,7 @@ INITIAL_STATE = {
 	}, {
 		id: "2",
 		title: 'Exercise',
-		description: 'Pushups, Jogging',
+		description: '50 pushups, Jogging',
 		color: '#7890cb',
 		editing: false,
 		checkmarks: []
@@ -55775,7 +55775,7 @@ INITIAL_STATE = {
 	}, {
 		id: "6",
 		title: 'Info Diet',
-		description: 'Avoid Reddit and Twitter, Listen to AudioBooks',
+		description: 'Avoid Reddit and Twitter, Listen to audiobooks',
 		color: '#67778e',
 		editing: false,
 		checkmarks: []
@@ -55792,7 +55792,7 @@ INITIAL_STATE = {
 
 
 Object.defineProperty(exports, "__esModule", {
-				value: true
+	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -55828,53 +55828,156 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var About = function (_Component) {
-				_inherits(About, _Component);
+	_inherits(About, _Component);
 
-				function About() {
-								_classCallCheck(this, About);
+	function About() {
+		_classCallCheck(this, About);
 
-								return _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).apply(this, arguments));
-				}
+		return _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).apply(this, arguments));
+	}
 
-				_createClass(About, [{
-								key: 'render',
-								value: function render() {
-												return _react2.default.createElement(
-																'div',
-																null,
-																_react2.default.createElement(
-																				'header',
-																				null,
-																				_react2.default.createElement(_Menu2.default, null)
-																),
-																_react2.default.createElement(
-																				'div',
-																				{ className: 'habits about' },
-																				_react2.default.createElement(
-																								'h1',
-																								null,
-																								' About '
-																				),
-																				_react2.default.createElement(
-																								'p',
-																								null,
-																								' About helix '
-																				)
-																)
-												);
-								}
-				}]);
+	_createClass(About, [{
+		key: 'render',
+		value: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement('header', null),
+				_react2.default.createElement(
+					'div',
+					{ className: 'habits about' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'logo' },
+						_react2.default.createElement('img', { src: '/img/logo_256x256.png' })
+					),
+					_react2.default.createElement(
+						'h1',
+						null,
+						' Helix '
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						_react2.default.createElement(
+							'a',
+							{ href: '/' },
+							'Helix'
+						),
+						' is a habit tracking app that will help you to create and maintain an awesome daily routine, which is one of the most powerful tools for achieving your goals and sending your life in an upwards spiral. '
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						' Determine the most important things you need to practice regularly to achieve what you want in life, and strive to never skip a day. '
+					),
+					_react2.default.createElement('img', { src: '/img/screenshots/default-habits.png' }),
+					_react2.default.createElement(
+						'p',
+						null,
+						' Mark the day with ',
+						_react2.default.createElement('i', { className: 'fa fa-check' }),
+						' every time you successfully complete a  ',
+						_react2.default.createElement(
+							'a',
+							{ href: 'https://hackernoon.com/micro-habits-changed-my-life-47f572bfc153' },
+							'microhabit'
+						),
+						', and mark a day with ',
+						_react2.default.createElement('i', { className: 'fa fa-thumbs-up' }),
+						' every time you accomplish more significant progress you\'re proud of. Doing 10 pushups, reading one page of a book, or writing a line of code are good examples of microhabits; going to the gym or developing a cool feature for your app are good examples of thumbsup-worthy days.'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						' Number in a circle to the left of each habit tells you how many days in a row you have successfully completed a habit. Strive to maintain the streak for as long as possible. Usually it takes about 30 days to successfully develop a habit, so I recommend using this as your first goal.'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						' Double click on the habit to edit it. By default habits are saved in your browser, you can create an account to save them on the server and synchronize them across the devices.'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						' If you are on mobile - open settings and click "Add to Home Screen", and helix will work like a native app. '
+					),
+					_react2.default.createElement('hr', null),
+					_react2.default.createElement(
+						'p',
+						null,
+						' I\'ve launched Helix only recently, and at moment it is still in beta. Shoot me an email to ',
+						_react2.default.createElement(
+							'b',
+							null,
+							'ray@startuplab.io'
+						),
+						' with some feedback and feature suggestions, I would really appreciate it =) '
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						' Note that in the future Helix will become a premium app ($12/year), but all the early adopters who join during the beta and send me some useful feedback will get free lifetime accounts.'
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						' Upcoming features :',
+						_react2.default.createElement(
+							'ul',
+							null,
+							_react2.default.createElement(
+								'li',
+								null,
+								'Import/Export habits'
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								'Drag and drop to rearrange'
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								'Custom checkbox types'
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								'Daily todos and notes'
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								'GitHub-like calendar'
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								'Cool stats and graphs'
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								'Offline mode on mobile'
+							)
+						)
+					)
+				)
+			);
+		}
+	}]);
 
-				return About;
+	return About;
 }(_react.Component);
 
 /* Magic connecting component to redux */
 
 
 function mapStateToProps(state) {
-				return {
-								profile: state.profile
-				};
+	return {
+		profile: state.profile
+	};
 }
 /* First argument allows to access state */
 /* Second allows to fire actions */
