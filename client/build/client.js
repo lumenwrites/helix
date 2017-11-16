@@ -56431,6 +56431,34 @@ exports.default = function () {
 	var action = arguments[1];
 
 	switch (action.type) {
+		case 'FETCH_USER':
+			var profile = action.payload;
+			var today = (0, _moment2.default)().format('YYYY-MM-DD');
+
+			/* Loading notes */
+			if (profile.notes) {
+				var serverNotes = JSON.parse(profile.notes);
+
+				/* Check if browser notes were updated more recently */
+				var browserNotes = JSON.parse(localStorage.getItem('notes'));
+				if (browserNotes && browserNotes.lastUpdated > serverNotes.lastUpdated) {
+					console.log('Loading notes from browser (recently modified).');
+					return _extends({}, browserNotes, { active: today });
+				}
+
+				console.log('Loading notes from server (recently modified).');
+				return _extends({}, serverNotes, { active: today });
+			} else {
+				var notes = JSON.parse(localStorage.getItem('notes'));
+				notes.active = today;
+				if (notes) {
+					console.log('Loading notes from browser.');
+					return notes;
+				} else {
+					console.log('Loading default notes.');
+					return _extends({}, state, { active: today });
+				}
+			}
 		case 'UPDATE_NOTE':
 			var note = action.payload;
 			var timeline = JSON.parse(JSON.stringify(state.timeline)); /* Deep copy */
@@ -56450,6 +56478,7 @@ exports.default = function () {
 			return _extends({}, state, { timeline: timeline });
 		case 'ACTIVATE_NOTE':
 			var date = action.payload;
+			/* console.log("Activate note " + date)*/
 			if (date) {
 				return _extends({}, state, { active: date });
 			} else {
@@ -56468,17 +56497,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var INITIAL_STATE = {
 	active: '2017-11-16',
-	timeline: [{
-		date: '2017-11-13',
-		note: "Another note"
-	}, {
-		date: '2017-11-15',
-		note: "Test note"
-	}, {
-		date: '2017-11-16',
-		note: "Today's note"
-	}]
-
+	lastUpdated: null,
+	timeline: []
+	/*
+    {
+    date: '2017-11-13',
+    note: "Another note"
+    },
+ */
 	/* Create and modify state. Passing initial state and actions. */
 };
 
@@ -56611,7 +56637,13 @@ var Notes = function (_Component) {
 						'a',
 						{ className: 'btn',
 							onClick: function onClick() {
-								return _this2.props.saveNotes(_this2.props.notes);
+								if (_this2.props.profile.email) {
+									/* if profile is logged in, save notes to db */
+									_this2.props.saveNotes(_this2.props.notes);
+								}
+								/* save notes to browser,
+        whether profile is logged in or not. */
+								_this2.props.saveNotesBrowser(_this2.props.notes);
 							} },
 						_react2.default.createElement('i', { className: 'fa fa-floppy-o' })
 					)
@@ -56629,7 +56661,8 @@ var Notes = function (_Component) {
 
 function mapStateToProps(state) {
 	return {
-		notes: state.notes
+		notes: state.notes,
+		profile: state.profile
 	};
 }
 /* First argument allows to access state */
@@ -57054,7 +57087,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.updateNote = updateNote;
 exports.activateNote = activateNote;
+exports.loadNotes = loadNotes;
 exports.saveNotes = saveNotes;
+exports.saveNotesBrowser = saveNotesBrowser;
+
+var _axios = __webpack_require__(178);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 function updateNote(note) {
     return {
         type: 'UPDATE_NOTE',
@@ -57069,8 +57113,60 @@ function activateNote(date) {
     };
 }
 
+function loadNotes() {
+    var notes = JSON.parse(localStorage.getItem('notes'));
+    console.log("Load notes from browser");
+
+    return {
+        type: 'LOAD_NOTES',
+        payload: notes
+    };
+}
+
 function saveNotes(notes) {
+    var data = notes;
+    data.lastUpdated = new Date();
+
+    return function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
+            var res, notes;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.next = 2;
+                            return _axios2.default.post('/api/v1/notes', data);
+
+                        case 2:
+                            res = _context.sent;
+                            notes = res.data;
+
+                            console.log('[notes.actions] Saved notes to server' + JSON.stringify(notes));
+
+                            dispatch({
+                                type: 'SAVE_NOTES',
+                                payload: notes
+                            });
+
+                        case 6:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this);
+        }));
+
+        return function (_x) {
+            return _ref.apply(this, arguments);
+        };
+    }();
+}
+
+function saveNotesBrowser(notes) {
+    notes.lastUpdated = new Date();
+    localStorage.setItem('notes', JSON.stringify(notes));
     console.log("Save notes " + JSON.stringify(notes));
+    console.log("[notes.actions]  Saved notes to local storage");
     return {
         type: 'SAVE_NOTES',
         payload: {}

@@ -48,7 +48,7 @@ mongoose.connect(MONGO_DB_URL, (error) => {
 
 /* API Routes */
 app.use('/api/v1/profiles', profilesRoutes);
-app.use('/api/v1/habits', habitsRoutes);
+app.use('/api/v1', habitsRoutes);
 
 /* Serve client react app */
 /* Static files */

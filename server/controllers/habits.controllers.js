@@ -25,3 +25,18 @@ export function saveHabits(req, res) {
     })
 }
 
+
+/* Save Notes */
+export function saveNotes(req, res) {
+    /* Passport deserializes cookie (finds user by id),
+       attaches it to req, and then I send it back. */
+    const user = req.user
+    const notes = req.body
+    console.log('Received notes ' + JSON.stringify(notes))
+    user.notes = JSON.stringify(notes)
+    user.save((err, usr)=>{
+	console.log(`Saved ${usr.email}'s notes ` + usr.notes)
+	res.json(usr.notes)
+    })
+}
+

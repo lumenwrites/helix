@@ -30,7 +30,7 @@ class Notes extends Component {
 		     className={"day "
 			      + (day.note ? "has-note " : "" )
 			      + (day.date == savedNotes.active ? "active" : "" )}
-		    onClick={()=> this.props.activateNote(day.date)}>
+		     onClick={()=> this.props.activateNote(day.date)}>
 		</div>
 	    )
 	})
@@ -68,7 +68,15 @@ class Notes extends Component {
 			<i className="fa fa-check-square-o"></i>
 		    </a>
 		    <a className="btn"
-		       onClick={()=> this.props.saveNotes(this.props.notes)}>
+		       onClick={()=> {
+			       if (this.props.profile.email) {
+				   /* if profile is logged in, save notes to db */
+				   this.props.saveNotes(this.props.notes)
+			       } 
+			       /* save notes to browser,
+				  whether profile is logged in or not. */
+			       this.props.saveNotesBrowser(this.props.notes)	    
+		       }}>
 			<i className="fa fa-floppy-o"></i>
 		    </a>
 		</div>
@@ -81,7 +89,8 @@ class Notes extends Component {
 /* Magic connecting component to redux */
 function mapStateToProps(state) {
     return {
-    	notes: state.notes
+    	notes: state.notes,
+    	profile: state.profile
     }
 }
 /* First argument allows to access state */

@@ -12,7 +12,8 @@ import * as habitsControllers from '../controllers/habits.controllers';
 
 /* Get user */
 router.route('/').get(habitsControllers.getHabits)
-router.route('/').post(habitsControllers.saveHabits)
+router.route('/habits').post(habitsControllers.saveHabits)
+router.route('/notes').post(habitsControllers.saveNotes)
 
 
 
