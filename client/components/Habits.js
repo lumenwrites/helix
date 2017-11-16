@@ -7,6 +7,7 @@ import * as habitsActions from '../actions/habits.actions'
 /* Components */
 import Header from './Header'
 import Habit from './Habit'
+import Notes from './Notes'
 
 class Habits extends Component {
     
@@ -40,6 +41,7 @@ class Habits extends Component {
 	    <div className="habits">
 		<Header />			
 		{ habits }
+		<Notes />
 	    </div>
 	)
     }

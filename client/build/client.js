@@ -55304,6 +55304,10 @@ var _Habit = __webpack_require__(601);
 
 var _Habit2 = _interopRequireDefault(_Habit);
 
+var _Notes = __webpack_require__(605);
+
+var _Notes2 = _interopRequireDefault(_Notes);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -55366,7 +55370,8 @@ var Habits = function (_Component) {
 				'div',
 				{ className: 'habits' },
 				_react2.default.createElement(_Header2.default, null),
-				habits
+				habits,
+				_react2.default.createElement(_Notes2.default, null)
 			);
 		}
 	}]);
@@ -55570,19 +55575,23 @@ var _habits = __webpack_require__(598);
 
 var _habits2 = _interopRequireDefault(_habits);
 
+var _notes = __webpack_require__(604);
+
+var _notes2 = _interopRequireDefault(_notes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /* Combine all reducers into one big state.
    The result is passed to the Provider in ../src/index.js */
-
+exports.default = (0, _redux.combineReducers)({
+    profile: _profiles2.default,
+    habits: _habits2.default,
+    notes: _notes2.default
+});
 
 /* Vendor reducers */
 
 /* My reducers */
-exports.default = (0, _redux.combineReducers)({
-    profile: _profiles2.default,
-    habits: _habits2.default
-});
 
 /***/ }),
 /* 597 */
@@ -56403,6 +56412,741 @@ var ColorPicker = function (_Component) {
 }(_react.Component);
 
 exports.default = ColorPicker;
+
+/***/ }),
+/* 604 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = function () {
+	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+	var action = arguments[1];
+
+	switch (action.type) {
+		case 'UPDATE_NOTE':
+			var note = action.payload;
+			var timeline = JSON.parse(JSON.stringify(state.timeline)); /* Deep copy */
+			var foundNote = false;
+			timeline = timeline.map(function (n) {
+				if (n.date == note.date) {
+					/* find a note, return updated one */
+					foundNote = true;
+					return note;
+				}
+				return n;
+			});
+			/* If I didn't find a note, then add a new one */
+			if (!foundNote) {
+				timeline.push(note);
+			}
+			return _extends({}, state, { timeline: timeline });
+		case 'ACTIVATE_NOTE':
+			var date = action.payload;
+			if (date) {
+				return _extends({}, state, { active: date });
+			} else {
+				return _extends({}, state, { active: (0, _moment2.default)().format('YYYY-MM-DD') });
+			}
+		default:
+			return state;
+	}
+};
+
+var _moment = __webpack_require__(1);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var INITIAL_STATE = {
+	active: '2017-11-16',
+	timeline: [{
+		date: '2017-11-13',
+		note: "Another note"
+	}, {
+		date: '2017-11-15',
+		note: "Test note"
+	}, {
+		date: '2017-11-16',
+		note: "Today's note"
+	}]
+
+	/* Create and modify state. Passing initial state and actions. */
+};
+
+/***/ }),
+/* 605 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(55);
+
+var _notes = __webpack_require__(607);
+
+var notesActions = _interopRequireWildcard(_notes);
+
+var _habits = __webpack_require__(80);
+
+var _notes2 = __webpack_require__(608);
+
+var _reactTextareaAutosize = __webpack_require__(606);
+
+var _reactTextareaAutosize2 = _interopRequireDefault(_reactTextareaAutosize);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/* Actions */
+
+
+/* Utils */
+
+
+/* Vendor Components */
+
+
+var Notes = function (_Component) {
+	_inherits(Notes, _Component);
+
+	function Notes() {
+		_classCallCheck(this, Notes);
+
+		return _possibleConstructorReturn(this, (Notes.__proto__ || Object.getPrototypeOf(Notes)).apply(this, arguments));
+	}
+
+	_createClass(Notes, [{
+		key: 'onChange',
+		value: function onChange(event, activeNote) {
+			/* Update note's value as I type */
+			activeNote.note = event.target.value;
+			this.props.updateNote(activeNote);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _this2 = this;
+
+			var days = (0, _habits.generateRecentDays)();
+			var savedNotes = this.props.notes;
+			var daysWithNotes = (0, _notes2.loadNotes)(savedNotes.timeline, days);
+			var timeline = daysWithNotes.map(function (day, i) {
+				return _react2.default.createElement('div', { key: day.date,
+					className: "day " + (day.note ? "has-note " : "") + (day.date == savedNotes.active ? "active" : ""),
+					onClick: function onClick() {
+						return _this2.props.activateNote(day.date);
+					} });
+			});
+
+			var activeNote = {};
+			/* Find an active note based on the date */
+			savedNotes.timeline.map(function (n) {
+				if (n.date == savedNotes.active) {
+					activeNote = n;
+				}
+			});
+			if (!activeNote.note) {
+				/* If I couldn't find a saved note, make a new one. */
+				activeNote = {
+					date: savedNotes.active,
+					note: ""
+				};
+			}
+			return _react2.default.createElement(
+				'div',
+				{ className: 'notes' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'timeline' },
+					timeline
+				),
+				_react2.default.createElement(_reactTextareaAutosize2.default, { placeholder: 'Note...',
+					value: activeNote.note,
+					className: 'textarea',
+					onChange: function onChange(event) {
+						return _this2.onChange(event, activeNote);
+					} }),
+				_react2.default.createElement(
+					'div',
+					{ className: 'buttons' },
+					_react2.default.createElement(
+						'a',
+						{ className: 'btn',
+							onClick: _notes2.insertTime.bind(this) },
+						_react2.default.createElement('i', { className: 'fa fa-clock-o' })
+					),
+					_react2.default.createElement(
+						'a',
+						{ className: 'btn',
+							onClick: _notes2.insertCheckmark.bind(this) },
+						_react2.default.createElement('i', { className: 'fa fa-check-square-o' })
+					),
+					_react2.default.createElement(
+						'a',
+						{ className: 'btn',
+							onClick: function onClick() {
+								return _this2.props.saveNotes(_this2.props.notes);
+							} },
+						_react2.default.createElement('i', { className: 'fa fa-floppy-o' })
+					)
+				),
+				_react2.default.createElement('div', { className: 'clearfix' })
+			);
+		}
+	}]);
+
+	return Notes;
+}(_react.Component);
+
+/* Magic connecting component to redux */
+
+
+function mapStateToProps(state) {
+	return {
+		notes: state.notes
+	};
+}
+/* First argument allows to access state */
+/* Second allows to fire actions */
+exports.default = (0, _reactRedux.connect)(mapStateToProps, notesActions)(Notes);
+
+/***/ }),
+/* 606 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+
+
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
+
+var isIE = isBrowser ? !!document.documentElement.currentStyle : false;
+var hiddenTextarea = isBrowser && document.createElement('textarea');
+var HIDDEN_TEXTAREA_STYLE = {
+  'min-height': '0',
+  'max-height': 'none',
+  height: '0',
+  visibility: 'hidden',
+  overflow: 'hidden',
+  position: 'absolute',
+  'z-index': '-1000',
+  top: '0',
+  right: '0'
+};
+var SIZING_STYLE = ['letter-spacing', 'line-height', 'font-family', 'font-weight', 'font-size', 'font-style', 'tab-size', 'text-rendering', 'text-transform', 'width', 'text-indent', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left', 'border-top-width', 'border-right-width', 'border-bottom-width', 'border-left-width', 'box-sizing'];
+var computedStyleCache = {};
+function calculateNodeHeight(uiTextNode, uid, useCache, minRows, maxRows) {
+  if (useCache === void 0) {
+    useCache = false;
+  }
+
+  if (minRows === void 0) {
+    minRows = null;
+  }
+
+  if (maxRows === void 0) {
+    maxRows = null;
+  }
+
+  if (hiddenTextarea.parentNode === null) {
+    document.body.appendChild(hiddenTextarea);
+  } // Copy all CSS properties that have an impact on the height of the content in
+  // the textbox
+
+
+  var nodeStyling = calculateNodeStyling(uiTextNode, uid, useCache);
+
+  if (nodeStyling === null) {
+    return null;
+  }
+
+  var paddingSize = nodeStyling.paddingSize,
+      borderSize = nodeStyling.borderSize,
+      boxSizing = nodeStyling.boxSizing,
+      sizingStyle = nodeStyling.sizingStyle; // Need to have the overflow attribute to hide the scrollbar otherwise
+  // text-lines will not calculated properly as the shadow will technically be
+  // narrower for content
+
+  Object.keys(sizingStyle).forEach(function (key) {
+    hiddenTextarea.style[key] = sizingStyle[key];
+  });
+  Object.keys(HIDDEN_TEXTAREA_STYLE).forEach(function (key) {
+    hiddenTextarea.style.setProperty(key, HIDDEN_TEXTAREA_STYLE[key], 'important');
+  });
+  hiddenTextarea.value = uiTextNode.value || uiTextNode.placeholder || 'x';
+  var minHeight = -Infinity;
+  var maxHeight = Infinity;
+  var height = hiddenTextarea.scrollHeight;
+
+  if (boxSizing === 'border-box') {
+    // border-box: add border, since height = content + padding + border
+    height = height + borderSize;
+  } else if (boxSizing === 'content-box') {
+    // remove padding, since height = content
+    height = height - paddingSize;
+  } // measure height of a textarea with a single row
+
+
+  hiddenTextarea.value = 'x';
+  var singleRowHeight = hiddenTextarea.scrollHeight - paddingSize;
+
+  if (minRows !== null || maxRows !== null) {
+    if (minRows !== null) {
+      minHeight = singleRowHeight * minRows;
+
+      if (boxSizing === 'border-box') {
+        minHeight = minHeight + paddingSize + borderSize;
+      }
+
+      height = Math.max(minHeight, height);
+    }
+
+    if (maxRows !== null) {
+      maxHeight = singleRowHeight * maxRows;
+
+      if (boxSizing === 'border-box') {
+        maxHeight = maxHeight + paddingSize + borderSize;
+      }
+
+      height = Math.min(maxHeight, height);
+    }
+  }
+
+  var rowCount = Math.floor(height / singleRowHeight);
+  return {
+    height: height,
+    minHeight: minHeight,
+    maxHeight: maxHeight,
+    rowCount: rowCount
+  };
+}
+
+function calculateNodeStyling(node, uid, useCache) {
+  if (useCache === void 0) {
+    useCache = false;
+  }
+
+  if (useCache && computedStyleCache[uid]) {
+    return computedStyleCache[uid];
+  }
+
+  var style = window.getComputedStyle(node);
+
+  if (style === null) {
+    return null;
+  }
+
+  var sizingStyle = SIZING_STYLE.reduce(function (obj, name) {
+    obj[name] = style.getPropertyValue(name);
+    return obj;
+  }, {});
+  var boxSizing = sizingStyle['box-sizing']; // IE (Edge has already correct behaviour) returns content width as computed width
+  // so we need to add manually padding and border widths
+
+  if (isIE && boxSizing === 'border-box') {
+    sizingStyle.width = parseFloat(sizingStyle.width) + parseFloat(style['border-right-width']) + parseFloat(style['border-left-width']) + parseFloat(style['padding-right']) + parseFloat(style['padding-left']) + 'px';
+  }
+
+  var paddingSize = parseFloat(sizingStyle['padding-bottom']) + parseFloat(sizingStyle['padding-top']);
+  var borderSize = parseFloat(sizingStyle['border-bottom-width']) + parseFloat(sizingStyle['border-top-width']);
+  var nodeInfo = {
+    sizingStyle: sizingStyle,
+    paddingSize: paddingSize,
+    borderSize: borderSize,
+    boxSizing: boxSizing
+  };
+
+  if (useCache) {
+    computedStyleCache[uid] = nodeInfo;
+  }
+
+  return nodeInfo;
+}
+
+var purgeCache = function purgeCache(uid) {
+  return delete computedStyleCache[uid];
+};
+
+function autoInc(seed) {
+  if (seed === void 0) {
+    seed = 0;
+  }
+
+  return function () {
+    return ++seed;
+  };
+}
+
+var uid = autoInc();
+
+/**
+ * <TextareaAutosize />
+ */
+var noop = function noop() {}; // IE11 has a problem with eval source maps, can be reproduced with:
+// eval('"use strict"; var onNextFrame = window.cancelAnimationFrame; onNextFrame(4);')
+// so we bind window as context in dev modes
+
+
+var _ref = isBrowser && window.requestAnimationFrame ? process.env.NODE_ENV !== 'development' ? [window.requestAnimationFrame, window.cancelAnimationFrame] : [window.requestAnimationFrame.bind(window), window.cancelAnimationFrame.bind(window)] : [setTimeout, clearTimeout];
+var onNextFrame = _ref[0];
+var clearNextFrameAction = _ref[1];
+
+var TextareaAutosize =
+/*#__PURE__*/
+function (_React$Component) {
+  _inheritsLoose(TextareaAutosize, _React$Component);
+
+  function TextareaAutosize(props) {
+    var _this;
+
+    _this = _React$Component.call(this, props) || this;
+    _this._resizeLock = false;
+
+    _this._onRootDOMNode = function (node) {
+      _this._rootDOMNode = node;
+
+      if (_this.props.inputRef) {
+        _this.props.inputRef(node);
+      }
+    };
+
+    _this._onChange = function (event) {
+      if (!_this._controlled) {
+        _this._resizeComponent();
+      }
+
+      _this.props.onChange(event);
+    };
+
+    _this._resizeComponent = function (callback) {
+      if (callback === void 0) {
+        callback = noop;
+      }
+
+      if (typeof _this._rootDOMNode === 'undefined') {
+        callback();
+        return;
+      }
+
+      var nodeHeight = calculateNodeHeight(_this._rootDOMNode, _this._uid, _this.props.useCacheForDOMMeasurements, _this.props.minRows, _this.props.maxRows);
+
+      if (nodeHeight === null) {
+        callback();
+        return;
+      }
+
+      var height = nodeHeight.height,
+          minHeight = nodeHeight.minHeight,
+          maxHeight = nodeHeight.maxHeight,
+          rowCount = nodeHeight.rowCount;
+      _this.rowCount = rowCount;
+
+      if (_this.state.height !== height || _this.state.minHeight !== minHeight || _this.state.maxHeight !== maxHeight) {
+        _this.setState({
+          height: height,
+          minHeight: minHeight,
+          maxHeight: maxHeight
+        }, callback);
+
+        return;
+      }
+
+      callback();
+    };
+
+    _this.state = {
+      height: props.style && props.style.height || 0,
+      minHeight: -Infinity,
+      maxHeight: Infinity
+    };
+    _this._uid = uid();
+    _this._controlled = typeof props.value === 'string';
+    return _this;
+  }
+
+  var _proto = TextareaAutosize.prototype;
+
+  _proto.render = function render() {
+    var _props = this.props,
+        _minRows = _props.minRows,
+        _maxRows = _props.maxRows,
+        _onHeightChange = _props.onHeightChange,
+        _useCacheForDOMMeasurements = _props.useCacheForDOMMeasurements,
+        _inputRef = _props.inputRef,
+        props = _objectWithoutProperties(_props, ["minRows", "maxRows", "onHeightChange", "useCacheForDOMMeasurements", "inputRef"]);
+    props.style = _extends({}, props.style, {
+      height: this.state.height
+    });
+    var maxHeight = Math.max(props.style.maxHeight || Infinity, this.state.maxHeight);
+
+    if (maxHeight < this.state.height) {
+      props.style.overflow = 'hidden';
+    }
+
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("textarea", _extends({}, props, {
+      onChange: this._onChange,
+      ref: this._onRootDOMNode
+    }));
+  };
+
+  _proto.componentDidMount = function componentDidMount() {
+    var _this2 = this;
+
+    this._resizeComponent(); // Working around Firefox bug which runs resize listeners even when other JS is running at the same moment
+    // causing competing rerenders (due to setState in the listener) in React.
+    // More can be found here - facebook/react#6324
+
+
+    this._resizeListener = function () {
+      if (_this2._resizeLock) {
+        return;
+      }
+
+      _this2._resizeLock = true;
+
+      _this2._resizeComponent(function () {
+        return _this2._resizeLock = false;
+      });
+    };
+
+    window.addEventListener('resize', this._resizeListener);
+  };
+
+  _proto.componentWillReceiveProps = function componentWillReceiveProps() {
+    var _this3 = this;
+
+    this._clearNextFrame();
+
+    this._onNextFrameActionId = onNextFrame(function () {
+      return _this3._resizeComponent();
+    });
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps, prevState) {
+    if (this.state.height !== prevState.height) {
+      this.props.onHeightChange(this.state.height, this);
+    }
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this._clearNextFrame();
+
+    window.removeEventListener('resize', this._resizeListener);
+    purgeCache(this._uid);
+  };
+
+  _proto._clearNextFrame = function _clearNextFrame() {
+    clearNextFrameAction(this._onNextFrameActionId);
+  };
+
+  return TextareaAutosize;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+TextareaAutosize.propTypes = {
+  value: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+  onChange: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
+  onHeightChange: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
+  useCacheForDOMMeasurements: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool,
+  minRows: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.number,
+  maxRows: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.number,
+  inputRef: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func
+};
+TextareaAutosize.defaultProps = {
+  onChange: noop,
+  onHeightChange: noop,
+  useCacheForDOMMeasurements: false
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TextareaAutosize);
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(8)))
+
+/***/ }),
+/* 607 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.updateNote = updateNote;
+exports.activateNote = activateNote;
+exports.saveNotes = saveNotes;
+function updateNote(note) {
+    return {
+        type: 'UPDATE_NOTE',
+        payload: note
+    };
+}
+
+function activateNote(date) {
+    return {
+        type: 'ACTIVATE_NOTE',
+        payload: date
+    };
+}
+
+function saveNotes(notes) {
+    console.log("Save notes " + JSON.stringify(notes));
+    return {
+        type: 'SAVE_NOTES',
+        payload: {}
+    };
+}
+
+/***/ }),
+/* 608 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+   value: true
+});
+exports.loadNotes = loadNotes;
+exports.insertCheckmark = insertCheckmark;
+exports.insertTime = insertTime;
+
+var _moment = __webpack_require__(1);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function loadNotes(savedNotes, days) {
+   /* Generate empty calendar for the current week */
+   var timeline = days.map(function (day, i) {
+      /* Loop through saved notes,
+         if I find a saved value for today,
+         I load it into the calendar */
+      savedNotes.map(function (n) {
+         if (n.date === day.date) {
+            day.note = n.note;
+         }
+      });
+      return day;
+   });
+   return timeline;
+}
+
+function insertCheckmark() {
+   var textarea = document.getElementsByClassName('textarea')[0];
+   /* Find cursor position line's nu */
+   var lineNumber = textarea.value.substr(0, textarea.selectionStart).split("\n").length;
+   var textBefore = textarea.value.split("\n").slice(0, lineNumber);
+   var textAfter = textarea.value.split("\n").slice(lineNumber);
+   var thisLine = textBefore[textBefore.length - 1];
+   if (thisLine.indexOf("- [ ]") > -1) {
+      /* If there's a checkmark already - check it. */
+      thisLine = thisLine.replace("- [ ]", "- [X]");
+   } else if (thisLine.indexOf("- [X]") > -1) {
+      /* Or uncheck it */
+      thisLine = thisLine.replace("- [X]", "- [ ]");
+   } else {
+      /* Add checkmark to the beginning of this line */
+      thisLine = "- [ ] " + thisLine;
+   }
+   textBefore[textBefore.length - 1] = thisLine;
+
+   var updatedText = textBefore.concat(textAfter).join("\n");
+   textarea.value = updatedText;
+}
+
+function insertTime() {
+   var textarea = document.getElementsByClassName('textarea')[0];
+   /* Find cursor position line's nu */
+   var lineNumber = textarea.value.substr(0, textarea.selectionStart).split("\n").length;
+   var textBefore = textarea.value.split("\n").slice(0, lineNumber);
+   var textAfter = textarea.value.split("\n").slice(lineNumber);
+   var thisLine = textBefore[textBefore.length - 1] + " " + (0, _moment2.default)().format('h:mm');
+   textBefore[textBefore.length - 1] = thisLine;
+   var updatedText = textBefore.concat(textAfter).join("\n");
+   textarea.value = updatedText;
+}
 
 /***/ })
 /******/ ]);

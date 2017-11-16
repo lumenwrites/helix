@@ -94,7 +94,6 @@ export function loadCheckmarks(savedCheckmarks) {
     return timeline
 }
 
-
 export function updateCheckmark(checkmark, habits) {
     /* Loop through all habits */
     habits.map((habit)=>{
