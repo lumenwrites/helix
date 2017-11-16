@@ -31,10 +31,10 @@ Note that in the future Helix will become a premium app ($12/year), but all the 
 - Import/export habits.
 
 ### Bug
-- will need resize and scroll notes timeline
+- Need to resize and scroll notes timeline
 
-### Small  
-- maybe do autosave, or at least indicate that it worked.
+### Small
+- Maybe do autosave, or at least indicate that it worked.
 
 ### Future
 - Checkbox types. In edit mode, under habit there's a list of checkboxes I can create.
