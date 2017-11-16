@@ -34,10 +34,9 @@ export default function (state = INITIAL_STATE, action) {
 		return {...serverNotes, active:today}
 	    } else {
 		var notes = JSON.parse(localStorage.getItem('notes'))
-		notes.active = today
 		if (notes) {
 		    console.log('Loading notes from browser.')		    
-		    return notes
+		    return {...notes, active: today}
 		} else {
 		    console.log('Loading default notes.')
 		    return {...state, active:today}

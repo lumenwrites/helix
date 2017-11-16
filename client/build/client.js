@@ -57185,10 +57185,9 @@ exports.default = function () {
 				return _extends({}, serverNotes, { active: today });
 			} else {
 				var notes = JSON.parse(localStorage.getItem('notes'));
-				notes.active = today;
 				if (notes) {
 					console.log('Loading notes from browser.');
-					return notes;
+					return _extends({}, notes, { active: today });
 				} else {
 					console.log('Loading default notes.');
 					return _extends({}, state, { active: today });
