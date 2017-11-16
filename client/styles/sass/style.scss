@@ -353,6 +353,16 @@ form {
 	margin: -15px -10px;
 	margin-bottom: 0;
 	float:right;
+	width: calc(100% - 170px); /* minus width of the menu and 10px padding */
+	overflow-y: hidden;
+	overflow-x: scroll;
+	direction:rtl;
+	&::-webkit-scrollbar { height: 0px; }
+	.days {
+	    width: calc(50px * 7);
+	}
+	
+	
 	.day {
 	    float: left;
 	    height: 10px;
@@ -382,6 +392,7 @@ form {
 	    outline: none;
 	}
 	&::-webkit-input-placeholder {
+	    /* Placeholder text color */
 	    color: rgba(103, 119, 142, 0.5);
 	}
     }
