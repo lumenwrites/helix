@@ -1,4 +1,37 @@
 const path = require('path')
+const webpack = require('webpack');
+
+function getPlugins() {
+    const plugins = [];
+    console.log("NODE_ENV " + process.env.NODE_ENV)	    
+    if (process.env.NODE_ENV === "development") {
+	console.log("Develompent build")
+	plugins.push(new webpack.DefinePlugin({
+	    'process.env.NODE_ENV': JSON.stringify('development')
+	}));
+    }
+    if (process.env.NODE_ENV === "production") {
+	console.log("Production build")	
+        plugins.push(new webpack.DefinePlugin({
+	    'process.env': {
+		NODE_ENV: JSON.stringify('production')
+	    }
+	}));
+        plugins.push(new webpack.optimize.UglifyJsPlugin({
+            minimize: true,
+            output: {
+                comments: false
+            },
+            compressor: {
+                warnings: false
+            }
+        })); 
+    }
+    
+    return plugins;
+}
+
+
 
 module.exports = {
     /* Tell webpack the root file of our app */
@@ -31,7 +64,8 @@ module.exports = {
 		loader: 'url-loader?limit=100000'
 	    }	    
 	]
-    }
+    },
+    plugins: getPlugins()    
 }
 
 
