@@ -19,7 +19,7 @@ class About extends Component {
 			<img  src="/img/logo_256x256.png"/>
 		    </div>
 		    <h1> Helix </h1>
-		    <p><a href="/">Helix</a> is a habit tracking app that will help you to create and maintain an awesome daily routine, which is one of the most powerful tools for achieving your goals and sending your life in an upwards spiral. </p>
+		    <p><a href="/">Helix</a> is a habit tracking app that will help you to create and maintain an awesome daily routine, which is one of the most powerful tools for achieving your goals and sending your life into an upwards spiral. </p>
 		    <p> Determine the most important things you need to practice regularly to achieve what you want in life, and strive to never skip a day. </p>
 		    <img src="/img/screenshots/default-habits.png"/>
 		    <p> Mark the day with <i className="fa fa-check"></i> every time you successfully complete a  <a href="https://hackernoon.com/micro-habits-changed-my-life-47f572bfc153">microhabit</a>, and mark a day with <i className="fa fa-thumbs-up"></i> every time you accomplish more significant progress. Doing 10 pushups, reading one page of a book, or writing a line of code are good examples of microhabits; going to the gym or developing a cool feature for your app are good examples of thumbsup-worthy days.</p>
@@ -33,8 +33,6 @@ class About extends Component {
 			<ul>
 			    <li>Import/Export habits</li>
 			    <li>Drag and drop to rearrange</li>
-			    <li>Custom checkbox types</li>
-			    <li>Daily todos and notes</li>
 			    <li>GitHub-like calendar</li>
 			    <li>Cool stats and graphs</li>
 			    <li>Offline mode on mobile</li>
