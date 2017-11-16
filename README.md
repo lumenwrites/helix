@@ -25,16 +25,18 @@ Note that in the future Helix will become a premium app ($12/year), but all the 
 ---- 
 
 # To Do
+
+### Next up
 - Progressive(offline mode on mobile).
 - Import/export habits.
 
-# Bug
+### Bug
 - will need resize and scroll notes timeline
 
-# Small  
+### Small  
 - maybe do autosave, or at least indicate that it worked.
 
-# Future
+### Future
 - Checkbox types. In edit mode, under habit there's a list of checkboxes I can create.
   Select icon, edit description. add more. 
   checking increments value, maximim is length of checkbox options list.
