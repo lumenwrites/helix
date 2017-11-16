@@ -22,11 +22,26 @@ I've launched Helix only recently, and at moment it is still in beta. Shoot me a
 
 Note that in the future Helix will become a premium app ($12/year), but all the early adopters who join during the beta and send me some useful feedback will get free lifetime accounts.
 
-Upcoming features :
+---- 
 
-*   Import/Export habits
-*   Drag and drop to rearrange
-*   GitHub-like calendar
-*   Cool stats and graphs
-*   Offline mode on mobile
+# To Do
+- Progressive(offline mode on mobile).
+- Import/export habits.
 
+# Bug
+- will need resize and scroll notes timeline
+
+# Small  
+- maybe do autosave, or at least indicate that it worked.
+
+# Future
+- Checkbox types. In edit mode, under habit there's a list of checkboxes I can create.
+  Select icon, edit description. add more. 
+  checking increments value, maximim is length of checkbox options list.
+- Scroll to browse all of the habits like in loop.
+- Drag and drop to rearrange
+- Payments $12/mo
+- GitHub-likep Calendar
+- Habit types (integer value, pomodoro?)
+- Cool stats and graphs
+- //Pomodoros?
