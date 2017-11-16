@@ -1,4 +1,4 @@
-<div classname="logo">![](https://helix.startuplab.io/img/logo_256x256.png)</div>
+![](https://helix.startuplab.io/img/logo_256x256.png)
 
 # Helix
 
