@@ -31,8 +31,8 @@ Note that in the future Helix will become a premium app ($12/year), but all the 
 - Import/export habits.
 
 ### Bug
-- Need to resize and scroll notes timeline
-- Double click on checkboxes shouldn't activate edit mode
+- Need to resize and scroll notes timeline.
+- Double click on checkboxes shouldn't activate edit mode.
 
 ### Small
 - Maybe do autosave, or at least indicate that it worked.
@@ -42,9 +42,9 @@ Note that in the future Helix will become a premium app ($12/year), but all the 
   Select icon, edit description. add more. 
   checking increments value, maximim is length of checkbox options list.
 - Scroll to browse all of the habits like in loop.
-- Drag and drop to rearrange
-- Stripe payments $12/yr
-- GitHub-likep Calendar
-- Habit types (integer value, pomodoro?)
-- Cool stats and graphs
+- Drag and drop to rearrange.
+- Stripe payments $12/yr.
+- GitHub-like calendar.
+- Habit types (integer value, pomodoro?).
+- Cool stats and graphs.
 - //Pomodoros?
