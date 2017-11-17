@@ -1,0 +1,15 @@
+{
+  "short_name": "Helix",
+  "name": "Helix",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "../index.html",
+  "display": "standalone",
+  "theme_color": "#282c37",
+  "background_color": "#282c37"
+}

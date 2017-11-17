@@ -8,6 +8,9 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { thunk } from 'redux'
 import reduxThunk from 'redux-thunk'
 
+/* PWA */
+import registerServiceWorker from './pwa/registerServiceWorker';
+
 /* Main component */
 import Main from './components/Main'
 

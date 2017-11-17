@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import saveAs from 'save-as'
 
 export function createHabit() {
     return {
@@ -98,3 +98,17 @@ export function loadHabitsBrowser() {
 }
 
 
+
+export function exportHabitsJSON(exportJSON) {
+    console.log("Exporting " + JSON.stringify(exportJSON))
+
+    /* Use magical component to save it into a file */
+    var contents = JSON.stringify(exportJSON, null, 4)
+    var blob = new Blob([contents], { type: 'application/json;charset=utf-8' })
+    var filename = 'helix.json'
+    saveAs(blob, filename)
+    return {
+	type: 'EXPORT_HABITS',
+	payload: null
+    }    
+}

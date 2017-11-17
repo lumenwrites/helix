@@ -15,6 +15,9 @@ router.route('/').get(habitsControllers.getHabits)
 router.route('/habits').post(habitsControllers.saveHabits)
 router.route('/notes').post(habitsControllers.saveNotes)
 
+/* router.route('/export').post(habitsControllers.export)*/
+
+
 
 
 export default router

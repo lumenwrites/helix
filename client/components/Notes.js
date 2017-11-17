@@ -49,12 +49,13 @@ class Notes extends Component {
 		note:""
 	    }
 	}
+
 	return (
 	    <div className="notes">
-		<div className="timeline">
-		    <div className="days">		    
-			{ timeline }
-		    </div>
+	    <div className="timeline">
+	    <div className="days">		    
+	    { timeline }
+		</div>
 		</div>
 		<Textarea placeholder="Note..."
 			  value={ activeNote.note }
@@ -83,7 +84,7 @@ class Notes extends Component {
 		    </a>
 		</div>
 		<div className="clearfix"/>
-	    </div>
+		</div>
 	)
     }
 }

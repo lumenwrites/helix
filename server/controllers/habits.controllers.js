@@ -10,7 +10,6 @@ export function getHabits(req, res) {
     res.json(user.habits)
 }
 
-
 /* Save Habits */
 export function saveHabits(req, res) {
     /* Passport deserializes cookie (finds user by id),

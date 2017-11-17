@@ -10,7 +10,36 @@ class Menu extends Component {
     createHabit(event) {
 	event.preventDefault()
 	this.props.createHabit()
-    }    
+    }
+    exportHabitsJSON(event) {
+	event.preventDefault()
+
+	const profile = this.props.profile
+	const browserHabits = JSON.parse(localStorage.getItem('habits'))
+	const browserNotes = JSON.parse(localStorage.getItem('notes'))	
+	var exportJSON = {
+	    habits: browserHabits,
+	    notes: browserNotes	    
+	}
+
+	if (profile) {
+	    /* if logged in */
+	    const serverHabits = JSON.parse(profile.habits)
+	    if (!browserHabits ||
+		serverHabits.lastUpdated > browserHabits.lastUpdated  ) {
+		/* if serverHabits were updated more recently */
+		exportJSON.habits = serverHabits		
+	    }
+	    const serverNotes = JSON.parse(profile.notes)
+	    if (!browserNotes ||
+		serverNotes.lastUpdated > browserNotes.lastUpdated  ) {
+		/* if serverNotes were updated more recently */
+		exportJSON.notes = serverNotes		
+	    }
+	}
+
+	this.props.exportHabitsJSON(exportJSON)
+    }        
     render() {
 	return (
 	    <div className="main-menu">
@@ -25,11 +54,6 @@ class Menu extends Component {
 			{/*  
 			    <li>
 			    <a>
-			    <i className="fa fa-download"></i>Export
-			    </a>
-			    </li>
-			    <li>
-			    <a>
 			    <i className="fa fa-upload"></i>Import
 			    </a>
 			    </li>
@@ -38,7 +62,7 @@ class Menu extends Component {
 			    <i className="fa fa-gear"></i>Edit
 			    </a>
 			    </li>
-			  */}
+			  */}			
 			<li>				
 			    <a onClick={this.createHabit.bind(this)}>
 				<i className="fa fa-plus"></i>Add Habit
@@ -48,6 +72,11 @@ class Menu extends Component {
 			    <Link to="/about">
 				<i className="fa fa-info-circle"></i>About
 			    </Link>
+			</li>
+			<li>
+			    <a onClick={this.exportHabitsJSON.bind(this)}>
+				<i className="fa fa-download"></i>Export
+			    </a>
 			</li>
 			{ this.props.profile ?
 			  <li>				

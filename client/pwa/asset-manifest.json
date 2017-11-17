@@ -1,0 +1,4 @@
+{
+  "main.css": "../client/styles/css/style.css",
+  "main.js": "../client/build/client.js"
+}
