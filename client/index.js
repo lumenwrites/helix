@@ -12,9 +12,11 @@ import reduxThunk from 'redux-thunk'
 /* import registerServiceWorker from './pwa/sw'*/
 if ('serviceWorker' in navigator) { /* if sw is supported */
     /* Register service worker */
-    navigator.serviceWorker
-	     .register('/sw.js')
-	     .then(()=>{console.log("Service worker registered")})    
+    /* 
+       navigator.serviceWorker
+       .register('/sw.js')
+       .then(()=>{console.log("Service worker registered")})
+     */    
 }
 
 
