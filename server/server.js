@@ -54,6 +54,7 @@ app.use('/api/v1', habitsRoutes);
 /* Static files */
 app.use('/styles', express.static(path.resolve(__dirname, '../client/styles')))
 app.use('/img', express.static(path.resolve(__dirname, '../client/img')))
+app.use('/pwa', express.static(path.resolve(__dirname, '../client/pwa')))
 app.get('/client.js', (req,res) => {
     res.sendFile(path.resolve(__dirname, '../client/build/client.js'));
 })

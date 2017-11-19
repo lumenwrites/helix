@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
 /* Actions */
 import * as habitsActions from '../actions/habits.actions'

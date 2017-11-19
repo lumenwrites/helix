@@ -144,6 +144,25 @@ header {
     }
 }
 
+.calendar {
+    margin-top: -8px;
+    .day {
+	height: 40px;
+	border-radius: 40px;
+	padding-top: 6.5px;
+    }
+    /* Add background to mark complete days with a circle */
+    .basic {
+	border: 1px solid #639560;
+    }
+    .perfect {
+	background: #d39a63;
+	.name, .date {
+	    color: white;
+	}
+    }
+    
+}
 .habits {
     width: 640px;
     @media  (max-width: 740px) {

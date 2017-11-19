@@ -9,7 +9,9 @@ import { thunk } from 'redux'
 import reduxThunk from 'redux-thunk'
 
 /* PWA */
-import registerServiceWorker from './pwa/registerServiceWorker';
+/* import registerServiceWorker from './pwa/sw'*/
+navigator.serviceWorker.register('/pwa/sw.js')
+
 
 /* Main component */
 import Main from './components/Main'
