@@ -1,6 +1,7 @@
 {
   "short_name": "Helix",
   "name": "Helix",
+  "decsription": "Habit tracking app",
   "icons": [
     {
       "src": "/img/logo_512x512.png",
