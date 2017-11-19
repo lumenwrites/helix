@@ -175,6 +175,11 @@ export default function (state = INITIAL_STATE, action) {
 		    return state
 		}
 	    }
+	case 'LOAD_HABITS':
+	    const habits = action.payload
+	    /* This runs from Main.js, only if I'm in offline mode,
+	       loading habits from browser, because otherwise FETCH_USER wont run */
+	    return habits
 	default:
 	    return state
     }

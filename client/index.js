@@ -10,17 +10,22 @@ import reduxThunk from 'redux-thunk'
 
 /* PWA */
 /* import registerServiceWorker from './pwa/sw'*/
-navigator.serviceWorker.register('/pwa/sw.js')
+if ('serviceWorker' in navigator) { /* if sw is supported */
+    /* Register service worker */
+    navigator.serviceWorker
+	     .register('/sw.js')
+	     .then(()=>{console.log("Service worker registered")})    
+}
 
 
-/* Main component */
-import Main from './components/Main'
+    /* Main component */
+    import Main from './components/Main'
 
-/* Reducers */
-import reducers from './reducers/index.reducers'
+    /* Reducers */
+    import reducers from './reducers/index.reducers'
 
-/* Create new instance of redux store out of reducers and initial state */
-const INITIAL_STATE = {}
+    /* Create new instance of redux store out of reducers and initial state */
+    const INITIAL_STATE = {}
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
     reducers,

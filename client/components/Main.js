@@ -8,6 +8,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 
 /* Actions */
 import * as profilesActions from '../actions/profiles.actions'
+import * as habitsActions from '../actions/habits.actions'
 
 /* My components  */
 import Header from './Header'
@@ -17,7 +18,11 @@ import About from './About'
 
 class Main extends Component {
     componentDidMount(){
-	this.props.fetchUser()
+	if (navigator.onLine) {
+	    this.props.fetchUser()
+	} else {
+	    this.props.loadHabitsBrowser()
+	}
     }
 
     render() {
@@ -42,4 +47,4 @@ function mapStateToProps(state) {
 }
 /* First argument allows to access state */
 /* Second allows to fire actions */
-export default connect(mapStateToProps, profilesActions)(Main);
+export default connect(mapStateToProps, {...profilesActions, ...habitsActions} )(Main);

@@ -58,6 +58,9 @@ app.use('/pwa', express.static(path.resolve(__dirname, '../client/pwa')))
 app.get('/client.js', (req,res) => {
     res.sendFile(path.resolve(__dirname, '../client/build/client.js'));
 })
+app.get('/sw.js', (req,res) => {
+    res.sendFile(path.resolve(__dirname, '../client/pwa/sw.js'));
+})
 /* Send the rest of the requests to be handled by the react router */
 app.use((req, res) =>
     res.sendFile(path.resolve(__dirname, '../client/index.html')));
