@@ -15,6 +15,8 @@ import Header from './Header'
 import Habits from './Habits'
 import About from './About'
 
+/* import vendor from '../styles/css/vendor.css'*/
+/* import style from '../styles/css/style.css'*/
 
 class Main extends Component {
     componentDidMount(){
@@ -22,6 +24,7 @@ class Main extends Component {
 	    this.props.fetchUser()
 	} else {
 	    this.props.loadHabitsBrowser()
+	    this.props.loadNotesBrowser()	    
 	}
     }
 

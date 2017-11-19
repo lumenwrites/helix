@@ -14,10 +14,11 @@ export function activateNote(date) {
     }
 }
 
-export function loadNotes() {
-    const notes = JSON.parse(localStorage.getItem('notes'))
-    console.log("Load notes from browser")
-
+export function loadNotesBrowser() {
+    /* Triggers by Main.js, only when offline.
+       Otherwise notes are loaded when fetching user.  */    
+    var notes = JSON.parse(localStorage.getItem('notes'))
+    console.log("Load notes from local storage")
     return {
 	type: 'LOAD_NOTES',
 	payload: notes

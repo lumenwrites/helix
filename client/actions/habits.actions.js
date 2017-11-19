@@ -88,7 +88,8 @@ export function loadHabits() {
 
 
 export function loadHabitsBrowser() {
-    /* I'm loading habits when ../components/Habits.js is mounted  */    
+    /* Triggers by Main.js, only when offline.
+       Otherwise habits are loaded when fetching user.  */    
     var habits = JSON.parse(localStorage.getItem('habits'))
     console.log("Load habits from local storage")
     return {

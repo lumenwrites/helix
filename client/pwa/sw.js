@@ -27,10 +27,15 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-    event.respondWith(
-	caches.match(event.request)
+    console.log("Fetching " + event.request)
+    /* Gotta send stuff from cache only if offline. */
+    if (!navigator.onLine) {
+	event.respondWith(
+	    caches.match(event.request)
 	      .then(function(res) {
 		  return res;
 	      })
-    )    
+	)
+    } else {
+    }
 })

@@ -147,24 +147,34 @@ export function calculateStreak(checkmarks) {
 
     /* Loop through dates backwards, starting from today,
        if checkmark is there and is checked, I increment the streak. */
-    for (var i = 0; i < checkmarks.length; i++) {
-	var checked = false
+    for (var i = 0; i < checkmarks.length + 1; i++) {
+	var continueStreak = false
 	checkmarks.map((checkmark)=>{
 	    /* Find today's checkmark */
 	    if (checkmark.date == thisDate) {
 		if (checkmark.value == 1 || checkmark.value == 2) {
 		    /* Increment the streak if this habit is completed */
 		    currentStreak += 1
-		    checked = true
+		    continueStreak = true
 		}
-	    }
+	    }	    
 	})
-	/* If the checkmark for this day isn't checked, streak is over */
-	if (!checked) {break}
+	if (thisDate == today.format('YYYY-MM-DD')) {
+	    /* If it's today, I want to continue even if not checked,
+	       beacuase streak is calculated starting from yesteday.
+	       But if today is checked, the if statement above will add 1 more day
+	       to streak.*/
+	    continueStreak = true
+	}
+	
+	/* If the checkmark for this day isn't continueStreak, streak is over */
+	if (!continueStreak) {break}
 
 	/* The previous day  */
 	thisDate = moment(thisDate).subtract(1,'days').format('YYYY-MM-DD')
     }
+
+    /* If today is completed, I add one more day to the steak */
 
     /* console.log("Return Current streak " + currentStreak);*/
     return currentStreak;
