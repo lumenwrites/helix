@@ -9,7 +9,7 @@ import { thunk } from 'redux'
 import reduxThunk from 'redux-thunk'
 
 /* PWA */
-/* import registerServiceWorker from './pwa/sw'*/
+/* import registerServiceWorker from './pwa/registerServiceWorker'*/
 
 
 /* Main component */

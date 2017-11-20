@@ -5,6 +5,7 @@ import path from 'path'
 import bodyParser from 'body-parser'
 import cookieSession from 'cookie-session'
 import passport from 'passport'
+import cors from 'cors'
 
 /* Import Routes */
 import profilesRoutes from './routes/profiles.routes.js'
@@ -17,6 +18,7 @@ import keys from './config/keys'
 const app = express()
 app.set('view engine', 'ejs')
 app.set('views', __dirname + '/views')
+app.use(cors())
 
 /* Tell express to use cookies */
 /* Cookie will last for 30 days(in milliseconds), and be encrypted with random key. */

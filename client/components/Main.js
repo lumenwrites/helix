@@ -9,6 +9,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 /* Actions */
 import * as profilesActions from '../actions/profiles.actions'
 import * as habitsActions from '../actions/habits.actions'
+import * as notesActions from '../actions/notes.actions'
 
 /* My components  */
 import Header from './Header'
@@ -50,4 +51,6 @@ function mapStateToProps(state) {
 }
 /* First argument allows to access state */
 /* Second allows to fire actions */
-export default connect(mapStateToProps, {...profilesActions, ...habitsActions} )(Main);
+export default connect(mapStateToProps, {...profilesActions,
+					 ...habitsActions,
+					 ...notesActions} )(Main);

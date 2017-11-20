@@ -65,6 +65,14 @@ export default function (state = INITIAL_STATE, action) {
 	    } else {
 		return { ...state, active: moment().format('YYYY-MM-DD')}
 	    }
+	case 'LOAD_NOTES':
+	    const notes = action.payload
+	    if (!notes) {
+		return state
+	    }
+	    /* This runs from Main.js, only if I'm in offline mode,
+	       loading notes from browser, because otherwise FETCH_USER wont run */
+	    return notes	    
 	default:
 	    return state
     }
