@@ -40,15 +40,15 @@ self.addEventListener('fetch', function(event) {
     } else {
 	event.respondWith(
 	    /* Go fetch the file I wanted*/
+	    /* Return the fetched file back, as normal internet works */
+	    /* Apparently Im just giving fetche's promise to respondWith? */
 	    fetch(event.request)
 		.then((res)=>{
 		    /* Also put it into cache */
 		    caches.open('dynamic').then((cache)=>{
-			cache.put(event.request.url, res.clone())
 			console.log("[Online] Caching " + event.request.url)
+			cache.put(event.request.url, res.clone())
 		    })
-		    /* Return the fetched file back, as normal internet works */
-		    return res
 		})	
 	)
 
