@@ -40,19 +40,12 @@ class Calendar extends Component {
 	})
 
 	return (
-	    <div className="calendar" onScroll={syncScroll}>
-		<div className="dates">	    
-		    <a className="prev-week">
-			<i className="fa fa-chevron-left"></i>
-		    </a>
-		    { calendar }
-		    <a className="next-week">
-			<i className="fa fa-chevron-right"></i>
-		    </a>	    
-		    <div className="clearfix"/>
+		<div className="calendar" onScroll={syncScroll}>
+		    <div className="dates">	    
+			{ calendar }
+			<div className="clearfix"/>
+		    </div>
 		</div>
-	    </div>
-
 	)
     }
 }

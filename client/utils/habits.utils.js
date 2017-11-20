@@ -54,18 +54,20 @@ export function generateCurrentWeek() {
     return days
 }
 
-export function generateRecentDays() {
+export function generateRecentDays(shift = 0) {
     /* Generate empty calendar for the past 10 days */
     var names = [ 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun' ];
-    var currentDate = moment();
-    var weekStart = currentDate.clone().startOf('isoweek');
+    var startDate = moment() /* today */
+    if (shift) {
+	startDate = startDate.subtract(shift,'days')
+	console.log("current date " + startDate)
+	
+    }
     var days = [];
-
-    var today = moment()
-    var thisDate = today.format('YYYY-MM-DD')
+    var thisDate = startDate.format('YYYY-MM-DD')
 
     /* Count backwards from today, adding past 10 days to the calendar */
-    for (var i = 0; i <= 6; i++) {
+    for (var i = 0; i <= 31; i++) {
 	days.push({
 	    date: thisDate,
 	    value: null,
@@ -186,7 +188,9 @@ export function syncScroll () {
     const calendar = document.getElementsByClassName("calendar")[0]
     const timelines = document.getElementsByClassName("timeline")
     var scroll = calendar.scrollLeft
-    /* console.log("Scroll! " + scroll)*/
+    console.log("Scroll! " + scroll)
+    var scrollIncrement = parseInt(calendar.scrollLeft / 50)
+    console.log("Scroll increment " + scrollIncrement)    
     /* Looping over all timelines to synchronize scroll. */
     Array.prototype.forEach.call(timelines, function(t) {
 	t.scrollLeft = scroll

@@ -79,7 +79,6 @@ header {
     
 }    
 
-
 .calendar {
     margin-right: 10px;	
     float:right;
@@ -93,23 +92,9 @@ header {
     direction:rtl;
     &::-webkit-scrollbar { height: 0px; }
     .dates {
-	width: calc(50px * 7);
+	width: calc(50px * 32);
     }
     
-    position: relative;
-    .prev-week, .next-week {
-	display:none;
-	position: absolute;
-	height: 30px;
-	width: 0;	    
-	top: 0px;
-	.fa {
-	    line-height: 30px;
-	    color: #9BAEC8;		
-	}
-    }
-    .prev-week { left: -10px; }
-    .next-week { right: 0px; }
     .day {
 	float: left;
 	height: 30px;
@@ -213,7 +198,7 @@ header {
 	    direction:rtl;
 	    &::-webkit-scrollbar { height: 0px; }
 	    .checkmarks {
-		width: calc(50px * 7);
+		width: calc(50px * 32);
 	    }
 
 	    .checkmark {
@@ -378,7 +363,7 @@ form {
 	direction:rtl;
 	&::-webkit-scrollbar { height: 0px; }
 	.days {
-	    width: calc(50px * 7);
+	    width: calc(50px * 32);
 	}
 	
 	
