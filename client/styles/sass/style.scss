@@ -87,6 +87,7 @@ header {
     /* }	 */
     
     width: calc(100% - 210px); /* minus width of the menu and 10px padding */
+    max-width: calc(50px * 8);    
     overflow-y: hidden;
     overflow-x: scroll;
     direction:rtl;
@@ -192,6 +193,7 @@ header {
 	    }
 
 	    width: calc(100% - 190px);
+	    max-width: calc(50px * 8);    	    
 	    overflow-y: hidden;
 	    overflow-x: scroll;
 	    overflow-x: hidden;
@@ -358,6 +360,7 @@ form {
 	margin-bottom: 0;
 	float:right;
 	width: calc(100% - 170px); /* minus width of the menu and 10px padding */
+	max-width: calc(50px * 8);    	
 	overflow-y: hidden;
 	overflow-x: scroll;
 	direction:rtl;
