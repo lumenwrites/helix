@@ -72,23 +72,25 @@ class Habit extends Component {
 		    <ColorPicker
 			defaultColor={habit.color}
 			setColor={(color)=> {
-			    /* When color is selected, ColorPicker component
-			       will call this callback function,
-			       passing it the chosen color.  */
-			    /* console.log("Selected Color " + newColor) */
-			    /* I take selected color, and put it into a hidden field,
-			       which I will then use in onSubmit when I save the form. */
-			    ReactDOM.findDOMNode(this.refs.selectedColor).value = color
-		    }} />
+				/* When color is selected, ColorPicker component
+				   will call this callback function,
+				   passing it the chosen color.  */
+				/* console.log("Selected Color " + newColor) */
+				/* I take selected color, and put it into a hidden field,
+				   which I will then use in onSubmit when I save the form. */
+				ReactDOM.findDOMNode(this.refs.selectedColor).value = color
+			}} />
 		    <form onSubmit={this.onSubmit.bind(this)}>
 			<input type="text"
 			       ref="title"
 			       className="title-edit"
-			       defaultValue={habit.title} />
+			       defaultValue={habit.title}
+			       placeholder="New Habit" />
 			<input type="text"
 			       ref="description"
 			       className="description"			
-			       defaultValue={habit.description} />
+			       defaultValue={habit.description}
+			       placeholder="Description..." />
 			<input type="hidden"
 			       ref="selectedColor"/>
 			<br/>

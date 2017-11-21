@@ -4,8 +4,8 @@ import cuid from 'cuid';
 export function createHabit( habits) {
     const newHabit = {
 	id: cuid.slug(),
-	title: 'New Habit',
-	description: 'Description...',
+	title: '',
+	description: '',
 	color: '#67778e',
 	editing: true,
 	checkmarks: []

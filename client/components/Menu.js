@@ -63,8 +63,8 @@ class Menu extends Component {
 			    </a>
 			    </li>
 			  */}			
-			<li>				
-			    <a onClick={this.createHabit.bind(this)}>
+			<li onClick={this.createHabit.bind(this)}>
+			    <a>
 				<i className="fa fa-plus"></i>Add Habit
 			    </a>
 			</li>
@@ -73,8 +73,8 @@ class Menu extends Component {
 				<i className="fa fa-info-circle"></i>About
 			    </Link>
 			</li>
-			<li>
-			    <a onClick={this.exportHabitsJSON.bind(this)}>
+			<li onClick={this.exportHabitsJSON.bind(this)}>
+			    <a>
 				<i className="fa fa-download"></i>Export
 			    </a>
 			</li>

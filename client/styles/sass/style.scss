@@ -177,6 +177,8 @@ header {
 	.title {
 	    float: left;
 	    width: 140px;
+	    min-height: 20px;
+	    /* cursor: pointer; */
 	}
 
 	.description {
