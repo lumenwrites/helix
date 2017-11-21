@@ -57410,7 +57410,7 @@ exports.default = function () {
 	var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
 	var action = arguments[1];
 
-	var habitList = JSON.parse(JSON.stringify(state.habitList)); /* deep copy */
+	var habitList = JSON.parse(JSON.stringify(state.habitList)) || []; /* deep copy */
 
 	switch (action.type) {
 		case 'CREATE_HABIT':

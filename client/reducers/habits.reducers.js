@@ -117,7 +117,7 @@ INITIAL_STATE = {
 
 /* Create and modify state. Passing initial state and actions. */
 export default function (state = INITIAL_STATE, action) {
-    var habitList = JSON.parse(JSON.stringify(state.habitList)) /* deep copy */
+    var habitList = JSON.parse(JSON.stringify(state.habitList)) || [] /* deep copy */
 
     switch (action.type) {
 	case 'CREATE_HABIT':
