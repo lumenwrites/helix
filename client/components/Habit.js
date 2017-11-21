@@ -50,13 +50,13 @@ class Habit extends Component {
 	    /* Render habit */
 	    return (
 		<div className="habit"
-		     key={habit.title}
-		     onDoubleClick={this.onDoubleClick.bind(this)}>
+		     key={habit.title}>
 		    <div className="streak">
 			{ calculateStreak(habit.checkmarks) }
 		    </div>
 		    <div className="title"
-			 style={{color: habit.color}}>
+			 style={{color: habit.color}}
+			 onDoubleClick={this.onDoubleClick.bind(this)}>
 			{ habit.title }
 			{ habit.description ?
 			  <div className="description">{ habit.description }</div> : null }

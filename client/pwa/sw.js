@@ -1,5 +1,6 @@
 self.addEventListener('install', function(event) {
     console.log('Service worker installed')
+
     event.waitUntil(
 	caches.open('static')
 	      .then(function(cache) {
@@ -18,6 +19,7 @@ self.addEventListener('install', function(event) {
 		  ])
 	      })
     )
+
 })
 
 
@@ -27,30 +29,9 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-    /* console.log("Fetching " + event.request)*/
-    if (!navigator.onLine) {
-	/* Send stuff from cache only if offline. */
-	event.respondWith(
-	    caches.match(event.request)
-		  .then(function(res) {
-		  return res;
-		  })
-	)
-	console.log("[Offline] Loading from cache " + event.request)
-    } else {
-	event.respondWith(
-	    /* Go fetch the file I wanted*/
-	    /* Return the fetched file back, as normal internet works */
-	    /* Apparently Im just giving fetche's promise to respondWith? */
-	    fetch(event.request)
-		.then((res)=>{
-		    /* Also put it into cache */
-		    caches.open('dynamic').then((cache)=>{
-			console.log("[Online] Caching " + event.request.url)
-			cache.put(event.request.url, res.clone())
-		    })
-		})	
-	)
-
-    }
-})
+    event.respondWith(
+	fetch(event.request).catch(function() {
+	    return caches.match(event.request);
+	})
+    );
+});

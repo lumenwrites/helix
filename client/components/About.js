@@ -30,16 +30,14 @@ class About extends Component {
 		    <p> I've launched Helix only recently, and at moment it is still in beta. Shoot me an email to <b>ray@startuplab.io</b> with some feedback and feature suggestions, I would really appreciate it =) </p>
 		    <p> Note that in the future Helix will become a premium app ($12/year), but all the early adopters who join during the beta and send me some useful feedback will get free lifetime accounts.</p>
 		    <p> Upcoming features :
-			<ul>
-			    <li>Import/Export habits</li>
-			    <li>Drag and drop to rearrange</li>
-			    <li>GitHub-like calendar</li>
-			    <li>Cool stats and graphs</li>
-			    <li>Offline mode on mobile</li>
-			</ul>
 		    </p>
-
-
+		    <ul>
+			<li>Import/Export habits</li>
+			<li>Drag and drop to rearrange</li>
+			<li>GitHub-like calendar</li>
+			<li>Cool stats and graphs</li>
+			<li>Offline mode on mobile</li>
+		    </ul>
 		</div>
 	    </div>
 );
