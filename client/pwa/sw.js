@@ -50,7 +50,9 @@ self.addEventListener('fetch', function(event) {
 	caches.open('helix-dynamic').then(function(cache) {
 	    return cache.match(event.request).then(function (response) {
 		return response || fetch(event.request).then(function(response) {
-		    cache.put(event.request, response.clone());
+		    if (!event.request.includes('api/v1')) {
+			cache.put(event.request, response.clone())
+		    }
 		    return response;
 		});
 	    });
