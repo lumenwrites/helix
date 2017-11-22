@@ -431,7 +431,9 @@ form {
 .react-calendar-heatmap {
     margin-top: 10px;
 }
+
 .react-calendar-heatmap .color-empty { fill: rgba(0,0,0,0.1); }
+.react-calendar-heatmap .color-scale-0 { fill: #af6e6e; }
 .react-calendar-heatmap .color-scale-1 { fill: #9dc89b; }
 .react-calendar-heatmap .color-scale-2 { fill: #cb9c6f; }
 .react-calendar-heatmap .color-scale-3 { fill: #44a340; }
