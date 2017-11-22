@@ -16,7 +16,7 @@ class Graph extends Component {
 	var values = habit.checkmarks.map((c)=>{
 	    return {
 		date:c.date,
-		count: c.value || 0
+		count: c.value
 	    }
 	})
 	return (
@@ -34,11 +34,11 @@ class Graph extends Component {
 		    }}
 		    tooltipDataAtts={{'data-toggle': 'tooltip'}}
 		    classForValue={(value) => {
-			    if (value) {
-				return `color-scale-${value.count}`
-			    } else {
+			    if (value == null || value.count == null ) {
 				return 'color-empty'
+
 			    }
+			    return `color-scale-${value.count}`
 		    }}		
 		/>		    
 	    </div>
@@ -55,5 +55,3 @@ function mapStateToProps(state) {
 /* First argument allows to access state */
 /* Second allows to fire actions */
 export default connect(mapStateToProps, profilesActions)(Graph);
-
-
