@@ -6,6 +6,9 @@ import { BrowserRouter, Route } from 'react-router-dom'
 /* import '../styles/css/vendor.css'
  * import '../styles/css/style.css'*/
 
+/* import '../../node_modules/react-github-contribution-calendar/default.css'*/
+
+
 /* Actions */
 import * as profilesActions from '../actions/profiles.actions'
 import * as habitsActions from '../actions/habits.actions'

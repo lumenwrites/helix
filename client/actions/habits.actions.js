@@ -35,6 +35,14 @@ export function updateCheckmark(checkmark) {
     }
 }
 
+export function toggleCalendar() {
+    return {
+	type: 'TOGGLE_CALENDAR',
+	payload: {}
+    }
+}
+
+
 export function saveHabits(habits) {
     /* ../components/Habits.js triggers this action every time habits in state change  */
     /* For some weird reason, if Im using "habits" vairable, inside the following

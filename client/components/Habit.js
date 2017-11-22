@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux';
@@ -9,9 +11,13 @@ import * as habitsActions from '../actions/habits.actions'
 /* Utils */
 import { calculateStreak } from '../utils/habits.utils'
 
+/* Vendor components */
+import CalendarHeatmap from 'react-calendar-heatmap'
+
 /* Components */
 import Timeline from './Timeline'
 import ColorPicker from './ColorPicker'
+import Graph from './Graph'
 
 class Habit extends Component {
     onDoubleClick() {
@@ -63,6 +69,8 @@ class Habit extends Component {
 		    </div>
 		    <Timeline habit={habit} />
 		    <div className="clearfix" />
+		    {this.props.habits.showCalendar ?
+		     <Graph habit={habit}/> : null }
 		</div>
 	    )
 	} else {
@@ -119,7 +127,8 @@ class Habit extends Component {
 /* Magic connecting component to redux */
 function mapStateToProps(state) {
     return {
-    	profile: state.profile
+    	profile: state.profile,
+    	habits: state.habits	
     }
 }
 /* First argument allows to access state */

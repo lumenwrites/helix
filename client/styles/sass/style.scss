@@ -426,3 +426,17 @@ form {
 	visibility: visible;
     }
 }
+
+
+.react-calendar-heatmap {
+    margin-top: 10px;
+}
+.react-calendar-heatmap .color-empty { fill: rgba(0,0,0,0.1); }
+.react-calendar-heatmap .color-scale-1 { fill: #9dc89b; }
+.react-calendar-heatmap .color-scale-2 { fill: #cb9c6f; }
+.react-calendar-heatmap .color-scale-3 { fill: #44a340; }
+.react-calendar-heatmap .color-scale-4 { fill: #1e6823; }
+.react-calendar-heatmap-month-label {
+    font-size: 10px;
+    fill: #9BAEC8;
+}

@@ -68,6 +68,12 @@ class Menu extends Component {
 				<i className="fa fa-plus"></i>Add Habit
 			    </a>
 			</li>
+			<li onClick={this.props.toggleCalendar}>
+			    <a>
+				<i className="fa fa-calendar"></i>Calendar
+			    </a>
+			</li>
+			
 			<li>				
 			    <Link to="/about">
 				<i className="fa fa-info-circle"></i>About

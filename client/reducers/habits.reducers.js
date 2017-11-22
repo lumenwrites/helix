@@ -3,7 +3,8 @@ import { createHabit, updateHabit, deleteHabit,
 
 var INITIAL_STATE = {
     modified: false,
-    lastUpdated: null,    
+    lastUpdated: null,
+    showCalendar: true,        
     habitList: [
 	{
 	    id: "1",
@@ -180,6 +181,9 @@ export default function (state = INITIAL_STATE, action) {
 	    /* This runs from Main.js, only if I'm in offline mode,
 	       loading habits from browser, because otherwise FETCH_USER wont run */
 	    return habits
+	case 'TOGGLE_CALENDAR':
+	    return {...state, showCalendar: !state.showCalendar }
+	    
 	default:
 	    return state
     }
