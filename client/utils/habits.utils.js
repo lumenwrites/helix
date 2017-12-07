@@ -56,7 +56,7 @@ export function generateCurrentWeek() {
 
 export function generateRecentDays(shift = 0) {
     /* Generate empty calendar for the past 10 days */
-    var names = [ 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun' ];
+    var names = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
     var startDate = moment() /* today */
     if (shift) {
 	startDate = startDate.subtract(shift,'days')
@@ -71,7 +71,7 @@ export function generateRecentDays(shift = 0) {
 	days.push({
 	    date: thisDate,
 	    value: null,
-	    name: names[moment(thisDate).day()]
+	    name: names[moment(thisDate).isoWeekday() - 1]
 	})
 	thisDate = moment(thisDate).subtract(1,'days').format('YYYY-MM-DD')	
     }
