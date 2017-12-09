@@ -137,6 +137,7 @@ export default function (state = INITIAL_STATE, action) {
 	case 'DELETE_HABIT':
 	    var habit = action.payload
 	    habitList = deleteHabit(habit, habitList)
+	    console.log('[habits.reducers] Deleted habit')
 	    return { ...state, habitList, modified: true}
 	    
 	case 'UPDATE_CHECKMARK':

@@ -102,13 +102,15 @@ class Habit extends Component {
 			<input type="hidden"
 			       ref="selectedColor"/>
 			<br/>
-			<button className="btn btn-delete"
+			<button type="button"
+				className="btn btn-delete"
 				onClick={this.onDelete.bind(this)}>
 			    <i className="fa fa-trash"></i>
 			</button>
 			<div className="right">
-			    <button className="btn btn-submit"
-				onClick={this.onCancel.bind(this)}>
+			    <button type="button"
+				    className="btn btn-submit"
+				    onClick={this.onCancel.bind(this)}>
 				Cancel
 			    </button>
 			    <input className="btn btn-submit right"
